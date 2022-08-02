@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  header {
+    @apply fixed top-0 left-0 z-50
+    px-12
+    bg-[#f6f6f6] 
+    dark:bg-dark_background
+    flex items-center justify-between 
+    h-[10vh] w-full;
+  }
+
+  /* footer {
+    @apply fixed bottom-0;
+  } */
+
+  body {
+    @apply container px-8 mx-auto;
+  }
+
+  html {
+    @apply text-light_textColor bg-light_background 
+    font-sans 
+    tracking-tight 
+    scroll-smooth 
+    !scrollbar-thin 
+    !scrollbar-track-transparent
+    !scrollbar-thumb-gray-400
+    hover:scrollbar-thumb-gray-500
+    dark:scrollbar-thumb-blue-600 
+    dark:scrollbar-track-blue-200
+    overflow-hidden;
+  }
+}
+
+@layer components {
+  .iconNavbar {
+    @apply h-[4px] rounded-xl bg-white transition-all duration-300;
+  }
+  .onTextHover {
+    @apply hover:text-transparent 
+    hover:bg-clip-text 
+    hover:bg-gradient-to-r from-[#1d63a9] to-[#21cbc8]
+    transition-all duration-200;
+  }
+  .onBGHover {
+    @apply transition-all duration-200 hover:bg-gradient-to-r from-purple-400 to-pink-600;
+  }
+  .icon {
+    @apply text-2xl dark:text-dark_accentColor text-light_textColor;
+  }
+  .button {
+    @apply border rounded-md;
+  }
+  .itemNavbar {
+    @apply;
+  }
+}
