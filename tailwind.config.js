@@ -12,18 +12,17 @@ module.exports = {
         dark_subTextColor: '#8992b0',
 
         light_background: '#fafafa',
+        light_subBackground: '#f6f6f6',
         light_textColor: '#1d1d1f',
         light_primaryColor: '#009adc',
         textGrayLight: '#5e5e5e',
       },
-      fontFamily: {
-        sans: ['Graphik', 'sans-serif'],
-        serif: ['Merriweather', 'serif'],
-      },
-      spacing: {
-        128: '32rem',
-        144: '36rem',
-        text_size: '18px',
+      // fontFamily: {
+      //   sans: ['Graphik', 'sans-serif'],
+      //   serif: ['Merriweather', 'serif'],
+      // },
+      backgroundImage: {
+        'footer-texture': "url('/img/footer-texture.png')",
       },
     },
   },

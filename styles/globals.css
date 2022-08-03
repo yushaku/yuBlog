@@ -3,21 +3,13 @@
 @tailwind utilities;
 
 @layer base {
-  header {
-    @apply fixed top-0 left-0 z-50
-    px-12
-    bg-[#f6f6f6] 
-    dark:bg-dark_background
-    flex items-center justify-between 
-    h-[10vh] w-full;
-  }
 
   /* footer {
     @apply fixed bottom-0;
   } */
 
   body {
-    @apply container px-8 mx-auto;
+    @apply selection:bg-dark_accentColor selection:text-dark_background
   }
 
   html {
@@ -39,10 +31,13 @@
   .iconNavbar {
     @apply h-[4px] rounded-xl bg-white transition-all duration-300;
   }
+  .progress-bar{
+    @apply 
+  }
   .onTextHover {
     @apply hover:text-transparent 
     hover:bg-clip-text 
-    hover:bg-gradient-to-r from-[#1d63a9] to-[#21cbc8]
+    hover:bg-gradient-to-r from-[#1ee3ac] to-[#21cbc8]
     transition-all duration-200;
   }
   .onBGHover {

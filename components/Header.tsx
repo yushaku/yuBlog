@@ -1,11 +1,53 @@
 import Image from 'next/image'
-import { AiFillGithub, AiFillLinkedin, AiFillInstagram } from 'react-icons/ai'
+import { AiFillGithub, AiFillLinkedin, AiFillInstagram, AiOutlineUnorderedList } from 'react-icons/ai'
 import { MdDarkMode, MdLightMode } from 'react-icons/md'
+import { motion, useScroll, useSpring } from 'framer-motion'
 import { useTheme } from 'next-themes'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { navbarEffect, navbarListItem } from '../mocks/Navbar'
 
 const Header = () => {
   const { systemTheme, theme, setTheme } = useTheme()
+  const { scrollYProgress } = useScroll()
+  const [scrollDirection, setScrollDirection] = useState('up')
+  // const [transparentHeader, setTransparentHeader] = useState(true)
+
+  useEffect(() => {
+    let lastScrollY = window.pageYOffset
+    const updateScrollDirection = () => {
+      const scrollY = window.pageYOffset
+      const direction = scrollY > lastScrollY ? 'down' : 'up'
+      if (direction !== scrollDirection && (scrollY - lastScrollY > 5 || scrollY - lastScrollY < -5) && scrollY > 50) {
+        setScrollDirection(direction)
+      }
+      lastScrollY = scrollY > 0 ? scrollY : 0
+    }
+    window.addEventListener('scroll', updateScrollDirection)
+    return () => {
+      window.removeEventListener('scroll', updateScrollDirection)
+    }
+  }, [scrollDirection])
+
+  // useEffect(() => {
+  //   console.log(transparentHeader)
+  //   const currentY = window.pageYOffset
+  //   const updateHeaderBG = () => {
+  //     if (currentY > 50) {
+  //       setTransparentHeader(false)
+  //     }
+  //   }
+  //   window.addEventListener('scroll', updateHeaderBG)
+  //   return () => {
+  //     window.removeEventListener('scroll', updateHeaderBG)
+  //   }
+  // }, [transparentHeader])
+
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  })
 
   const renderIconTheme = () => {
     const currentTheme = theme === 'system' ? systemTheme : theme
@@ -17,53 +59,80 @@ const Header = () => {
     }
   }
 
+  // ${transparentHeader ? 'bg-transparent' : 'bg-light_subBackground dark:bg-dark_background'}
+
   return (
-    <header>
-      <div id="logo">
-        <a href="" className="flex items-center gap-2">
-          <Image alt="yushaku" src="/logo.png" width={35} height={35} />
-          <span className="text-[24px] font-semibold dark:text-dark_accentColor">Yushaku</span>
-        </a>
-      </div>
+    <>
+      <header
+        className={`fixed top-0 ${
+          scrollDirection === 'up' ? 'top-0' : '-top-[8vh]'
+        } left-0 z-50 w-full  bg-light_subBackground transition-all duration-1000
+        ease-in-out dark:bg-dark_background  
+        `}
+      >
+        <motion.div
+          custom={0.5}
+          initial="hidden"
+          animate="visible"
+          variants={navbarEffect}
+          className="flex h-[8vh] items-center justify-between px-12"
+        >
+          <div id="logo">
+            <Link href="/">
+              <div className="flex items-center gap-2">
+                <Image alt="yushaku" src="/logo.png" width={35} height={35} />
+                <span className="text-[24px] font-semibold dark:text-dark_accentColor">Yushaku</span>
+              </div>
+            </Link>
+          </div>
 
-      <div id="navbar">
-        <ul className="flex gap-8 text-xl font-semibold dark:text-dark_textColor">
-          <li className="onTextHover">
-            <a href="">Article</a>
-          </li>
-          <li className="onTextHover">
-            <a href="">Books notes</a>
-          </li>
-          <li className="onTextHover">
-            <a href="">About</a>
-          </li>
-          <li className="onTextHover">
-            <a href="">Tech</a>
-          </li>
-        </ul>
-      </div>
+          <div id="navbar" className="hidden md:block">
+            <ul className="flex text-xl font-semibold gap-9 dark:text-dark_textColor">
+              {navbarListItem.map((navItem) => {
+                return (
+                  <motion.li
+                    key={navItem.id}
+                    className="onTextHover"
+                    custom={navItem.id}
+                    initial="hidden"
+                    animate="visible"
+                    variants={navbarEffect}
+                  >
+                    <Link href={navItem.link}>{navItem.title}</Link>
+                  </motion.li>
+                )
+              })}
+            </ul>
+          </div>
 
-      <div id="social">
-        <ul className="flex gap-8">
-          <li className="icon">{renderIconTheme()}</li>
-          <li className="icon">
-            <a href="https://github.com/yushaku">
-              <AiFillGithub />
-            </a>
-          </li>
-          <li className="icon">
-            <a href="https://www.linkedin.com/in/levanson180200/">
-              <AiFillLinkedin />
-            </a>
-          </li>
-          <li className="icon">
-            <a href="https://www.instagram.com/yushaku.1802/">
-              <AiFillInstagram />
-            </a>
-          </li>
-        </ul>
-      </div>
-    </header>
+          <div id="social" className="hidden lg:block">
+            <ul className="flex gap-8">
+              <li className="icon">{renderIconTheme()}</li>
+              <li className="icon">
+                <a href="https://github.com/yushaku">
+                  <AiFillGithub />
+                </a>
+              </li>
+              <li className="icon">
+                <a href="https://www.linkedin.com/in/levanson180200/">
+                  <AiFillLinkedin />
+                </a>
+              </li>
+              <li className="icon">
+                <a href="https://www.instagram.com/yushaku.1802/">
+                  <AiFillInstagram />
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div id="menubar" className="text-4xl icon md:hidden">
+            <AiOutlineUnorderedList />
+          </div>
+        </motion.div>
+        <motion.div style={{ scaleX }} className="h-[5px] origin-left bg-dark_accentColor "></motion.div>
+      </header>
+    </>
   )
 }
 
