@@ -3,13 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-
   /* footer {
     @apply fixed bottom-0;
   } */
 
   body {
-    @apply selection:bg-dark_accentColor selection:text-dark_background
+    @apply selection:bg-dark_accentColor selection:text-dark_background;
   }
 
   html {
@@ -31,8 +30,8 @@
   .iconNavbar {
     @apply h-[4px] rounded-xl bg-white transition-all duration-300;
   }
-  .progress-bar{
-    @apply 
+  .progress-bar {
+    @apply;
   }
   .onTextHover {
     @apply hover:text-transparent 
@@ -49,7 +48,11 @@
   .button {
     @apply border rounded-md;
   }
-  .itemNavbar {
-    @apply;
+  .GrassBg {
+    background: rgba(255, 255, 255, 0.11);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
 }

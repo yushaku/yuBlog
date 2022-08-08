@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import Image from 'next/image'
 import { AiFillGithub, AiFillLinkedin, AiFillInstagram, AiOutlineUnorderedList } from 'react-icons/ai'
 import { MdDarkMode, MdLightMode } from 'react-icons/md'
@@ -6,9 +7,13 @@ import { useTheme } from 'next-themes'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { navbarEffect, navbarListItem } from '../mocks/Navbar'
+import Sidebar from './Sidebar'
+import { useRecoilState } from 'recoil'
+import { showSidebar } from '../atoms/storeAtom'
 
 const Header = () => {
   const { systemTheme, theme, setTheme } = useTheme()
+  const [isShowNavbar, setIsShowNavbar] = useRecoilState(showSidebar)
   const { scrollYProgress } = useScroll()
   const [scrollDirection, setScrollDirection] = useState('up')
   // const [transparentHeader, setTransparentHeader] = useState(true)
@@ -43,11 +48,17 @@ const Header = () => {
   //   }
   // }, [transparentHeader])
 
+  const handleShowSideBar = () => {
+    setIsShowNavbar(!isShowNavbar)
+  }
+
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001,
+    restDelta: 0.001
   })
+
+  /** */
 
   const renderIconTheme = () => {
     const currentTheme = theme === 'system' ? systemTheme : theme
@@ -126,10 +137,13 @@ const Header = () => {
             </ul>
           </div>
 
-          <div id="menubar" className="text-4xl icon md:hidden">
+          <div id="menubar" className="text-4xl cursor-pointer icon md:hidden" onClick={handleShowSideBar}>
             <AiOutlineUnorderedList />
           </div>
         </motion.div>
+
+        {isShowNavbar && <Sidebar onShowSideBar={handleShowSideBar} renderIconTheme={renderIconTheme} />}
+
         <motion.div style={{ scaleX }} className="h-[5px] origin-left bg-dark_accentColor "></motion.div>
       </header>
     </>

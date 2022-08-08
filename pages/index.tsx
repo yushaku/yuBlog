@@ -10,7 +10,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="relative h-[100vh] w-[100vw] bg-[url('../public/bg.jpg')] bg-cover bg-center">
-        <div className="absolute top-[60%] left-[5%] w-[90%] md:left-[10%] md:w-[80%] lg:w-[70%] lg:top-[45%] lg:left-[20%]">
+        <div className="absolute top-[60%] left-[5%] w-[90%] md:left-[10%] md:w-[80%] lg:top-[45%] lg:left-[20%] lg:w-[70%]">
           <h1 className="py-4 text-[50px] font-semibold text-dark_textColor md:text-[60px] lg:text-[70px]">
             Fuck Your Feelings
           </h1>
