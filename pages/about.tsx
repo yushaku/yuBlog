@@ -1,10 +1,10 @@
 import React from 'react'
-import Header from '../components/Header'
+import Image from 'next/image'
 
 const About = () => {
   return (
-    <div>
-      <Header />
+    <div className="h-[200vh]">
+      <h1>test</h1>
     </div>
   )
 }

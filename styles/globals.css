@@ -2,22 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  header {
-    @apply fixed top-0 left-0 z-50
-    px-12
-    bg-[#f6f6f6] 
-    dark:bg-dark_background
-    flex items-center justify-between 
-    h-[10vh] w-full;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+@layer base {
   /* footer {
     @apply fixed bottom-0;
   } */
 
   body {
-    @apply container px-8 mx-auto;
+    @apply selection:bg-dark_accentColor selection:text-dark_background font-sans;
   }
 
   html {
@@ -39,10 +32,13 @@
   .iconNavbar {
     @apply h-[4px] rounded-xl bg-white transition-all duration-300;
   }
+  .progress-bar {
+    @apply;
+  }
   .onTextHover {
     @apply hover:text-transparent 
     hover:bg-clip-text 
-    hover:bg-gradient-to-r from-[#1d63a9] to-[#21cbc8]
+    hover:bg-gradient-to-r from-[#1ee3ac] to-[#21cbc8]
     transition-all duration-200;
   }
   .onBGHover {
@@ -54,7 +50,14 @@
   .button {
     @apply border rounded-md;
   }
-  .itemNavbar {
-    @apply;
+  .myContainer {
+    @apply container mx-auto text-2xl;
+  }
+  .GrassBg {
+    background: rgba(255, 255, 255, 0.11);
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
 }
