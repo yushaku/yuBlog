@@ -1,10 +1,15 @@
 /* eslint-disable prettier/prettier */
 import { motion } from 'framer-motion'
 import React from 'react'
-import { navbarListItem, sidebarEffect, sidebarItem, sidebarListItem } from '../mocks/Navbar'
+import { navbarListItem, sidebarEffect, sidebarItem, sidebarListItem } from '../../mocks/Navbar'
 import { AiFillCloseCircle } from 'react-icons/ai'
 
-const Sidebar = ({ renderIconTheme, onShowSideBar }: any) => {
+interface props {
+  renderIconTheme: () => JSX.Element
+  onShowSideBar: () => void
+}
+
+const Sidebar = ({ renderIconTheme, onShowSideBar }: props) => {
   return (
     <motion.nav
       initial="hidden"

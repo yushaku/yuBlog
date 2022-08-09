@@ -7,7 +7,7 @@ import { useTheme } from 'next-themes'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { navbarEffect, navbarListItem } from '../mocks/Navbar'
-import Sidebar from './Sidebar'
+import Sidebar from './navbar/Sidebar'
 import { useRecoilState } from 'recoil'
 import { showSidebar } from '../atoms/storeAtom'
 
@@ -16,7 +16,7 @@ const Header = () => {
   const [isShowNavbar, setIsShowNavbar] = useRecoilState(showSidebar)
   const { scrollYProgress } = useScroll()
   const [scrollDirection, setScrollDirection] = useState('up')
-  // const [transparentHeader, setTransparentHeader] = useState(true)
+  const [transparentHeader, setTransparentHeader] = useState(true)
 
   useEffect(() => {
     let lastScrollY = window.pageYOffset
@@ -34,19 +34,21 @@ const Header = () => {
     }
   }, [scrollDirection])
 
-  // useEffect(() => {
-  //   console.log(transparentHeader)
-  //   const currentY = window.pageYOffset
-  //   const updateHeaderBG = () => {
-  //     if (currentY > 50) {
-  //       setTransparentHeader(false)
-  //     }
-  //   }
-  //   window.addEventListener('scroll', updateHeaderBG)
-  //   return () => {
-  //     window.removeEventListener('scroll', updateHeaderBG)
-  //   }
-  // }, [transparentHeader])
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setTransparentHeader(true)
+      } else {
+        setTransparentHeader(false)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   const handleShowSideBar = () => {
     setIsShowNavbar(!isShowNavbar)
@@ -55,7 +57,7 @@ const Header = () => {
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
   })
 
   /** */
@@ -70,15 +72,12 @@ const Header = () => {
     }
   }
 
-  // ${transparentHeader ? 'bg-transparent' : 'bg-light_subBackground dark:bg-dark_background'}
-
   return (
     <>
       <header
-        className={`fixed top-0 ${
-          scrollDirection === 'up' ? 'top-0' : '-top-[8vh]'
-        } left-0 z-50 w-full  bg-light_subBackground transition-all duration-1000
-        ease-in-out dark:bg-dark_background  
+        className={`${scrollDirection === 'up' ? 'top-0' : '-top-[8vh]'}
+        ${!transparentHeader ? 'bg-transparent' : 'shadow-md bg-light_subBackground dark:bg-dark_background'}
+        fixed top-0  left-0 z-50 w-full  transition-all duration-1000 ease-in-out 
         `}
       >
         <motion.div

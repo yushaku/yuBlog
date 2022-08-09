@@ -17,10 +17,10 @@ module.exports = {
         light_primaryColor: '#009adc',
         textGrayLight: '#5e5e5e',
       },
-      // fontFamily: {
-      //   sans: ['Graphik', 'sans-serif'],
-      //   serif: ['Merriweather', 'serif'],
-      // },
+      fontFamily: {
+        sans: ['Montserrat', 'sans-serif'],
+        serif: ['Merriweather', 'serif'],
+      },
       backgroundImage: {
         'footer-texture': "url('/img/footer-texture.png')",
       },
