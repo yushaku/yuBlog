@@ -17,8 +17,17 @@
 
     selection:bg-dark_accentColor 
     selection:text-dark_background
+    scrollBar
+    overflow-hidden;
+  }
+}
 
-    tracking-tight 
+@layer components {
+  .iconNavbar {
+    @apply h-[4px] rounded-xl bg-white transition-all duration-300;
+  }
+  .scrollBar {
+    @apply tracking-tight 
     scroll-smooth 
     !scrollbar-thin 
     !scrollbar-track-transparent
@@ -27,14 +36,7 @@
     dark:scrollbar-thumb-blue-600 
     dark:scrollbar-track-blue-200
     dark:bg-dark_background
-    dark:text-dark_textColor
-    overflow-hidden;
-  }
-}
-
-@layer components {
-  .iconNavbar {
-    @apply h-[4px] rounded-xl bg-white transition-all duration-300;
+    dark:text-dark_textColor;
   }
 
   .onTextHover {
@@ -77,5 +79,107 @@
       rgba(7, 203, 207, 1) 81%,
       rgba(0, 212, 255, 1) 100%
     );
+  }
+  #card-header_title:hover {
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    text-shadow: none;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  #tags {
+    margin: 1rem 0 2rem;
+    padding: 0.5rem 0 1rem;
+    line-height: 2;
+    margin-bottom: 0;
+  }
+  #tags a {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.5rem;
+    color: #7a7a8c;
+    text-transform: uppercase;
+    font-size: 0.66rem;
+    border: 3px solid #28242f;
+    border-radius: 2rem;
+    padding: 0.2rem 0.85rem 0.25rem;
+    position: relative;
+  }
+  #tags a:hover {
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    text-shadow: none;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-box-decoration-break: clone;
+    background-clip: text;
+    border-color: white;
+  }
+  #card {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: 350px;
+    width: 400px;
+    min-width: 250px;
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: #17141d;
+    box-shadow: -1rem 0 3rem #000;
+    transition: 0.2s;
+  }
+  #card:hover {
+    transform: translateY(-1rem);
+  }
+
+  #card:hover ~ #card {
+    transform: translateX(130px);
+  }
+  #card:not(:first-child) {
+    margin-left: -130px;
+  }
+  #card-author {
+    position: relative;
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    align-items: center;
+    margin: 3rem 0 0;
+  }
+  #author-avatar img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    filter: grayscale(100%);
+    margin: 16px 10px;
+  }
+  #half-circle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 48px;
+    fill: none;
+    stroke: #ff8a00;
+    stroke-width: 8;
+    stroke-linecap: round;
+  }
+
+  .parallax-effect-glare-scale {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    transform-style: preserve-3d;
+  }
+  .inner-element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    border-radius: 20px;
+    padding-bottom: 42px;
+    padding-top: 18px;
+    transform: translateZ(50px);
   }
 }
