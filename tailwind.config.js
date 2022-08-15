@@ -11,8 +11,8 @@ module.exports = {
         dark_textColor: '#ccd6f6',
         dark_subTextColor: '#8992b0',
 
-        light_background: '#fafafa',
-        light_subBackground: '#f6f6f6',
+        light_background: '#fffaf4',
+        light_subBackground: '#ffecd6',
         light_textColor: '#1d1d1f',
         light_primaryColor: '#009adc',
         textGrayLight: '#5e5e5e',
@@ -26,7 +26,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwind-scrollbar-hide'), require('tailwind-scrollbar')],
+  plugins: [require('tailwind-scrollbar-hide'), require('tailwind-scrollbar'), require('@tailwindcss/line-clamp')],
   variants: {
     scrollbar: ['rounded'],
   },

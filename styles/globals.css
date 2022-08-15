@@ -9,21 +9,15 @@
     @apply fixed bottom-0;
   } */
 
+  html,
   body {
-    @apply selection:bg-dark_accentColor selection:text-dark_background font-sans;
-  }
-
-  html {
-    @apply text-light_textColor bg-light_background 
+    @apply text-light_textColor 
+    bg-light_background 
     font-sans 
-    tracking-tight 
-    scroll-smooth 
-    !scrollbar-thin 
-    !scrollbar-track-transparent
-    !scrollbar-thumb-gray-400
-    hover:scrollbar-thumb-gray-500
-    dark:scrollbar-thumb-blue-600 
-    dark:scrollbar-track-blue-200
+
+    selection:bg-dark_accentColor 
+    selection:text-dark_background
+    scrollBar
     overflow-hidden;
   }
 }
@@ -32,9 +26,19 @@
   .iconNavbar {
     @apply h-[4px] rounded-xl bg-white transition-all duration-300;
   }
-  .progress-bar {
-    @apply;
+  .scrollBar {
+    @apply tracking-tight 
+    scroll-smooth 
+    !scrollbar-thin 
+    !scrollbar-track-transparent
+    !scrollbar-thumb-gray-400
+    hover:scrollbar-thumb-gray-500
+    dark:scrollbar-thumb-blue-600 
+    dark:scrollbar-track-blue-200
+    dark:bg-dark_background
+    dark:text-dark_textColor;
   }
+
   .onTextHover {
     @apply hover:text-transparent 
     hover:bg-clip-text 
@@ -45,13 +49,17 @@
     @apply transition-all duration-200 hover:bg-gradient-to-r from-purple-400 to-pink-600;
   }
   .icon {
-    @apply text-2xl dark:text-dark_accentColor text-light_textColor;
+    @apply text-2xl dark:text-dark_accentColor text-light_primaryColor;
   }
   .button {
-    @apply border rounded-md;
+    @apply border rounded-md px-4 py-2 dark:text-dark_accentColor border-dark_accentColor hover:bg-dark_accentColor/10 transition-all duration-200;
+  }
+
+  .textInput {
+    @apply;
   }
   .myContainer {
-    @apply container mx-auto text-2xl;
+    @apply container mx-auto px-4 text-2xl;
   }
   .GrassBg {
     background: rgba(255, 255, 255, 0.11);
@@ -59,5 +67,119 @@
     border: 1px solid rgba(255, 255, 255, 0.5);
     border-right: 1px solid rgba(255, 255, 255, 0.2);
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  .statusGradian {
+    background: rgb(117, 199, 116);
+    background: linear-gradient(
+      90deg,
+      rgba(117, 199, 116, 1) 0%,
+      rgba(83, 199, 137, 1) 15%,
+      rgba(94, 199, 130, 1) 39%,
+      rgba(11, 198, 182, 1) 60%,
+      rgba(7, 203, 207, 1) 81%,
+      rgba(0, 212, 255, 1) 100%
+    );
+  }
+  #card-header_title:hover {
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    text-shadow: none;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  #tags {
+    margin: 1rem 0 2rem;
+    padding: 0.5rem 0 1rem;
+    line-height: 2;
+    margin-bottom: 0;
+  }
+  #tags a {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.5rem;
+    color: #7a7a8c;
+    text-transform: uppercase;
+    font-size: 0.66rem;
+    border: 3px solid #28242f;
+    border-radius: 2rem;
+    padding: 0.2rem 0.85rem 0.25rem;
+    position: relative;
+  }
+  #tags a:hover {
+    background: linear-gradient(90deg, #ff8a00, #e52e71);
+    text-shadow: none;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-box-decoration-break: clone;
+    background-clip: text;
+    border-color: white;
+  }
+  #card {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: 350px;
+    width: 400px;
+    min-width: 250px;
+    padding: 1.5rem;
+    border-radius: 16px;
+    background: #17141d;
+    box-shadow: -1rem 0 3rem #000;
+    transition: 0.2s;
+  }
+  #card:hover {
+    transform: translateY(-1rem);
+  }
+
+  #card:hover ~ #card {
+    transform: translateX(130px);
+  }
+  #card:not(:first-child) {
+    margin-left: -130px;
+  }
+  #card-author {
+    position: relative;
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    align-items: center;
+    margin: 3rem 0 0;
+  }
+  #author-avatar img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    filter: grayscale(100%);
+    margin: 16px 10px;
+  }
+  #half-circle {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 48px;
+    fill: none;
+    stroke: #ff8a00;
+    stroke-width: 8;
+    stroke-linecap: round;
+  }
+
+  .parallax-effect-glare-scale {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    transform-style: preserve-3d;
+  }
+  .inner-element {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    border-radius: 20px;
+    padding-bottom: 42px;
+    padding-top: 18px;
+    transform: translateZ(50px);
   }
 }

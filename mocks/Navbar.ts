@@ -1,8 +1,8 @@
 export const navbarListItem = [
   { id: 1, title: 'Article', link: 'article' },
-  { id: 2, title: 'Books note', link: 'books' },
-  { id: 3, title: 'About', link: 'about' },
-  { id: 4, title: 'Tech', link: 'tech' },
+  { id: 2, title: 'Coding', link: 'code' },
+  { id: 3, title: 'Books note', link: 'books' },
+  { id: 4, title: 'About', link: 'about' },
 ]
 
 export const navbarEffect = {
