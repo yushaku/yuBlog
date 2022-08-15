@@ -87,7 +87,7 @@ const Header = () => {
           variants={navbarEffect}
           className="flex h-[8vh] items-center justify-between px-12"
         >
-          <div id="logo">
+          <div id="logo" className=" cursor-pointer">
             <Link href="/">
               <div className="flex items-center gap-2">
                 <Image alt="yushaku" src="/logo.png" width={35} height={35} />
@@ -108,7 +108,7 @@ const Header = () => {
                     animate="visible"
                     variants={navbarEffect}
                   >
-                    <Link href={navItem.link}>{navItem.title}</Link>
+                    <Link href={`/${navItem.link}`}>{navItem.title}</Link>
                   </motion.li>
                 )
               })}
@@ -143,7 +143,7 @@ const Header = () => {
 
         {isShowNavbar && <Sidebar onShowSideBar={handleShowSideBar} renderIconTheme={renderIconTheme} />}
 
-        <motion.div style={{ scaleX }} className="h-[5px] origin-left bg-dark_accentColor "></motion.div>
+        <motion.div style={{ scaleX }} className="h-[5px] origin-left statusGradian "></motion.div>
       </header>
     </>
   )
