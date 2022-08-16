@@ -1,10 +1,13 @@
 import React from 'react'
-import Image from 'next/image'
+// import Image from 'next/image'
+import Head from 'next/head'
 
 const About = () => {
   return (
     <div className="h-[200vh]">
-      <h1>test</h1>
+      <Head>
+        <title>Article</title>
+      </Head>
     </div>
   )
 }

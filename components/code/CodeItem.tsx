@@ -12,23 +12,22 @@ type codeItemProps = {
   slug: string
 }
 const CodeItem = ({ title, tags, excerpt, imageLink, slug }: codeItemProps) => {
-  console.log(slug)
   return (
     <Tilt
-      className="parallax-effect-glare-scale cursor-pointer dark:bg-dark_subBackground dark:text-dark_textColor"
+      className="parallax-effect-glare-scale bg-light_secondBackground dark:bg-dark_subBackground dark:text-dark_textColor"
       glareEnable={true}
       glareMaxOpacity={0.2}
-      tiltMaxAngleX={1}
-      tiltMaxAngleY={1}
+      tiltMaxAngleX={3}
+      tiltMaxAngleY={3}
       glareColor="#ffffff"
       glarePosition="bottom"
       glareBorderRadius="20px"
-      perspective={500}
+      perspective={3500}
       scale={1.02}
     >
-      <div className="inner-element w-[80%] ">
-        <Link href={`/${slug}`}>
-          <>
+      <div className="inner-element w-[80%] cursor-pointer flex flex-col justify-center items-start">
+        <Link href={`/code/${slug}`}>
+          <div>
             {imageLink && (
               <div className="flex items-center justify-center">
                 <Image
@@ -42,14 +41,17 @@ const CodeItem = ({ title, tags, excerpt, imageLink, slug }: codeItemProps) => {
             )}
             <h1 className="text-3xl py-2 dark:text-dark_accentColor">{title}</h1>
             <p className="text-xl line-clamp-2">{excerpt}</p>
-          </>
+          </div>
         </Link>
 
         <div className="text-xl py-2">
           <ul className="flex gap-2">
             {tags.map((tagItem, index) => {
               return (
-                <li key={index} className=" rounded-xl dark:bg-dark_subTextColor px-2 text-dark_accentColor">
+                <li
+                  key={index}
+                  className=" rounded-xl px-4 bg-light_accentColor text-dark_textColor dark:bg-dark_subTextColor dark:text-dark_accentColor font-medium"
+                >
                   {tagItem}
                 </li>
               )
