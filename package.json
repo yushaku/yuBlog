@@ -25,7 +25,6 @@
     "react-icons": "^4.4.0",
     "react-multi-carousel": "^2.8.2",
     "react-parallax-tilt": "^1.7.51",
-    "recoil": "^0.7.4",
     "tailwind-scrollbar": "^1.3.1",
     "tailwind-scrollbar-hide": "^1.1.7"
   },

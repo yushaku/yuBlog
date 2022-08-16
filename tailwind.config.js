@@ -12,9 +12,10 @@ module.exports = {
         dark_subTextColor: '#8992b0',
 
         light_background: '#fffaf4',
-        light_subBackground: '#ffecd6',
+        light_subBackground: '#f5f7fa',
+        light_secondBackground: '#fffaf4',
         light_textColor: '#1d1d1f',
-        light_primaryColor: '#009adc',
+        light_accentColor: '#009adc',
         textGrayLight: '#5e5e5e',
       },
       fontFamily: {
