@@ -1,56 +1,56 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-import { AiOutlineHeart, AiOutlineComment } from 'react-icons/ai'
+import { AiOutlineHeart, AiOutlineComment, AiOutlineImport } from 'react-icons/ai'
+import { articleItemProps } from '../../util/types/props'
+import moment from 'moment'
 
-type tagsDetail = {
-  name: string
-  color: string
-}
-
-type articleItemProps = {
-  title: string
-  tags: tagsDetail[]
-  imageLink: string
-  slug: string
-  time: string
-}
-
-const ArticleItem = ({ title, tags, imageLink, slug, time }: articleItemProps) => {
+const ArticleItem = ({ title, tags, featuredImage, postSlug, createdAt }: articleItemProps) => {
+  const formatCreatedAt = moment(createdAt).format('LL')
   return (
     <div id="ArticleContainerItem" className="relative rounded-2xl">
       <section
         id="ArticleItem"
         className="absolute flex flex-col items-center justify-center 
       dark:bg-dark_subBackground
-        p-4 rounded-2xl"
+        px-4 rounded-2xl"
       >
-        <Link href={`/article/${slug}`}>
+        <Link href={`/article/${postSlug}`}>
           <div className=" cursor-pointer">
-            <h3 className="text-lg line-clamp-3 dark:text-dark_subTextColor">{time}</h3>
-            <h1 className="text-3xl font-semibold dark:text-dark_accentColor mb-12 mt-2">{title}</h1>
-            <Image src={imageLink} alt={title} width={550} height={310} className=" rounded-lg" />
+            <h3 className="text-lg dark:text-dark_subTextColor">{formatCreatedAt}</h3>
+            <h1 className="text-2xl line-clamp-2 font-semibold dark:text-dark_accentColor mb-8 mt-2">{title}</h1>
+            <Image src={featuredImage.url} alt={title} width={550} height={310} className=" rounded-lg" />
           </div>
         </Link>
         <div>
           <ul className="flex gap-4 items-start mt-4">
-            {tags.map((tag, index) => {
-              return (
-                <li key={index} className={`bg-[${tag.color}] px-6 rounded-3xl text-lg font-medium`}>
-                  {tag.name}
-                </li>
-              )
-            })}
+            {tags &&
+              tags.map((tag, index) => {
+                return (
+                  <Link href={`tags/${tag.tagSlug}`} key={index}>
+                    <li
+                      style={{ backgroundColor: tag.tagColor.hex, color: tag.textColor.hex }}
+                      className={`px-6 rounded-3xl text-lg font-medium cursor-pointer`}
+                    >
+                      {tag.title}
+                    </li>
+                  </Link>
+                )
+              })}
           </ul>
         </div>
-        <div className="w-[100%] flex justify-evenly mt-4">
-          <span className="flex items-center justify-center gap-2 text-xl">
+        <div className="w-[100%] flex justify-between mt-4">
+          <span className="flex items-center justify-center gap-2 text-xl cursor-pointer">
             <AiOutlineHeart />
             like
           </span>
-          <span className="flex items-center justify-center gap-2 text-xl">
+          <span className="flex items-center justify-center gap-2 text-xl cursor-pointer">
             <AiOutlineComment />
             comments
+          </span>
+          <span className="flex items-center justify-center gap-2 text-xl cursor-pointer">
+            <AiOutlineImport />
+            save
           </span>
         </div>
       </section>
