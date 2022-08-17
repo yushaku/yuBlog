@@ -1,3 +1,2 @@
-import { getPosts } from './post'
-
-export default getPosts
+export { getPosts } from './post'
+export { getCategories, getPostOfCategory } from './categories'
