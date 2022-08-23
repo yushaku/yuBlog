@@ -6,5 +6,6 @@ module.exports = {
   },
   env: {
     GRAPHQL_CMS_ENDPOINT: process.env.GRAPHQL_CMS_ENDPOINT,
+    GRAPHQL_CMS_TOKEN: process.env.GRAPHQL_CMS_TOKEN,
   },
 }

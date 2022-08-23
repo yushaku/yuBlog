@@ -15,7 +15,7 @@ const ArticleItem = ({ title, tags, featuredImage, postSlug, createdAt }: articl
       dark:bg-dark_subBackground
         px-4 rounded-2xl"
       >
-        <Link href={`/article/${postSlug}`}>
+        <Link href={`/posts/${postSlug}`}>
           <div className=" cursor-pointer">
             <h3 className="text-lg dark:text-dark_subTextColor">{formatCreatedAt}</h3>
             <h1 className="text-2xl line-clamp-2 font-semibold dark:text-dark_accentColor mb-8 mt-2">{title}</h1>

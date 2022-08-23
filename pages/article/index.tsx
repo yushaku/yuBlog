@@ -7,15 +7,15 @@ import { articleItemProps } from '../../util/types/props'
 const Article = () => {
   const [articleList, setArticleList] = useState<articleItemProps[]>([])
   useEffect(() => {
+    const abortController = new AbortController()
+
     getPostOfCategory('article').then((responseArticleList) => {
       setArticleList(responseArticleList)
     })
     return () => {
-      console.log('remove call api')
+      abortController.abort()
     }
   }, [])
-
-  console.log(articleList)
 
   return (
     <div className="container px-4 lg:px-[100px] mx-auto min-h-[100vh] mt-[12vh]">
