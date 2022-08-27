@@ -14,7 +14,7 @@ const Header = () => {
   const [isShowNavbar, setIsShowNavbar] = useState(false)
   const { scrollYProgress } = useScroll()
   const [scrollDirection, setScrollDirection] = useState('up')
-  const [transparentHeader, setTransparentHeader] = useState(true)
+  const [transparentHeader, setTransparentHeader] = useState(false)
 
   useEffect(() => {
     let lastScrollY = window.pageYOffset
@@ -69,7 +69,7 @@ const Header = () => {
       return <MdLightMode role="button" onClick={() => setTheme('light')} />
     }
   }
-
+  
   return (
     <>
       <header

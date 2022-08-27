@@ -129,7 +129,6 @@
   text-shadow: none;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
-  -webkit-box-decoration-break: clone;
   background-clip: text;
   border-color: white;
 }

@@ -3,9 +3,13 @@ import Tilt from 'react-parallax-tilt'
 import Image from 'next/image'
 import { AiOutlineHeart, AiOutlineComment } from 'react-icons/ai'
 import Link from 'next/link'
+import moment from 'moment'
+
 import { articleItemProps } from '../../util/types/props'
 
 const CodeItem = ({ title, tags, excerpt, featuredImage, postSlug, createdAt }: articleItemProps) => {
+  const formatCreatedAt = moment(createdAt).format('LL')
+
   return (
     <Tilt
       className="parallax-effect-glare-scale bg-light_secondBackground dark:bg-dark_subBackground dark:text-dark_textColor"
@@ -59,7 +63,7 @@ const CodeItem = ({ title, tags, excerpt, featuredImage, postSlug, createdAt }: 
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <p>3 min read</p>
+            <p>{formatCreatedAt}</p>
             <button className="button">save</button>
           </div>
         </div>
