@@ -20,8 +20,8 @@ const PostDetailPage = () => {
   const postSlug = router.query.postSlug?.[0] as string
 
   useEffect(() => {
-    const highlight = async () => {
-      await Prism.highlightAll()
+    const highlight = () => {
+      Prism.highlightAll()
     }
     highlight()
   }, [postDetail])
@@ -60,10 +60,12 @@ const PostDetailPage = () => {
               md:left-[10%] md:w-[80%] 
               lg:top-[35%] lg:left-[20%] lg:w-[60%]"
             >
-              <h1 className="py-4 text-[50px] font-semibold text-dark_textColor md:text-[60px] lg:text-[70px]">
+              <h1 className="py-4 text-[50px] dark:text-dark_accentColor text-light_textColor font-extrabold md:text-[60px] lg:text-[75px] shadow-inner">
                 {postDetail.title}
               </h1>
-              <p className="text-[24px] text-dark_textColor md:text-[28px]">{postDetail.excerpt}</p>
+              <p className="text-[24px] text-light_textColor dark:text-dark_textColor md:text-[28px]">
+                {postDetail.excerpt}
+              </p>
             </div>
             <motion.div
               className=" absolute text-4xl bottom-10 right-[50%] cursor-pointer"
@@ -93,6 +95,7 @@ const PostDetailPage = () => {
           </div>
         </div>
       )}
+
       <div className=" dark:bg-dark_subBackground container mx-auto p-12 max-w-[1200px]">
         <CommentSection postSlug={postSlug} />
       </div>
