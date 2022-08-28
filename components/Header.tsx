@@ -8,15 +8,13 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { navbarEffect, navbarListItem } from '../mocks/Navbar'
 import Sidebar from './navbar/Sidebar'
-import { useRecoilState } from 'recoil'
-import { showSidebar } from '../atoms/storeAtom'
 
 const Header = () => {
   const { systemTheme, theme, setTheme } = useTheme()
-  const [isShowNavbar, setIsShowNavbar] = useRecoilState(showSidebar)
+  const [isShowNavbar, setIsShowNavbar] = useState(false)
   const { scrollYProgress } = useScroll()
   const [scrollDirection, setScrollDirection] = useState('up')
-  const [transparentHeader, setTransparentHeader] = useState(true)
+  const [transparentHeader, setTransparentHeader] = useState(false)
 
   useEffect(() => {
     let lastScrollY = window.pageYOffset
@@ -71,7 +69,7 @@ const Header = () => {
       return <MdLightMode role="button" onClick={() => setTheme('light')} />
     }
   }
-
+  
   return (
     <>
       <header
@@ -143,7 +141,7 @@ const Header = () => {
 
         {isShowNavbar && <Sidebar onShowSideBar={handleShowSideBar} renderIconTheme={renderIconTheme} />}
 
-        <motion.div style={{ scaleX }} className="h-[5px] origin-left statusGradian "></motion.div>
+        <motion.div style={{ scaleX }} className="h-[5px] origin-left statusGradin "></motion.div>
       </header>
     </>
   )

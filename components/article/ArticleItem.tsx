@@ -1,34 +1,60 @@
-import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
+import React from 'react'
+import { AiOutlineHeart, AiOutlineComment, AiOutlineImport } from 'react-icons/ai'
+import { articleItemProps } from '../../util/types/props'
+import moment from 'moment'
 
-const ArticleItem = () => {
+const ArticleItem = ({ title, tags, featuredImage, postSlug, createdAt }: articleItemProps) => {
+  const formatCreatedAt = moment(createdAt).format('LL')
   return (
-    <article id="card" className="">
-      <header id="card-header " className="mb-auto">
-        <p className="text-[14px] mb-[1rem] text-[#7a7a8c]">Sep 11th 2020</p>
-        <h2 id="card-header_title" className="text-[20px] m-[0.25rem] mr-0 mb-auto cursor-pointer">
-          Never forget
-        </h2>
-      </header>
-      <div id="card-author">
-        <a id="author-avatar" href="#">
-          <Image src="/logo.png" alt="logo" width={50} height={50} />
-        </a>
-        <svg id="half-circle" viewBox="0 0 106 57">
-          <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>
-        </svg>
-        <div className="author-name">
-          <div className="author-name-prefix">Author</div>
-          Jeff Delaney
+    <div id="ArticleContainerItem" className="relative rounded-2xl">
+      <section
+        id="ArticleItem"
+        className="absolute flex flex-col items-center justify-center 
+      dark:bg-dark_subBackground
+        px-4 rounded-2xl"
+      >
+        <Link href={`/posts/${postSlug}`}>
+          <div className=" cursor-pointer">
+            <h3 className="text-lg dark:text-dark_subTextColor">{formatCreatedAt}</h3>
+            <h1 className="text-2xl line-clamp-2 font-semibold dark:text-dark_accentColor mb-8 mt-2">{title}</h1>
+            <Image src={featuredImage.url} alt={title} width={550} height={310} className=" rounded-lg" />
+          </div>
+        </Link>
+        <div>
+          <ul className="flex gap-4 items-start mt-4">
+            {tags &&
+              tags.map((tag, index) => {
+                return (
+                  <Link href={`tags/${tag.tagSlug}`} key={index}>
+                    <li
+                      style={{ backgroundColor: tag.tagColor.hex, color: tag.textColor.hex }}
+                      className={`px-6 rounded-3xl text-lg font-medium cursor-pointer`}
+                    >
+                      {tag.title}
+                    </li>
+                  </Link>
+                )
+              })}
+          </ul>
         </div>
-      </div>
-
-      <div id="tags" className="">
-        <a href="#">html</a>
-        <a href="#">css</a>
-        <a href="#">web-dev</a>
-      </div>
-    </article>
+        <div className="w-[100%] flex justify-between mt-4">
+          <span className="flex items-center justify-center gap-2 text-xl cursor-pointer">
+            <AiOutlineHeart />
+            like
+          </span>
+          <span className="flex items-center justify-center gap-2 text-xl cursor-pointer">
+            <AiOutlineComment />
+            comments
+          </span>
+          <span className="flex items-center justify-center gap-2 text-xl cursor-pointer">
+            <AiOutlineImport />
+            save
+          </span>
+        </div>
+      </section>
+    </div>
   )
 }
 

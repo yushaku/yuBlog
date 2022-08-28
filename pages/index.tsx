@@ -1,15 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from 'react'
-import getPosts from '../apis'
 import ArticleBlock from '../components/Home/ArticleBlock'
 import BookItem from '../components/Home/BookItem'
-import CatagoryBlock from '../components/Home/CatagoryBlock'
+import CategoryBlock from '../components/Home/CatagoryBlock'
 import { bookList } from '../mocks/books'
 
 const Home: NextPage = () => {
-  getPosts()
-
   return (
     <div className=" ">
       <Head>
@@ -19,7 +16,7 @@ const Home: NextPage = () => {
       <div className="relative h-[100vh] w-[100vw] bg-[url('../public/bg.jpg')] bg-cover bg-center"></div>
 
       <div className=" myContainer mt-[80px] ">
-        <CatagoryBlock />
+        <CategoryBlock />
         <ArticleBlock />
 
         <div id="bookBlock" className=" items-center text-center">
