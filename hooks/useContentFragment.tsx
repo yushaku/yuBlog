@@ -1,12 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import Image from 'next/image'
-import hljs from 'highlight.js'
-import javascript from 'highlight.js/lib/languages/javascript'
-hljs.registerLanguage('javascript', javascript)
 
 export default function useContentFragment(index: any, text: any, obj: any, type?: any) {
-  hljs.initHighlighting()
   let modifiedText = text
 
   if (obj) {
@@ -105,7 +102,7 @@ const renderCodeBlock = (modifiedText: any, index: number) => {
         return (
           <React.Fragment key={i}>
             <pre>
-              <code className="js"> {item}</code>
+              <code className="language-js"> {item}</code>
             </pre>
           </React.Fragment>
         )

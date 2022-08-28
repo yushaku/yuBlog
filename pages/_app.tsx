@@ -5,7 +5,6 @@ import React from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import Metadata from '../components/Metadata'
-import 'highlight.js/styles/night-owl.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
