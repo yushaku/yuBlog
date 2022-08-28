@@ -10,11 +10,21 @@ import Head from 'next/head'
 import RelatedPostList from '../../components/relatedPost/RelatedPostList'
 import CommentSection from '../../components/comment/CommentSection'
 
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-tomorrow.css'
+
 const PostDetailPage = () => {
   const [postDetail, setPostDetail] = useState<PostDetail>()
 
   const router = useRouter()
-  const postSlug = router.query.postSlug?.[0] || ''
+  const postSlug = router.query.postSlug?.[0] as string
+
+  useEffect(() => {
+    const highlight = async () => {
+      await Prism.highlightAll()
+    }
+    highlight()
+  }, [postDetail])
 
   useEffect(() => {
     const abortController = new AbortController()
