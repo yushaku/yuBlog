@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import Image from 'next/image'
-import { AiFillGithub, AiFillLinkedin, AiFillInstagram, AiOutlineUnorderedList } from 'react-icons/ai'
+import { AiOutlineUnorderedList } from 'react-icons/ai'
 import { MdDarkMode, MdLightMode } from 'react-icons/md'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { useTheme } from 'next-themes'
@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { navbarEffect, navbarListItem } from '../mocks/Navbar'
 import Sidebar from './navbar/Sidebar'
+import AuthSession from './auth/AuthSession'
 
 const Header = () => {
   const { systemTheme, theme, setTheme } = useTheme()
@@ -121,24 +122,7 @@ const Header = () => {
           </div>
 
           <div id="social" className="hidden lg:block">
-            <ul className="flex gap-8">
-              <li className="icon">{renderIconTheme()}</li>
-              <li className="icon">
-                <a href="https://github.com/yushaku">
-                  <AiFillGithub />
-                </a>
-              </li>
-              <li className="icon">
-                <a href="https://www.linkedin.com/in/levanson180200/">
-                  <AiFillLinkedin />
-                </a>
-              </li>
-              <li className="icon">
-                <a href="https://www.instagram.com/yushaku.1802/">
-                  <AiFillInstagram />
-                </a>
-              </li>
-            </ul>
+            <AuthSession />
           </div>
 
           <div id="menubar" className="text-4xl cursor-pointer icon md:hidden" onClick={handleShowSideBar}>

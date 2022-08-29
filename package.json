@@ -20,6 +20,7 @@
     "moment": "^2.29.4",
     "next": "latest",
     "next-share": "^0.18.0",
+    "next-auth": "^4.10.3",
     "next-themes": "^0.2.0",
     "prismjs": "^1.29.0",
     "react": "18.1.0",
