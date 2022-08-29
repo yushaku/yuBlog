@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { API_URL } from 'util/constants/url'
 import { getCommentsOfPost } from '../../apis/comments'
 import { CommentType } from '../../util/types/post'
 import CommentForm from './commentForm'
@@ -11,7 +12,6 @@ const CommentSection = ({ postSlug }: { postSlug: string }) => {
     getCommentsOfPost(postSlug)
       .then((resCommentList) => {
         setCommentList(resCommentList)
-        console.log(resCommentList)
       })
       .catch((err) => console.error(err))
 
@@ -21,7 +21,11 @@ const CommentSection = ({ postSlug }: { postSlug: string }) => {
   }, [postSlug])
 
   return (
-    <div>
+    <div
+      id="CommentSection"
+      className=" dark:bg-dark_subBackground 
+      container mx-auto p-12 max-w-[1200px]"
+    >
       <h2 className="text-3xl dark:text-dark_accentColor font-semibold mb-8">Comment</h2>
       <CommentForm />
       <ul className="flex flex-col gap-2">
@@ -46,3 +50,13 @@ const CommentSection = ({ postSlug }: { postSlug: string }) => {
 }
 
 export default CommentSection
+
+export async function getServerSideProps() {
+  const res = await fetch(`${API_URL}/api/comments`)
+  const comment = res.json()
+
+  return {
+    props: { comment },
+    revalidate: 1,
+  }
+}

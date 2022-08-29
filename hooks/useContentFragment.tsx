@@ -46,7 +46,17 @@ export default function useContentFragment(index: any, text: any, obj: any, type
       return renderCodeBlock(modifiedText, index)
 
     case 'image':
-      return <Image key={index} alt={obj.title} height={obj.height} width={obj.width} src={obj.src} />
+      return (
+        <Image
+          key={index}
+          alt={obj.title}
+          height={obj.height}
+          width={obj.width}
+          src={obj.src}
+          layout="responsive"
+          loading="lazy"
+        />
+      )
 
     default:
       return modifiedText

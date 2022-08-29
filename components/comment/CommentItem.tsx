@@ -7,7 +7,6 @@ import renderContentFragment from '../../hooks/useContentFragment'
 
 const CommentItem = ({ id, updatedAt, createdAt, comment, reader, author }: CommentType) => {
   const commentOwner = reader ?? author
-  console.log(commentOwner)
   const formatCreatedAt = moment(createdAt).format('LL')
   const formatUpdatedAt = moment(updatedAt).format('LL')
 
@@ -26,6 +25,8 @@ const CommentItem = ({ id, updatedAt, createdAt, comment, reader, author }: Comm
           width={60}
           height={60}
           className=" rounded-full"
+          layout="responsive"
+          loading="lazy"
         />
       </div>
       <div className="flex flex-col justify-center ">

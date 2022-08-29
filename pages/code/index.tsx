@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
 import { getPostOfCategory } from '../../apis'
-import CodeItem from '../../components/code/CodeItem'
 import { articleItemProps } from '../../util/types/props'
+import CodeItem from '@/components/code/CodeItem'
 
 const Coding = () => {
   const [codePostList, setArticleList] = useState<articleItemProps[]>([])

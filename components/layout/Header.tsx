@@ -6,8 +6,8 @@ import { motion, useScroll, useSpring } from 'framer-motion'
 import { useTheme } from 'next-themes'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { navbarEffect, navbarListItem } from '../mocks/Navbar'
-import Sidebar from './navbar/Sidebar'
+import { navbarEffect, navbarListItem } from '../../mocks/Navbar'
+import Sidebar from '../navbar/Sidebar'
 import AuthSession from './auth/AuthSession'
 
 const Header = () => {
@@ -60,7 +60,7 @@ const Header = () => {
   })
 
   const renderIconTheme = () => {
-    const currentTheme = theme === 'system' ? theme : systemTheme
+    const currentTheme = theme === 'system' ? systemTheme : theme
 
     if (currentTheme === 'light') {
       return <MdDarkMode role="button" onClick={() => setTheme('dark')} />
@@ -87,7 +87,7 @@ const Header = () => {
           <div id="logo" className=" cursor-pointer">
             <Link href="/">
               <div className="flex items-center gap-2">
-                <Image alt="yushaku" src="/logo.png" width={35} height={35} />
+                <Image alt="yushaku" src="/logo.png" width={35} height={35} loading="lazy" />
                 <span className="text-[24px] font-semibold dark:text-dark_accentColor">Yushaku</span>
               </div>
             </Link>

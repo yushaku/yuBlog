@@ -4,7 +4,7 @@ import React from 'react'
 const CategoryCard = () => {
   return (
     <li className=" border-2 p-8 text-center rounded-lg max-w-[400px]">
-      {/* <Image alt="icon" src="" /> */}
+      {/* <Image alt="icon" src=""   layout="responsive" loading="lazy"/> */}
       <i>🚀</i>
       <h2 className="text-4xl font-semibold dark:text-dark_accentColor my-2 ">Productivity</h2>
       <p className="text-xl">How to execute efficiently, make time for what matters and have fun along the way.</p>

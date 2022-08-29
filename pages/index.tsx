@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from 'react'
-import ArticleBlock from '../components/Home/ArticleBlock'
-import BookItem from '../components/Home/BookItem'
-import CategoryBlock from '../components/Home/CatagoryBlock'
+import ArticleBlock from '@/components/Home/ArticleBlock'
+import BookItem from '@/components/Home/BookItem'
+import CategoryBlock from '@/components/Home/CatagoryBlock'
 import { bookList } from '../mocks/books'
 
 const Home: NextPage = () => {

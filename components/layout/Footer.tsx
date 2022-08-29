@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 // import { navbarListItem } from '../mocks/Navbar'
 import { AiFillGithub, AiFillLinkedin, AiFillInstagram } from 'react-icons/ai'
-import { getCategories } from '../apis'
-import { Category } from '../util/types/props'
+import { getCategories } from '../../apis'
+import { Category } from '../../util/types/props'
 
 const Footer = () => {
   const [categoryList, setCategoryList] = useState<Category[]>([])
@@ -17,7 +17,7 @@ const Footer = () => {
   return (
     <footer className="flex flex-col justify-evenly items-center w-[100vw] h-[15vh] p-8 mt-[10vh] text-xl md:flex-row bg-light_subBackground dark:bg-dark_subBackground shadow-md">
       <div id="copy-wrighting" className="flex items-center">
-        <Image src="/logo.png" alt="yushaku logo" width={50} height={50} />
+        <Image src="/logo.png" alt="yushaku logo" width={50} height={50} loading="lazy" />
         <p className="dark:bg-dark_accentColor bg-light_accentColor w-[2px] h-[50px] mx-4"></p>
         <div>
           <h2 className="">
