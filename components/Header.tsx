@@ -59,7 +59,7 @@ const Header = () => {
   })
 
   const renderIconTheme = () => {
-    const currentTheme = theme === 'system' ? systemTheme : theme
+    const currentTheme = theme === 'system' ? theme : systemTheme
 
     if (currentTheme === 'light') {
       return <MdDarkMode role="button" onClick={() => setTheme('dark')} />
@@ -98,7 +98,7 @@ const Header = () => {
                 return (
                   <motion.li
                     key={navItem.id}
-                    className="onTextHover text-2xl"
+                    className="onTextHover text-[20px]"
                     custom={navItem.id}
                     initial="hidden"
                     animate="visible"
@@ -109,7 +109,7 @@ const Header = () => {
                 )
               })}
               <motion.li
-                className="onTextHover text-2xl"
+                className="onTextHover text-[20px]"
                 custom={4}
                 initial="hidden"
                 animate="visible"

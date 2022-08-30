@@ -44,7 +44,7 @@
     @apply transition-all duration-200 hover:bg-gradient-to-r from-purple-400 to-pink-600;
   }
   .icon {
-    @apply text-2xl dark:text-dark_accentColor text-light_accentColor;
+    @apply text-2xl dark:text-dark_accentColor text-light_accentColor cursor-pointer;
   }
   .button {
     @apply border rounded-md px-4 py-2 dark:text-dark_accentColor border-dark_accentColor hover:bg-dark_accentColor/10 transition-all duration-200;

@@ -30,3 +30,9 @@ export type tagsDetail = {
     hex: string
   }
 }
+
+export type Category = {
+  id: string
+  name: string
+  slug: string
+}
