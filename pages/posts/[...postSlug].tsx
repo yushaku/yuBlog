@@ -99,7 +99,10 @@ const PostDetailPage = () => {
           </div>
         </div>
       )}
-      <div className=" dark:bg-dark_subBackground container mx-auto p-12 max-w-[1200px]">
+
+      <ReactSection />
+
+      <div id="CommentSection" className=" dark:bg-dark_subBackground container mx-auto p-12 max-w-[1200px]">
         <CommentSection postSlug={postSlug} />
       </div>
 
