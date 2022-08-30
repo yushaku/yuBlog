@@ -9,17 +9,17 @@
     "check-format": "prettier --check .",
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
     "format": "prettier --write .",
-    "test-all": "yarn check-format && yarn check-lint && yarn check-types && yarn build"
+    "test-all": "yarn format && yarn check-lint && yarn check-types && yarn build"
   },
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.4.0",
-    "babel-plugin-prismjs": "^2.1.0",
     "framer-motion": "^6.5.1",
     "graphql": "^16.5.0",
     "graphql-request": "^4.3.0",
     "html-react-parser": "^3.0.1",
     "moment": "^2.29.4",
     "next": "latest",
+    "next-share": "^0.18.0",
     "next-themes": "^0.2.0",
     "prismjs": "^1.29.0",
     "react": "18.1.0",

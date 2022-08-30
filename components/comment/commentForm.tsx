@@ -1,7 +1,13 @@
 import React from 'react'
+import { createComment } from '../../apis'
 
-const commentForm = () => {
-  return <form></form>
+const CommentForm = () => {
+  return (
+    <form method="post" onSubmit={() => createComment()}>
+      <input type="text" name="comment" id="comment" placeholder="comment" />
+      <input type="button" value="send" className=" cursor-pointer" />
+    </form>
+  )
 }
 
-export default commentForm
+export default CommentForm

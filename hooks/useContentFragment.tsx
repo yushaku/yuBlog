@@ -33,6 +33,9 @@ export default function useContentFragment(index: any, text: any, obj: any, type
     case 'heading-four':
       return renderHeadOFour(modifiedText, index)
 
+    case 'heading-five':
+      return renderHeadOFour(modifiedText, index)
+
     case 'paragraph':
       return renderParagraph(modifiedText, index)
 
@@ -52,7 +55,7 @@ export default function useContentFragment(index: any, text: any, obj: any, type
 
 const renderHeadOne = (modifiedText: any, index: number) => {
   return (
-    <h1 key={index} className="text-5xl font-semibold mb-8 dark:text-dark_accentColor">
+    <h1 key={index} className="text-5xl font-semibold mb-8 mt-4 dark:text-dark_accentColor">
       {modifiedText.map((item: any, i: number) => (
         <React.Fragment key={i}>{item}</React.Fragment>
       ))}
@@ -61,7 +64,7 @@ const renderHeadOne = (modifiedText: any, index: number) => {
 }
 const renderHeadOTwo = (modifiedText: any, index: number) => {
   return (
-    <h1 key={index} className="text-4xl font-semibold mb-8 dark:text-dark_accentColor">
+    <h1 key={index} className="text-4xl font-semibold mb-8 mt-4 dark:text-dark_accentColor">
       {modifiedText.map((item: any, i: number) => (
         <React.Fragment key={i}>{item}</React.Fragment>
       ))}
@@ -70,7 +73,7 @@ const renderHeadOTwo = (modifiedText: any, index: number) => {
 }
 const renderHeadOThree = (modifiedText: any, index: number) => {
   return (
-    <h1 key={index} className="text-3xl font-semibold mb-8 dark:text-dark_accentColor">
+    <h1 key={index} className="text-3xl font-semibold mb-8 mt-4 dark:text-dark_accentColor">
       {modifiedText.map((item: any, i: number) => (
         <React.Fragment key={i}>{item}</React.Fragment>
       ))}
@@ -79,16 +82,17 @@ const renderHeadOThree = (modifiedText: any, index: number) => {
 }
 const renderHeadOFour = (modifiedText: any, index: number) => {
   return (
-    <h1 key={index} className="text-2xl font-semibold mb-8 dark:text-dark_accentColor">
+    <h1 key={index} className="text-2xl font-semibold mb-8 mt-4 dark:text-dark_accentColor">
       {modifiedText.map((item: any, i: number) => (
         <React.Fragment key={i}>{item}</React.Fragment>
       ))}
     </h1>
   )
 }
+
 const renderParagraph = (modifiedText: any, index: number) => {
   return (
-    <p key={index} className="text-xl">
+    <p key={index} className="text-[24px] p-2">
       {modifiedText.map((item: any, i: number) => (
         <React.Fragment key={i}>{item}</React.Fragment>
       ))}

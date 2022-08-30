@@ -2,7 +2,7 @@
 import { request, gql } from 'graphql-request'
 import { articleItemProps } from '../util/types/props'
 
-const graphqlAPI = process.env.GRAPHQL_CMS_ENDPOINT || ''
+const graphqlAPI = process.env.GRAPHQL_CMS_ENDPOINT as string
 
 export const getCategories = async () => {
   const query = gql`
@@ -16,13 +16,13 @@ export const getCategories = async () => {
   `
 
   const result = await request(graphqlAPI, query)
-  return result
+  return result.categories
 }
 
 export const getPostOfCategory = async (slug: string): Promise<articleItemProps[]> => {
   const query = gql`
     query MyQuery($slug: String!) {
-      postsConnection(where: { category: { slug: $slug } }) {
+      postsConnection(where: { category: { slug: $slug } }, first: 4) {
         edges {
           node {
             id

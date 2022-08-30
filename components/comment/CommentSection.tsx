@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getCommentsOfPost } from '../../apis/comments'
 import { CommentType } from '../../util/types/post'
+import CommentForm from './commentForm'
 import CommentItem from './CommentItem'
 
 const CommentSection = ({ postSlug }: { postSlug: string }) => {
@@ -22,6 +23,7 @@ const CommentSection = ({ postSlug }: { postSlug: string }) => {
   return (
     <div>
       <h2 className="text-3xl dark:text-dark_accentColor font-semibold mb-8">Comment</h2>
+      <CommentForm />
       <ul className="flex flex-col gap-2">
         {commentList &&
           commentList.map((comment) => {

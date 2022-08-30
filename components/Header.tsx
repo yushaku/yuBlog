@@ -58,10 +58,8 @@ const Header = () => {
     restDelta: 0.001,
   })
 
-  /** */
-
   const renderIconTheme = () => {
-    const currentTheme = theme === 'system' ? systemTheme : theme
+    const currentTheme = theme === 'system' ? theme : systemTheme
 
     if (currentTheme === 'light') {
       return <MdDarkMode role="button" onClick={() => setTheme('dark')} />
@@ -69,7 +67,7 @@ const Header = () => {
       return <MdLightMode role="button" onClick={() => setTheme('light')} />
     }
   }
-  
+
   return (
     <>
       <header
@@ -100,7 +98,7 @@ const Header = () => {
                 return (
                   <motion.li
                     key={navItem.id}
-                    className="onTextHover"
+                    className="onTextHover text-[20px]"
                     custom={navItem.id}
                     initial="hidden"
                     animate="visible"
@@ -110,6 +108,15 @@ const Header = () => {
                   </motion.li>
                 )
               })}
+              <motion.li
+                className="onTextHover text-[20px]"
+                custom={4}
+                initial="hidden"
+                animate="visible"
+                variants={navbarEffect}
+              >
+                <Link href={`https://yu-portfolio.vercel.app/`}>about</Link>
+              </motion.li>
             </ul>
           </div>
 
