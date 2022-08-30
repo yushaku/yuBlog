@@ -11,7 +11,6 @@ const CommentSection = ({ postSlug }: { postSlug: string }) => {
     getCommentsOfPost(postSlug)
       .then((resCommentList) => {
         setCommentList(resCommentList)
-        console.log(resCommentList)
       })
       .catch((err) => console.error(err))
 
@@ -21,7 +20,7 @@ const CommentSection = ({ postSlug }: { postSlug: string }) => {
   }, [postSlug])
 
   return (
-    <div>
+    <div id="CommentSection" className=" dark:bg-dark_subBackground container mx-auto p-12 max-w-[1200px]">
       <h2 className="text-3xl dark:text-dark_accentColor font-semibold mb-8">Comment</h2>
       <CommentForm />
       <ul className="flex flex-col gap-2">

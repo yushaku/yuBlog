@@ -1,7 +1,12 @@
 import React from 'react'
+import RichTextEditor from '../components/comment/RichTextEditor'
 
 const login = () => {
-  return <div>login</div>
+  return (
+    <div>
+      <RichTextEditor />
+    </div>
+  )
 }
 
 export default login

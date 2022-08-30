@@ -2,18 +2,18 @@
 import { motion } from 'framer-motion'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
+import Prism from 'prismjs'
+import Link from 'next/link'
+import Head from 'next/head'
 import { AiOutlineDown } from 'react-icons/ai'
+import 'prismjs/themes/prism-tomorrow.css'
+
 import { getPostDetail } from '../../apis'
 import { PostDetail } from '../../util/types/post'
 import renderContentFragment from '../../hooks/useContentFragment'
-import Head from 'next/head'
 import RelatedPostList from '../../components/relatedPost/RelatedPostList'
 import CommentSection from '../../components/comment/CommentSection'
-
-import Prism from 'prismjs'
-import 'prismjs/themes/prism-tomorrow.css'
 import ReactSection from '../../components/article/ReactSection'
-import Link from 'next/link'
 
 const PostDetailPage = () => {
   const [postDetail, setPostDetail] = useState<PostDetail>()
@@ -82,13 +82,13 @@ const PostDetailPage = () => {
                 repeatDelay: 1,
               }}
             >
-              <Link href="#post_body">
+              <Link href="#postSection">
                 <AiOutlineDown />
               </Link>
             </motion.div>
           </div>
 
-          <div id="post_body" className="p-4 max-w-[800px] mx-auto text-2xl mt-[70px]">
+          <div id="postSection" className="p-4 max-w-[800px] mx-auto text-2xl mt-[70px]">
             {postDetail.content.raw.children.map((typeObj: any, index: number) => {
               const children = typeObj.children.map((item: any, itemIndex: number) =>
                 renderContentFragment(itemIndex, item.text, item),
@@ -102,11 +102,9 @@ const PostDetailPage = () => {
 
       <ReactSection />
 
-      <div id="CommentSection" className=" dark:bg-dark_subBackground container mx-auto p-12 max-w-[1200px]">
-        <CommentSection postSlug={postSlug} />
-      </div>
+      <CommentSection postSlug={postSlug} />
 
-      <RelatedPostList tagSlug={postDetail?.tags[0].tagSlug || ''} />
+      <RelatedPostList tagSlug={postDetail?.tags[0].tagSlug || 'javascript'} />
     </div>
   )
 }

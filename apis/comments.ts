@@ -2,9 +2,11 @@ import request, { gql, GraphQLClient } from 'graphql-request'
 import { CommentType } from '../util/types/post'
 
 const graphqlAPI = process.env.GRAPHQL_CMS_ENDPOINT as string
+const GraphqlToken = process.env.GRAPHQL_CMS_TOKEN as string
+
 const graphQLClient = new GraphQLClient(graphqlAPI, {
   headers: {
-    authorization: 'Bearer MY_TOKEN',
+    authorization: `Bearer ${GraphqlToken}`,
   },
 })
 
@@ -42,6 +44,32 @@ export const getCommentsOfPost = async (slug: string): Promise<CommentType[]> =>
   return result?.comments
 }
 
+// const variables = {
+//   comment: 'Inception',
+//   post: 'test create comment',
+//   author: 'yushaku5011@gmail.com Yushaku',
+//   reader: null,
+// }
+
+// export const createComment = async () => {
+//   const mutation = gql`
+//     mutation addComment($comment: String!, $post: String!, $reader: String, $author: String) {
+//       addComment(
+//         data: {
+//           comment: $comment
+//           post: { connect: { postSlug: $post } }
+//           reader: { connect: { email: $reader } }
+//           author: { connect: { email: $author } }
+//         }
+//       ) {
+//         id
+//       }
+//     }
+//   `
+//   const data = await graphQLClient.request(mutation, variables)
+//   console.log(data)
+// }
+
 const variables = {
   comment: 'Inception',
   post: 'test create comment',
@@ -49,17 +77,14 @@ const variables = {
   reader: null,
 }
 
-export const createComment = async () => {
-  const mutation = gql`
-    mutation addComment($comment: String!, @post: String!, $reader: String, $author: String) {
-      insert_movies_one(object: { comment: $comment, post: $post, reader: $reader, author: $author  }) {
-        comment
-        post
-        reader
-        author
-      }
-    }
-  `
-  const data = await graphQLClient.request(mutation, variables)
-  console.log(data)
+export const submitComment = async () => {
+  const result = await fetch('/api/comments', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(variables),
+  })
+
+  return result.json()
 }
