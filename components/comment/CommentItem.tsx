@@ -7,7 +7,6 @@ import renderContentFragment from '../../hooks/useContentFragment'
 
 const CommentItem = ({ id, updatedAt, createdAt, comment, reader, author }: CommentType) => {
   const commentOwner = reader ?? author
-  console.log(commentOwner)
   const formatCreatedAt = moment(createdAt).format('LL')
   const formatUpdatedAt = moment(updatedAt).format('LL')
 

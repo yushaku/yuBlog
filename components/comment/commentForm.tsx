@@ -1,6 +1,6 @@
 import { convertToRaw, Editor, EditorState, RichUtils } from 'draft-js'
 import React, { useState } from 'react'
-import { submitComment } from '../../apis'
+import { addCategory, createCategory, submitComment } from '../../apis'
 import { FaCode, FaUserCircle } from 'react-icons/fa'
 import Image from 'next/image'
 
@@ -14,7 +14,7 @@ const CommentForm = () => {
   const handleSentComment = (e: React.FormEvent) => {
     e.preventDefault()
     console.log('send comment')
-    submitComment()
+    createCategory()
   }
 
   const onCodeBlockClick = (e: any) => {

@@ -1,14 +1,7 @@
-import request, { gql, GraphQLClient } from 'graphql-request'
+import request, { gql } from 'graphql-request'
 import { CommentType } from '../util/types/post'
 
 const graphqlAPI = process.env.GRAPHQL_CMS_ENDPOINT as string
-const GraphqlToken = process.env.GRAPHQL_CMS_TOKEN as string
-
-const graphQLClient = new GraphQLClient(graphqlAPI, {
-  headers: {
-    authorization: `Bearer ${GraphqlToken}`,
-  },
-})
 
 export const getCommentsOfPost = async (slug: string): Promise<CommentType[]> => {
   const query = gql`

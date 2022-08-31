@@ -1,16 +1,16 @@
 import { gql } from 'graphql-request'
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { myGraphQlCLient } from '../../apis/graphQLClient'
+import { myGraphQlCLient } from '../../../apis/graphQLClient'
 
 type Data = {
   name: string
 }
 
-export default async function handlerAddComment(req: NextApiRequest, res: any) {
+export const handlerAddComment = async (req: NextApiRequest, res: NextApiResponse) => {
   const mutation = gql`
     mutation addComment($comment: String!, $post: String!, $reader: String, $author: String) {
-      addComment(
+      insert_Comment(
         data: {
           comment: $comment
           post: { connect: { postSlug: $post } }
