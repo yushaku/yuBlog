@@ -8,11 +8,17 @@ const AuthSession = () => {
 
   if (session) {
     return (
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center gap-3">
         <div>
-          <Image src={session.user?.image || ''} alt="user image" width={50} height={50} />
+          <Image
+            src={session.user?.image || ''}
+            alt="user image"
+            width={40}
+            height={40}
+            className=" rounded-full p-2"
+          />
         </div>
-        <h2 className=" font-semibold text-2xl dark:text-dark_accentColor">{session.user?.name}</h2>
+        <h2 className=" font-semibold text-[20px] dark:text-dark_accentColor">{session.user?.name}</h2>
       </div>
     )
   }
