@@ -15,7 +15,7 @@ const BookItem = () => {
           </header>
           <div id="card-author">
             <a id="author-avatar" href="#">
-              <Image src="/logo.png" alt="logo" width={50} height={50} />
+              <Image src="/logo.png" alt="logo" width={50} height={50} layout="responsive" loading="lazy" />
             </a>
             <svg id="half-circle" viewBox="0 0 106 57">
               <path d="M102 4c0 27.1-21.9 49-49 49S4 31.1 4 4"></path>

@@ -86,7 +86,7 @@ const Header = () => {
           <div id="logo" className=" cursor-pointer">
             <Link href="/">
               <div className="flex items-center gap-2">
-                <Image alt="yushaku" src="/logo.png" width={35} height={35} />
+                <Image alt="yushaku" src="/logo.png" width={35} height={35} layout="responsive" loading="lazy" />
                 <span className="text-[24px] font-semibold dark:text-dark_accentColor">Yushaku</span>
               </div>
             </Link>

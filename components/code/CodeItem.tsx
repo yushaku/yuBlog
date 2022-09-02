@@ -28,7 +28,15 @@ const CodeItem = ({ title, tags, excerpt, featuredImage, postSlug, createdAt }: 
           <div>
             {featuredImage && (
               <div className="flex items-center justify-center">
-                <Image src={featuredImage.url} alt={title} width={1000} height={400} className="rounded-[20px]" />
+                <Image
+                  src={featuredImage.url}
+                  alt={title}
+                  width={1000}
+                  height={400}
+                  className="rounded-[20px]"
+                  layout="responsive"
+                  loading="lazy"
+                />
               </div>
             )}
             <h1 className="text-3xl py-2 dark:text-dark_accentColor">{title}</h1>

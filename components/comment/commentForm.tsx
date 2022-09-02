@@ -26,7 +26,15 @@ const CommentForm = () => {
     <form method="post" onSubmit={handleSentComment} className="w-[100%] mb-8 text-[20px] flex items-center gap-10">
       <div>
         {userAvatarLink ? (
-          <Image src={userAvatarLink} alt="avatar user" className=" rounded-full" width={100} height={100}></Image>
+          <Image
+            src={userAvatarLink}
+            alt="avatar user"
+            className=" rounded-full"
+            width={100}
+            height={100}
+            layout="responsive"
+            loading="lazy"
+          />
         ) : (
           <FaUserCircle className="text-5xl" />
         )}

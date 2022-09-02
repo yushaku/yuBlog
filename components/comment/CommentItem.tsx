@@ -25,6 +25,8 @@ const CommentItem = ({ id, updatedAt, createdAt, comment, reader, author }: Comm
           width={60}
           height={60}
           className=" rounded-full"
+          layout="responsive"
+          loading="lazy"
         />
       </div>
       <div className="flex flex-col justify-center ">

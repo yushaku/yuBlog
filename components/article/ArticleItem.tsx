@@ -19,7 +19,15 @@ const ArticleItem = ({ title, tags, featuredImage, postSlug, createdAt }: articl
           <div className=" cursor-pointer">
             <h3 className="text-lg dark:text-dark_subTextColor">{formatCreatedAt}</h3>
             <h1 className="text-2xl line-clamp-2 font-semibold dark:text-dark_accentColor mb-8 mt-2">{title}</h1>
-            <Image src={featuredImage.url} alt={title} width={550} height={310} className=" rounded-lg" />
+            <Image
+              src={featuredImage.url}
+              alt={title}
+              width={550}
+              height={310}
+              className=" rounded-lg"
+              layout="responsive"
+              loading="lazy"
+            />
           </div>
         </Link>
         <div>
