@@ -20,7 +20,11 @@ const CommentSection = ({ postSlug }: { postSlug: string }) => {
   }, [postSlug])
 
   return (
-    <div id="CommentSection" className=" dark:bg-dark_subBackground container mx-auto p-12 max-w-[1200px]">
+    <div
+      id="CommentSection"
+      className=" dark:bg-dark_subBackground 
+      container mx-auto p-12 max-w-[1200px]"
+    >
       <h2 className="text-3xl dark:text-dark_accentColor font-semibold mb-8">Comment</h2>
       <CommentForm />
       <ul className="flex flex-col gap-2">

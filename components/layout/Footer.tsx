@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 // import { navbarListItem } from '../mocks/Navbar'
 import { AiFillGithub, AiFillLinkedin, AiFillInstagram } from 'react-icons/ai'
-import { getCategories } from '../apis'
-import { Category } from '../util/types/props'
+import { getCategories } from '../../apis'
+import { Category } from '../../util/types/props'
 
 const Footer = () => {
   const [categoryList, setCategoryList] = useState<Category[]>([])

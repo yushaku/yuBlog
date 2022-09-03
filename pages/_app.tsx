@@ -1,20 +1,15 @@
-import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import React from 'react'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import Metadata from '../components/Metadata'
+import Layout from '@/components/layout'
+import '@/styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider enableColorScheme={true} attribute="class" defaultTheme="system">
-      <>
-        <Header />
-        <Metadata />
+      <Layout>
         <Component {...pageProps} />
-        <Footer />
-      </>
+      </Layout>
     </ThemeProvider>
   )
 }

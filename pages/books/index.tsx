@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
-import BookItem from '../../components/books/BookItem'
+import BookItem from '@/components/books/BookItem'
 
 const BooksNote = () => {
   return (

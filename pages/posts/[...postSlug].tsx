@@ -12,9 +12,9 @@ import 'prismjs/themes/prism-tomorrow.css'
 import { getPostDetail } from '../../apis'
 import { PostDetail } from '../../util/types/post'
 import renderContentFragment from '../../hooks/useContentFragment'
-import RelatedPostList from '../../components/relatedPost/RelatedPostList'
-import CommentSection from '../../components/comment/CommentSection'
-import ReactSection from '../../components/article/ReactSection'
+import RelatedPostList from '@/components/relatedPost/RelatedPostList'
+import CommentSection from '@/components/comment/CommentSection'
+import ReactSection from '@/components/article/ReactSection'
 
 export const config = { amp: 'hybrid' }
 
@@ -22,8 +22,7 @@ const PostDetailPage = () => {
   const [postDetail, setPostDetail] = useState<PostDetail>()
   const loadAmp = useAmp()
 
-  const router = useRouter()
-  const postSlug = router.query.postSlug?.[0] as string
+  const postSlug = useRouter().query.postSlug?.[0] as string
 
   useEffect(() => {
     const highlight = () => {
@@ -40,6 +39,7 @@ const PostDetailPage = () => {
     })
 
     return () => {
+      console.log('remove side effect post detail')
       abortController.abort()
     }
   }, [postSlug])
@@ -88,7 +88,9 @@ const PostDetailPage = () => {
                 }}
               >
                 <Link href="#postSection">
-                  <AiOutlineDown />
+                  <a>
+                    <AiOutlineDown />
+                  </a>
                 </Link>
               </motion.div>
             </div>

@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-import ArticleItem from '../../components/article/ArticleItem'
+import ArticleItem from '@/components/article/ArticleItem'
 import { getPostOfCategory } from '../../apis'
 import { articleItemProps } from '../../util/types/props'
 
