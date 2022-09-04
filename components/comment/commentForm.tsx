@@ -1,6 +1,6 @@
 import { convertToRaw, Editor, EditorState, RichUtils } from 'draft-js'
 import React, { useState } from 'react'
-import { addCategory, createCategory, submitComment } from '../../apis'
+import { createCategory } from '../../apis'
 import { FaCode, FaUserCircle } from 'react-icons/fa'
 import Image from 'next/image'
 

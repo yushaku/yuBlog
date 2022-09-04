@@ -3,9 +3,9 @@ import { gql } from 'graphql-request'
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { myGraphQlCLient } from '../../../apis/graphQLClient'
 
-type Data = {
-  name: string
-}
+// type Data = {
+//   name: string
+// }
 
 export const handlerAddComment = async (req: NextApiRequest, res: NextApiResponse) => {
   const mutation = gql`
