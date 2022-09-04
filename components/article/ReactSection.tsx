@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import { AiFillHeart, AiOutlineHeart, AiOutlineShareAlt, AiOutlineComment } from 'react-icons/ai'
-import { DeployUrl, localUrl } from '../../util/constants/url'
+import { API_URL } from '../../util/constants/url'
 import FaceBookShareBtn from './shareBtn/FaceBookShareBtn'
 import LinkedinShareBtn from './shareBtn/LinkedinShareBtn'
 import TwitterShareBtn from './shareBtn/TwitterShareBtn'
@@ -14,8 +14,7 @@ const ReactSection = () => {
   const [showReactBtn, setShowReactBtn] = useState(true)
 
   const { asPath } = useRouter()
-  const NODE_ENV = process.env.NODE_ENV
-  const path = (NODE_ENV === 'development' ? localUrl : DeployUrl) + asPath
+  const path = API_URL + asPath
 
   // useEffect(() => {
   //   const CommentSection = window.document.querySelector('#CommentSection')

@@ -34,7 +34,6 @@ const CodeItem = ({ title, tags, excerpt, featuredImage, postSlug, createdAt }: 
                   width={1000}
                   height={400}
                   className="rounded-[20px]"
-                  layout="responsive"
                   loading="lazy"
                 />
               </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { API_URL } from 'util/constants/url'
 import { getCommentsOfPost } from '../../apis/comments'
 import { CommentType } from '../../util/types/post'
 import CommentForm from './commentForm'
@@ -49,3 +50,13 @@ const CommentSection = ({ postSlug }: { postSlug: string }) => {
 }
 
 export default CommentSection
+
+export async function getServerSideProps() {
+  const res = await fetch(`${API_URL}/api/comments`)
+  const comment = res.json()
+
+  return {
+    props: { comment },
+    revalidate: 1,
+  }
+}

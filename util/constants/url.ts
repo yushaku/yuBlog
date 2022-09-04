@@ -1,2 +1,1 @@
-export const localUrl = 'http://localhost:3000'
-export const DeployUrl = 'https://yushaku.vercel.app/'
+export const API_URL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://yushaku.vercel.app/'
