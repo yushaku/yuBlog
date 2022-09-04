@@ -6,6 +6,12 @@ export type articleItemProps = {
   featuredImage: {
     url: string
   }
+  authorId?: {
+    name: string
+    avatar: {
+      url: string
+    }
+  }
   postSlug: string
   createdAt: string
 }

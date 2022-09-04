@@ -112,7 +112,7 @@ const PostDetailPage = () => {
 
       <CommentSection postSlug={postSlug} />
 
-      <RelatedPostList tagSlug={postDetail?.tags[0].tagSlug || 'javascript'} />
+      <RelatedPostList tagSlug={postDetail?.tags[0]?.tagSlug ?? 'javascript'} />
     </div>
   )
 }

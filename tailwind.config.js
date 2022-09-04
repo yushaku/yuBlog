@@ -25,6 +25,9 @@ module.exports = {
       backgroundImage: {
         'footer-texture': "url('/img/footer-texture.png')",
       },
+      boxShadow: {
+        cardShadow: '-1rem 0 1rem #131313',
+      },
     },
   },
   plugins: [require('tailwind-scrollbar-hide'), require('tailwind-scrollbar'), require('@tailwindcss/line-clamp')],

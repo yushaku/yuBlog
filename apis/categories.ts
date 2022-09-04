@@ -56,6 +56,32 @@ export const getPostOfCategory = async (slug: string): Promise<articleItemProps[
   return newArticleList
 }
 
+export const getBooksOfCategory = async (slug: string): Promise<articleItemProps[]> => {
+  const query = gql`
+    query MyQuery($slug: String!) {
+      category(where: { slug: $slug }) {
+        posts {
+          authorId {
+            name
+            avatar {
+              url
+            }
+          }
+          postSlug
+          title
+          createdAt
+          tags {
+            tagSlug
+            title
+          }
+        }
+      }
+    }
+  `
+  const result = await request(graphqlAPI, query, { slug })
+  return result.category.posts
+}
+
 export const getPostOfTags = async (slug: string): Promise<articleItemProps[]> => {
   const query = gql`
     query MyQuery($slug: String!) {
