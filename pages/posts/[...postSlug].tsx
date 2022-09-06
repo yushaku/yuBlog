@@ -4,8 +4,7 @@ import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Prism from 'prismjs'
 import Link from 'next/link'
-import { useAmp } from 'next/amp'
-import Head from 'next/head'
+// import { useAmp } from 'next/amp'
 import { AiOutlineDown } from 'react-icons/ai'
 import 'prismjs/themes/prism-tomorrow.css'
 
@@ -15,6 +14,7 @@ import renderContentFragment from '../../hooks/useContentFragment'
 import RelatedPostList from '@/components/relatedPost/RelatedPostList'
 import CommentSection from '@/components/comment/CommentSection'
 import ReactSection from '@/components/article/ReactSection'
+import Layout from '@/components/layout'
 
 // export const config = { amp: 'hybrid' }
 export const config = { amp: true }
@@ -47,11 +47,7 @@ const PostDetailPage = () => {
   }, [postSlug])
 
   return (
-    <div className="">
-      <Head>
-        <title> {postDetail && postDetail.title}</title>
-      </Head>
-
+    <Layout title={postDetail && postDetail.title}>
       {postDetail && (
         <div>
           <div
@@ -113,7 +109,7 @@ const PostDetailPage = () => {
       <CommentSection postSlug={postSlug} />
 
       <RelatedPostList tagSlug={postDetail?.tags[0]?.tagSlug ?? 'javascript'} />
-    </div>
+    </Layout>
   )
 }
 

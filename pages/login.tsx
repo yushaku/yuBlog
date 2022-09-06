@@ -5,6 +5,7 @@ import { getProviders } from 'next-auth/react'
 import Image from 'next/image'
 import { AiOutlineGoogle, AiOutlineFacebook, AiOutlineGithub } from 'react-icons/ai'
 import AuthButton from '../components/auth/AuthButton'
+import Layout from '@/components/layout'
 
 interface Props {
   providerList: Awaited<ReturnType<typeof getProviders>>
@@ -25,17 +26,19 @@ const Login = ({ providerList }: Props) => {
   const { name: facebookProvider, id: facebookProviderId } = providerList?.facebook as ClientSafeProvider
 
   return (
-    <div className="flex flex-col justify-center items-center h-[75vh]">
-      <div className="mb-4">
-        <Image src="/logo.png" alt="logo_yushaku" width={100} height={100} />
-      </div>
+    <Layout title="blog login">
+      <div className="flex flex-col justify-center items-center h-[75vh]">
+        <div className="mb-4">
+          <Image src="/logo.png" alt="logo_yushaku" width={100} height={100} />
+        </div>
 
-      <div className="flex flex-col gap-4 ">
-        <AuthButton provider={googleProvider} providerId={googleProviderId} iconProvider={AiOutlineGoogle} />
-        <AuthButton provider={githubProvider} providerId={githubProviderId} iconProvider={AiOutlineGithub} />
-        <AuthButton provider={facebookProvider} providerId={facebookProviderId} iconProvider={AiOutlineFacebook} />
+        <div className="flex flex-col gap-4 ">
+          <AuthButton provider={googleProvider} providerId={googleProviderId} iconProvider={AiOutlineGoogle} />
+          <AuthButton provider={githubProvider} providerId={githubProviderId} iconProvider={AiOutlineGithub} />
+          <AuthButton provider={facebookProvider} providerId={facebookProviderId} iconProvider={AiOutlineFacebook} />
+        </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 

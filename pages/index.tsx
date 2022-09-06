@@ -1,18 +1,14 @@
 import type { NextPage } from 'next'
-import Head from 'next/head'
 import React from 'react'
 import ArticleBlock from '@/components/Home/ArticleBlock'
 import BookItem from '@/components/Home/BookItem'
 import CategoryBlock from '@/components/Home/CatagoryBlock'
 import { bookList } from '../mocks/books'
+import Layout from '@/components/layout'
 
 const Home: NextPage = () => {
   return (
-    <div className=" ">
-      <Head>
-        <title>Yushaku Blog</title>
-      </Head>
-
+    <Layout title="Yushaku blog">
       <div className="relative h-[100vh] w-[100vw] bg-[url('../public/bg.jpg')] bg-cover bg-center"></div>
 
       <div className=" myContainer mt-[80px] ">
@@ -52,7 +48,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 

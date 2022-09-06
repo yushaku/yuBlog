@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { navbarEffect, navbarListItem } from '../../mocks/Navbar'
 import Sidebar from '../navbar/Sidebar'
-import AuthSession from './auth/AuthSession'
+import AuthSession from '@/components/auth/AuthSession'
 
 const Header = () => {
   const { systemTheme, theme, setTheme } = useTheme()
