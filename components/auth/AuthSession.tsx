@@ -2,14 +2,14 @@ import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
 import Image from 'next/image'
-import AuthFeature from './AuthFeature'
+import AuthPopBar from './AuthPopBar'
 
 const AuthSession = () => {
   const { data: session } = useSession()
 
   if (session) {
     return (
-      <div className=" relative">
+      <div className="relative group">
         <div className="flex items-center justify-center gap-3">
           <div>
             <Image
@@ -23,7 +23,9 @@ const AuthSession = () => {
           <h2 className=" font-semibold text-[20px] dark:text-dark_accentColor">{session.user?.name}</h2>
         </div>
 
-        <AuthFeature />
+        <div className=" opacity-0 group-hover:opacity-100 transition-all duration-400">
+          <AuthPopBar />
+        </div>
       </div>
     )
   }
