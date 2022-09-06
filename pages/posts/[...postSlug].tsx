@@ -17,7 +17,7 @@ import ReactSection from '@/components/article/ReactSection'
 import Layout from '@/components/layout'
 
 // export const config = { amp: 'hybrid' }
-export const config = { amp: true }
+// export const config = { amp: true }
 
 const PostDetailPage = () => {
   const [postDetail, setPostDetail] = useState<PostDetail>()
