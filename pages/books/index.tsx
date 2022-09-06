@@ -5,7 +5,6 @@ import Layout from '@/components/layout'
 
 const BooksNote = () => {
   const bookList = useGetPost('books')
-  console.log(bookList)
 
   return (
     <Layout title="Books">

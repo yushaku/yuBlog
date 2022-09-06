@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { getPostOfCategory } from '../../apis'
-import { articleItemProps } from '../../util/types/props'
+import { getPostOfCategory } from '@/apis'
+import { articleItemProps } from '@/util/types/props'
 import CodeItem from '@/components/code/CodeItem'
 import Layout from '@/components/layout'
 

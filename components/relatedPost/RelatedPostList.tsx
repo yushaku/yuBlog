@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { getPostOfTags } from '../../apis'
-import { articleItemProps } from '../../util/types/props'
+import { getPostOfTags } from '@/apis'
+import { articleItemProps } from '@/util/types/props'
 import RelatedPostItem from './RelatedPostItem'
 
 const RelatedPostList = ({ tagSlug }: { tagSlug: string }) => {

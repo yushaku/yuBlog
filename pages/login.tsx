@@ -4,7 +4,7 @@ import { GetServerSideProps } from 'next'
 import { getProviders } from 'next-auth/react'
 import Image from 'next/image'
 import { AiOutlineGoogle, AiOutlineFacebook, AiOutlineGithub } from 'react-icons/ai'
-import AuthButton from '../components/auth/AuthButton'
+import AuthButton from '@/components/auth/AuthButton'
 import Layout from '@/components/layout'
 
 interface Props {

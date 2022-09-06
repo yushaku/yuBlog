@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { API_URL } from 'util/constants/url'
-import { getCommentsOfPost } from '../../apis/comments'
-import { CommentType } from '../../util/types/post'
+import { getCommentsOfPost } from '@/apis/comments'
+import { CommentType } from '@/util/types/post'
 import CommentForm from './commentForm'
 import CommentItem from './CommentItem'
 

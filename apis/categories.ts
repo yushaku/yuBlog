@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { request, gql } from 'graphql-request'
-import { articleItemProps } from '../util/types/props'
 import { myGraphQlCLient } from './graphQLClient'
+
+import { articleItemProps } from '@/util/types/props'
 
 const graphqlAPI = process.env.GRAPHQL_CMS_ENDPOINT as string
 

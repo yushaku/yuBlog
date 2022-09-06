@@ -1,5 +1,6 @@
 import request, { gql } from 'graphql-request'
-import { CommentType } from '../util/types/post'
+
+import { CommentType } from '@/util/types/post'
 
 const graphqlAPI = process.env.GRAPHQL_CMS_ENDPOINT as string
 

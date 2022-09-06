@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { AiOutlineHeart, AiOutlineComment, AiOutlineImport } from 'react-icons/ai'
-import { articleItemProps } from '../../util/types/props'
+import { articleItemProps } from '@/util/types/props'
 import moment from 'moment'
 
 const ArticleItem = ({ title, tags, featuredImage, postSlug, createdAt }: articleItemProps) => {

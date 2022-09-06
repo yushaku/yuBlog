@@ -3,7 +3,7 @@ import React from 'react'
 import ArticleBlock from '@/components/Home/ArticleBlock'
 import BookItem from '@/components/Home/BookItem'
 import CategoryBlock from '@/components/Home/CatagoryBlock'
-import { bookList } from '../mocks/books'
+import { bookList } from '@/mocks/books'
 import Layout from '@/components/layout'
 
 const Home: NextPage = () => {
