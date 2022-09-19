@@ -9,13 +9,17 @@ const useGetPost = (title: string) => {
     const abortController = new AbortController()
 
     if (title === 'books') {
-      getBooksOfCategory(title).then((responsePostList) => {
-        setPostList(responsePostList)
-      })
+      getBooksOfCategory(title)
+        .then((responsePostList) => {
+          setPostList(responsePostList)
+        })
+        .catch((err) => console.error(err))
     } else {
-      getPostOfCategory(title).then((responsePostList) => {
-        setPostList(responsePostList)
-      })
+      getPostOfCategory(title)
+        .then((responsePostList) => {
+          setPostList(responsePostList)
+        })
+        .catch((err) => console.error(err))
     }
 
     return () => {

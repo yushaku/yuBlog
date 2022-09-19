@@ -1,9 +1,15 @@
 import React from 'react'
 import Head from 'next/head'
-import Header from './Header'
 import Footer from './Footer'
 
-const Layout = ({ title, children, keywords, description }: any) => {
+interface Props {
+  title: string
+  keywords: string
+  description: string
+  children: any
+}
+
+const Layout = ({ title, children, keywords, description }: Props) => {
   return (
     <div>
       <Head>
@@ -21,7 +27,6 @@ const Layout = ({ title, children, keywords, description }: any) => {
         <meta property="og:type" content="website" />
       </Head>
 
-      <Header />
       {children}
       <Footer />
     </div>

@@ -7,7 +7,7 @@ import AuthPopBar from './AuthPopBar'
 const AuthSession = () => {
   const { data: session } = useSession()
   const data = React.useId()
-  console.log(data)
+  //console.log(data)
 
   if (session) {
     return (
