@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
-import { CommentType } from '../../util/types/post'
+import { CommentType } from '@/util/types/post'
 import Image from 'next/image'
 import moment from 'moment'
-import renderContentFragment from '../../hooks/useContentFragment'
+import renderContentFragment from '@/util/useContentFragment'
 
 const CommentItem = ({ id, updatedAt, createdAt, comment, reader, author }: CommentType) => {
   const commentOwner = reader ?? author
-  console.log(commentOwner)
   const formatCreatedAt = moment(createdAt).format('LL')
   const formatUpdatedAt = moment(updatedAt).format('LL')
 
@@ -26,6 +25,8 @@ const CommentItem = ({ id, updatedAt, createdAt, comment, reader, author }: Comm
           width={60}
           height={60}
           className=" rounded-full"
+          layout="responsive"
+          loading="lazy"
         />
       </div>
       <div className="flex flex-col justify-center ">

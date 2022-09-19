@@ -6,6 +6,12 @@ export type articleItemProps = {
   featuredImage: {
     url: string
   }
+  authorId?: {
+    name: string
+    avatar: {
+      url: string
+    }
+  }
   postSlug: string
   createdAt: string
 }
@@ -29,4 +35,10 @@ export type tagsDetail = {
   textColor: {
     hex: string
   }
+}
+
+export type Category = {
+  id: string
+  name: string
+  slug: string
 }

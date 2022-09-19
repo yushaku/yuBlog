@@ -1,14 +1,10 @@
 import { GraphQLClient } from 'graphql-request'
 
-// const abortController = new window.AbortController()
-
-const graphQLApi = process.env.GRAPHQL_CMS_ENDPOINT || ''
+const graphQLApi = process.env.GRAPHQL_CMS_ENDPOINT as string
+const graphQLToken = process.env.GRAPHQL_CMS_TOKEN as string
 
 export const myGraphQlCLient = new GraphQLClient(graphQLApi, {
   headers: {
-    authorization: `Bearer ${process.env.GRAPHQL_CMS_TOKEN}`,
+    authorization: `Bearer ${graphQLToken}`,
   },
-  // signal: abortController.signal,
 })
-
-// abortController.abort()

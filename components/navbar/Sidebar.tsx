@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { motion } from 'framer-motion'
 import React from 'react'
-import { navbarListItem, sidebarEffect, sidebarItem, sidebarListItem } from '../../mocks/Navbar'
+import { navbarListItem, sidebarEffect, sidebarItem, sidebarListItem } from '@/mocks/Navbar'
 import { AiFillCloseCircle } from 'react-icons/ai'
 
 interface props {
