@@ -6,6 +6,8 @@ import AuthPopBar from './AuthPopBar'
 
 const AuthSession = () => {
   const { data: session } = useSession()
+  const data = React.useId()
+  //console.log(data)
 
   if (session) {
     return (
@@ -23,7 +25,7 @@ const AuthSession = () => {
           <h2 className=" font-semibold text-[20px] dark:text-dark_accentColor">{session.user?.name}</h2>
         </div>
 
-        <div className=" opacity-0 group-hover:opacity-100 transition-all duration-400">
+        <div className=" hidden group-hover:block  transition-all duration-400">
           <AuthPopBar />
         </div>
       </div>

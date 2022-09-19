@@ -6,9 +6,8 @@ import Image from 'next/image'
 
 const CommentForm = () => {
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty())
-  const rawData = convertToRaw(editorState.getCurrentContent())
+  //const rawData = convertToRaw(editorState.getCurrentContent())
   // console.log(rawData)
-  console.log(rawData)
   const userAvatarLink = ''
 
   const handleSentComment = (e: React.FormEvent) => {

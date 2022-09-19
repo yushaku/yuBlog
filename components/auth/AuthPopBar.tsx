@@ -6,7 +6,6 @@ export const Divider = () => <hr className="border-t-[0.1px] border-gray-900 my-
 
 const AuthPopBar = () => {
   const { data: session } = useSession()
-  console.log(session)
 
   return (
     <div

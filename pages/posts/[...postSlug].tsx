@@ -10,19 +10,18 @@ import 'prismjs/themes/prism-tomorrow.css'
 
 import { getPostDetail } from '@/apis'
 import { PostDetail } from '@/util/types/post'
-import renderContentFragment from '@/hooks/useContentFragment'
+import renderContentFragment from '@/util/useContentFragment'
 import RelatedPostList from '@/components/relatedPost/RelatedPostList'
 import CommentSection from '@/components/comment/CommentSection'
 import ReactSection from '@/components/article/ReactSection'
 import Layout from '@/components/layout'
 
 // export const config = { amp: 'hybrid' }
-export const config = { amp: true }
+// export const config = { amp: true }
+// const loadAmp = useAmp()
 
 const PostDetailPage = () => {
   const [postDetail, setPostDetail] = useState<PostDetail>()
-
-  // const loadAmp = useAmp()
 
   const postSlug = useRouter().query.postSlug?.[0] as string
 
@@ -50,28 +49,15 @@ const PostDetailPage = () => {
     <Layout title={postDetail && postDetail.title}>
       {postDetail && (
         <div>
-          <div
-            style={{
-              backgroundImage: `url(${postDetail.featuredImage.url})`,
-              backgroundPosition: 'center',
-              backgroundSize: 'cover',
-            }}
-            className={`relative h-[100vh] w-[100vw] bg-cover bg-center`}
-          >
-            <div
-              className="absolute 
-              top-[40%] left-[5%] w-[90%] 
-              md:left-[10%] md:w-[80%] 
-              lg:top-[35%] lg:left-[20%] lg:w-[60%]"
-            >
-              <h1 className="py-4 text-[50px] dark:text-dark_accentColor text-light_textColor font-extrabold md:text-[60px] lg:text-[75px] shadow-inner">
+          <div>
+            <div className="p-4 max-w-[1000px] mx-auto text-2xl mt-[170px]">
+              <h1 className="py-4 text-[40px] text-light_accentColor font-extrabold dark:text-dark_accentColor ">
                 {postDetail.title}
               </h1>
-              <p className="text-[24px] text-light_textColor dark:text-dark_textColor md:text-[28px]">
-                {postDetail.excerpt}
-              </p>
+              <p className="text-[24px] text-light_textColor dark:text-dark_textColor mt-12">{postDetail.excerpt}</p>
             </div>
-            <motion.div
+
+            {/* <motion.div
               className=" absolute text-4xl bottom-10 right-[50%] cursor-pointer"
               animate={{
                 y: [-10, 10],
@@ -89,7 +75,7 @@ const PostDetailPage = () => {
                   <AiOutlineDown />
                 </a>
               </Link>
-            </motion.div>
+            </motion.div> */}
           </div>
 
           <div id="postSection" className="p-4 max-w-[800px] mx-auto text-2xl mt-[70px]">
