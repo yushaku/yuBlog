@@ -6,8 +6,6 @@ import AuthPopBar from './AuthPopBar'
 
 const AuthSession = () => {
   const { data: session } = useSession()
-  const data = React.useId()
-  //console.log(data)
 
   if (session) {
     return (
@@ -32,8 +30,8 @@ const AuthSession = () => {
     )
   }
   return (
-    <div className=" text-2xl font-semibold cursor-pointer dark:hover:text-dark_accentColor hover:text-light_accentColor">
-      <Link href="/login">login now</Link>
+    <div className=" text-xl font-semibold cursor-pointer dark:hover:text-dark_accentColor hover:text-light_accentColor">
+      <Link href="/login">login</Link>
     </div>
   )
 }

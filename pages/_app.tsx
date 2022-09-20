@@ -7,7 +7,7 @@ import Header from '@/components/layout/Header'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
-    <ThemeProvider enableColorScheme={true} attribute="class" defaultTheme="system">
+    <ThemeProvider enableColorScheme={true} attribute="class" defaultTheme="dark">
       <SessionProvider session={session}>
         <>
           <Header />

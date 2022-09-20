@@ -5,11 +5,10 @@ import { navbarListItem, sidebarEffect, sidebarItem, sidebarListItem } from '@/m
 import { AiFillCloseCircle } from 'react-icons/ai'
 
 interface props {
-  renderIconTheme: () => JSX.Element
   onShowSideBar: () => void
 }
 
-const Sidebar = ({ renderIconTheme, onShowSideBar }: props) => {
+const Sidebar = ({ onShowSideBar }: props) => {
   return (
     <motion.nav
       initial="hidden"
@@ -38,7 +37,7 @@ const Sidebar = ({ renderIconTheme, onShowSideBar }: props) => {
           )
         })}
         <motion.li initial="hidden" animate="visible" className="text-4xl icon text-dark_accentColor">
-          {renderIconTheme()}
+          {/* {renderIconTheme()} */}
         </motion.li>
       </motion.ul>
       <motion.div />
