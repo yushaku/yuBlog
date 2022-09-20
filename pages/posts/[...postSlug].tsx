@@ -50,6 +50,7 @@ const PostDetailPage = () => {
             <h1 className="py-4 text-[40px] text-light_accentColor font-extrabold dark:text-dark_accentColor ">
               {postDetail.title}
             </h1>
+
             <Image src={postDetail.featuredImage.url} alt={postDetail.title} width={1000} height={500} />
 
             <p className="text-[24px] text-light_textColor dark:text-dark_textColor mt-12">{postDetail.excerpt}</p>
