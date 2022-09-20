@@ -57,11 +57,11 @@ export const getPostOfCategory = async (slug: string): Promise<articleItemProps[
   return newArticleList
 }
 
-export const getBooksOfCategory = async (slug: string): Promise<articleItemProps[]> => {
+export const getBooksOfCategory = async (slug: string, limit = 2): Promise<articleItemProps[]> => {
   const query = gql`
-    query MyQuery($slug: String!) {
+    query MyQuery($slug: String!, $limit: Int!) {
       category(where: { slug: $slug }) {
-        posts {
+        posts(first: $limit) {
           authorId {
             name
             avatar {
@@ -70,6 +70,10 @@ export const getBooksOfCategory = async (slug: string): Promise<articleItemProps
           }
           postSlug
           title
+          featuredImage {
+            url
+          }
+          excerpt
           createdAt
           tags {
             tagSlug
@@ -79,7 +83,10 @@ export const getBooksOfCategory = async (slug: string): Promise<articleItemProps
       }
     }
   `
-  const result = await request(graphqlAPI, query, { slug })
+  const result = await request(graphqlAPI, query, {
+    slug,
+    limit,
+  })
   return result.category.posts
 }
 
