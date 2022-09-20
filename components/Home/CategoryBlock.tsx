@@ -1,7 +1,7 @@
 import React from 'react'
-import CatagoryCard from './CatagoryCard'
+import CategoryCard from './CategoryCard'
 
-const CatagoryBlock = () => {
+const CategoryBlock = () => {
   return (
     <div id="List_catagory px-2">
       <div className=" flex flex-col items-center">
@@ -23,12 +23,27 @@ const CatagoryBlock = () => {
       </div>
 
       <ul className="flex flex-wrap items-center justify-center gap-8 lg:flex-row">
-        <CatagoryCard />
-        <CatagoryCard />
-        <CatagoryCard />
+        <CategoryCard
+          title="Article"
+          link="article"
+          desc="How to execute efficiently, make time for what matters and have fun along the way."
+          icon="🚀"
+        />
+        <CategoryCard
+          title="Development"
+          link="code"
+          desc="How to study effectively for exams, with the best evidence-based techniques."
+          icon="👨‍💻"
+        />
+        <CategoryCard
+          title="Books notes"
+          link="books"
+          desc="Notes, highlights and reviews of my favorites fiction and non-fiction books."
+          icon="📔"
+        />
       </ul>
     </div>
   )
 }
 
-export default CatagoryBlock
+export default CategoryBlock

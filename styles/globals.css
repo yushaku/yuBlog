@@ -51,7 +51,7 @@
   }
 
   .textInput {
-    @apply;
+    @apply text-xl bg-slate-300 p-2 rounded-md placeholder:text-dark_background text-dark_background;
   }
   .myContainer {
     @apply container mx-auto px-4 text-2xl;

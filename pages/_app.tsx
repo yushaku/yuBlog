@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import { SessionProvider } from 'next-auth/react'
 import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
 function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (
@@ -12,6 +13,7 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }: AppProps) {
         <>
           <Header />
           <Component {...pageProps} />
+          <Footer />
         </>
       </SessionProvider>
     </ThemeProvider>
