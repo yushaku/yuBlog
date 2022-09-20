@@ -3,7 +3,7 @@ import React from 'react'
 import { CommentType } from '@/util/types/post'
 import Image from 'next/image'
 import moment from 'moment'
-import renderContentFragment from '@/util/useContentFragment'
+import renderContentFragment from '@/util/renderContentFragment'
 
 const CommentItem = ({ id, updatedAt, createdAt, comment, reader, author }: CommentType) => {
   const commentOwner = reader ?? author

@@ -2,14 +2,14 @@ import { getBooksOfCategory, getPostOfCategory } from '@/apis'
 import { articleItemProps } from '@/util/types/props'
 import { useEffect, useState } from 'react'
 
-const useGetPost = (title: string) => {
+const useGetPost = (title: string, counter?: number) => {
   const [postList, setPostList] = useState<articleItemProps[]>([])
 
   useEffect(() => {
     const abortController = new AbortController()
 
     if (title === 'books') {
-      getBooksOfCategory(title)
+      getBooksOfCategory(title, counter)
         .then((responsePostList) => {
           setPostList(responsePostList)
         })
@@ -25,7 +25,7 @@ const useGetPost = (title: string) => {
     return () => {
       abortController.abort()
     }
-  }, [title])
+  }, [title, counter])
 
   return postList
 }
