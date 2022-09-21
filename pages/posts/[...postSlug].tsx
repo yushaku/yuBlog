@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import Prism from 'prismjs'
 // import { useAmp } from 'next/amp'
 import 'prismjs/themes/prism-tomorrow.css'
-
+import Image from 'next/image'
 import { getPostDetail } from '@/apis'
 import { PostDetail } from '@/util/types/post'
 import renderContentFragment from '@/util/renderContentFragment'
@@ -46,13 +46,14 @@ const PostDetailPage = () => {
     <Layout title={postDetail && postDetail.title}>
       {postDetail && (
         <div>
-          <div>
-            <div className="p-4 max-w-[1000px] mx-auto text-2xl mt-[170px]">
-              <h1 className="py-4 text-[40px] text-light_accentColor font-extrabold dark:text-dark_accentColor ">
-                {postDetail.title}
-              </h1>
-              <p className="text-[24px] text-light_textColor dark:text-dark_textColor mt-12">{postDetail.excerpt}</p>
-            </div>
+          <div className="p-4 max-w-[800px] mx-auto mt-[100px]">
+            <h1 className="py-4 text-[40px] text-light_accentColor font-extrabold dark:text-dark_accentColor ">
+              {postDetail.title}
+            </h1>
+
+            <Image src={postDetail.featuredImage.url} alt={postDetail.title} width={1000} height={500} />
+
+            <p className="text-[24px] text-light_textColor dark:text-dark_textColor mt-12">{postDetail.excerpt}</p>
           </div>
 
           <div id="postSection" className="p-4 max-w-[800px] mx-auto text-2xl mt-[70px]">

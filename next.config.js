@@ -41,6 +41,7 @@ module.exports = withPWA({
     GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
 
     JWT_SECRET: process.env.JWT_SECRET,
+    MEASUREMENT_ID: process.env.MEASUREMENT_ID,
   },
   pwa: {
     dest: 'public',

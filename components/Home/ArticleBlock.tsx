@@ -5,8 +5,8 @@ const ArticleBlock = () => {
   return (
     <div id="list_article" className="flex flex-col md:flex-row gap-8 my-[15vh]">
       <div id="Explore">
-        <h1 className=" dark:text-dark_accentColor text-3xl">Explore</h1>
-        <p className=" border-t-4 border-red-400 w-[150px] py-4"></p>
+        <h1 className=" dark:text-dark_accentColor text-3xl">Article</h1>
+        <p className=" border-t-4 border-red-400 w-[100px] py-4"></p>
         <ul className="">
           <ArticleItem />
           <ArticleItem />
@@ -14,7 +14,7 @@ const ArticleBlock = () => {
         </ul>
       </div>
       <div id="Latest_Articles">
-        <h1 className=" dark:text-dark_accentColor text-3xl">Latest Articles</h1>
+        <h1 className=" dark:text-dark_accentColor text-3xl">developer</h1>
         <p className=" border-t-4 border-red-400 w-[150px] py-4"></p>
         <ul>
           <ArticleItem />

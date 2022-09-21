@@ -13,8 +13,8 @@ const Article = () => {
   else
     return (
       <Layout title="Article">
-        <div className="container px-4 lg:px-[100px] mx-auto min-h-[65vh] mt-[12vh]">
-          <section className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-[6rem] items-center">
+        <div className="container px-4 lg:px-[100px] min-h-[65vh] mt-[12vh]">
+          <section className="flex flex-col md:flex-row flex-wrap gap-[18px] justify-center items-center">
             {articleList.map((article) => {
               return (
                 <div key={article.id}>

@@ -19,6 +19,7 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
+  "ignorePatterns": ["workbox-eac1af49.js", "sw.js"],
   "rules": { "prettier/prettier": "error" },
   "settings": {
     "react": {

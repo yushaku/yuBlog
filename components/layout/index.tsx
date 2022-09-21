@@ -1,6 +1,5 @@
 import React from 'react'
 import Head from 'next/head'
-import Footer from './Footer'
 
 interface Props {
   title: string
@@ -28,7 +27,6 @@ const Layout = ({ title, children, keywords, description }: Props) => {
       </Head>
 
       {children}
-      <Footer />
     </div>
   )
 }

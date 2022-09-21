@@ -6,7 +6,7 @@ import LoadingSkeletonPage from '@/components/skeleton/LoadingSkeletonPage'
 import useLoading from '@/hooks/useLoading'
 
 const BooksNote = () => {
-  const bookList = useGetPost('books')
+  const bookList = useGetPost('books', 8)
   const isLoading = useLoading()
 
   if (isLoading) return <LoadingSkeletonPage />
@@ -14,20 +14,21 @@ const BooksNote = () => {
     return (
       <Layout title="Books">
         <div className="container px-4 mx-auto min-h-[65vh]">
-          <section className=" flex p-8 overflow-x-scroll scrollBar mt-[130px]">
+          <ul className=" flex p-8 overflow-x-scroll scrollBar mt-[130px]">
             {bookList.map((bookItem) => (
-              <BookItem
-                title={bookItem.title}
-                excerpt={bookItem.excerpt}
-                tags={bookItem.tags}
-                featuredImage={bookItem.featuredImage}
-                postSlug={bookItem.postSlug}
-                createdAt={bookItem.createdAt}
-                key={bookItem.id}
-                authorId={bookItem.authorId}
-              />
+              <li key={bookItem.id}>
+                <BookItem
+                  title={bookItem.title}
+                  excerpt={bookItem.excerpt}
+                  tags={bookItem.tags}
+                  featuredImage={bookItem.featuredImage}
+                  postSlug={bookItem.postSlug}
+                  createdAt={bookItem.createdAt}
+                  authorId={bookItem.authorId}
+                />
+              </li>
             ))}
-          </section>
+          </ul>
         </div>
       </Layout>
     )

@@ -1,9 +1,7 @@
 /* eslint-disable prettier/prettier */
 import Image from 'next/image'
 import { AiOutlineUnorderedList } from 'react-icons/ai'
-import { MdDarkMode, MdLightMode } from 'react-icons/md'
 import { motion, useScroll, useSpring } from 'framer-motion'
-import { useTheme } from 'next-themes'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 
@@ -12,7 +10,6 @@ import AuthSession from '@/components/auth/AuthSession'
 import Sidebar from '@/components/navbar/Sidebar'
 
 const Header = () => {
-  const { systemTheme, theme, setTheme } = useTheme()
   const [isShowNavbar, setIsShowNavbar] = useState(false)
   const { scrollYProgress } = useScroll()
   const [scrollDirection, setScrollDirection] = useState('up')
@@ -59,16 +56,6 @@ const Header = () => {
     damping: 30,
     restDelta: 0.001,
   })
-
-  const renderIconTheme = () => {
-    const currentTheme = theme === 'system' ? systemTheme : theme
-
-    if (currentTheme === 'light') {
-      return <MdDarkMode role="button" onClick={() => setTheme('dark')} />
-    } else {
-      return <MdLightMode role="button" onClick={() => setTheme('light')} />
-    }
-  }
 
   return (
     <>
@@ -131,7 +118,7 @@ const Header = () => {
           </div>
         </motion.div>
 
-        {isShowNavbar && <Sidebar onShowSideBar={handleShowSideBar} renderIconTheme={renderIconTheme} />}
+        {isShowNavbar && <Sidebar onShowSideBar={handleShowSideBar} />}
 
         <motion.div style={{ scaleX }} className="h-[5px] origin-left statusGradin "></motion.div>
       </header>
