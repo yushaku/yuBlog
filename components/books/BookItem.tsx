@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { articleItemProps } from '@/util/types/props'
 import moment from 'moment'
 
-const BookItem = ({ title, tags, featuredImage, postSlug, createdAt, authorId }: articleItemProps) => {
+const BookItem = ({ title, tags, postSlug, createdAt, authorId }: articleItemProps) => {
   const formatCreatedAt = moment(createdAt).format('LL')
 
   return (
@@ -31,7 +31,7 @@ const BookItem = ({ title, tags, featuredImage, postSlug, createdAt, authorId }:
           <div id="card-author" className="relative grid grid-cols-2 items-center mt-12">
             <span id="author-avatar">
               <Image
-                src={authorId?.avatar.url ?? '/anya.png'}
+                src={authorId?.avatar?.url ?? '/anya.png'}
                 alt="logo"
                 width={30}
                 height={30}

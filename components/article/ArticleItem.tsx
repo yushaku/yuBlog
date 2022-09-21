@@ -8,24 +8,24 @@ import moment from 'moment'
 const ArticleItem = ({ title, tags, featuredImage, postSlug, createdAt }: articleItemProps) => {
   const formatCreatedAt = moment(createdAt).format('LL')
   return (
-    <div id="ArticleContainerItem" className="relative rounded-2xl">
+    <div id="ArticleContainerItem" className="relative rounded-2xl w-[330px] h-[440px]">
       <section
         id="ArticleItem"
-        className="absolute flex flex-col items-center justify-center 
+        className="absolute px-4 
+        flex flex-col items-center justify-center 
       dark:bg-dark_subBackground
-        px-4 rounded-2xl"
+        rounded-2xl"
       >
         <Link href={`/posts/${postSlug}`}>
-          <div className=" cursor-pointer">
+          <div className="cursor-pointer">
             <h3 className="text-lg dark:text-dark_subTextColor">{formatCreatedAt}</h3>
-            <h1 className="text-2xl line-clamp-2 font-semibold dark:text-dark_accentColor mb-8 mt-2">{title}</h1>
+            <h1 className="text-xl line-clamp-2 font-semibold dark:text-dark_accentColor mb-8 mt-2">{title}</h1>
             <Image
               src={featuredImage.url}
               alt={title}
               width={550}
               height={310}
               className=" rounded-lg"
-              layout="responsive"
               loading="lazy"
             />
           </div>
@@ -47,18 +47,15 @@ const ArticleItem = ({ title, tags, featuredImage, postSlug, createdAt }: articl
               })}
           </ul>
         </div>
-        <div className="w-[100%] flex justify-between mt-4">
-          <span className="flex items-center justify-center gap-2 text-xl cursor-pointer">
+        <div className="w-[100%] flex gap-10 justify-center items-center mt-4">
+          <span className="flex items-center justify-center text-2xl cursor-pointer">
             <AiOutlineHeart />
-            like
           </span>
-          <span className="flex items-center justify-center gap-2 text-xl cursor-pointer">
+          <span className="flex items-center justify-center text-2xl cursor-pointer">
             <AiOutlineComment />
-            comments
           </span>
-          <span className="flex items-center justify-center gap-2 text-xl cursor-pointer">
+          <span className="flex items-center justify-center text-2xl cursor-pointer">
             <AiOutlineImport />
-            save
           </span>
         </div>
       </section>
