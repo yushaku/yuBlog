@@ -89,19 +89,14 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-top: 12px;
   align-items: center;
   border-radius: 20px;
   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 0.5px solid rgba(255, 255, 255, 0.4);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   transform-style: preserve-3d;
 }
 
-.inner-element {
-  border-radius: 20px;
-  padding-bottom: 42px;
-  padding-top: 18px;
+#inner-element {
   transform: translateZ(60px);
 }
 
@@ -155,8 +150,7 @@
   box-shadow: 0 40px 70px rgba(0, 0, 0, 0.5);
 }
 
-
-#block-quote{
+#block-quote {
   position: absolute;
   top: -15px;
   left: -15px;

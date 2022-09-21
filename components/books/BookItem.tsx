@@ -31,7 +31,7 @@ const BookItem = ({ title, tags, postSlug, createdAt, authorId }: articleItemPro
           <div id="card-author" className="relative grid grid-cols-2 items-center mt-12">
             <span id="author-avatar">
               <Image
-                src={authorId?.avatar.url ?? '/anya.png'}
+                src={authorId?.avatar?.url ?? '/anya.png'}
                 alt="logo"
                 width={30}
                 height={30}

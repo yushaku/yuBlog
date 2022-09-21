@@ -31,6 +31,7 @@ export const getPostOfCategory = async (slug: string): Promise<articleItemProps[
             title
             createdAt
             postSlug
+            excerpt
             featuredImage {
               url
             }
