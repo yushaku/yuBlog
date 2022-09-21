@@ -8,6 +8,7 @@ import { API_URL } from '@/util/constants/url'
 import FaceBookShareBtn from './shareBtn/FaceBookShareBtn'
 import LinkedinShareBtn from './shareBtn/LinkedinShareBtn'
 import TwitterShareBtn from './shareBtn/TwitterShareBtn'
+import { sidebarEffect } from '@/mocks/Navbar'
 
 const ReactSection = () => {
   const [like, setLike] = useState(false)
@@ -23,18 +24,14 @@ const ReactSection = () => {
 
   //   const startOpen = postSection?.getBoundingClientRect()?.top as number
   //   const endOpen = CommentSection?.getBoundingClientRect()?.top as number
+  //   console.log(startOpen)
 
   //   const handleScrollToShowReactBtn = () => {
-  //     // console.log('window.scrollY' + window.scrollY)
-  //     // console.log('startOpen' + startOpen)
-  //     console.log(window.scrollY > startOpen && window.scrollY < endOpen)
-  //     // console.log(window.scrollY < endOpen)
-
-  //     if (window.scrollY > startOpen && window.scrollY < endOpen) {
-  //       setShowReactBtn(true)
-  //     }
   //     if (window.scrollY > endOpen) {
   //       setShowReactBtn(false)
+  //     }
+  //     if (window.scrollY < endOpen) {
+  //       setShowReactBtn(true)
   //     }
   //   }
   //   window.addEventListener('scroll', handleScrollToShowReactBtn)
@@ -44,7 +41,12 @@ const ReactSection = () => {
   // }, [showReactBtn])
 
   return (
-    <motion.section className="p-4 max-w-[800px] mx-auto text-2xl my-[20px] lg:fixed lg:top-[30%] lg:left-[7%] xl:left-[11%]">
+    <motion.section
+      className="p-4 max-w-[800px] mx-auto text-2xl my-[20px] lg:fixed lg:top-[30%] lg:left-[7%] xl:left-[11%]"
+      initial="hidden"
+      animate="visible"
+      variants={sidebarEffect}
+    >
       {showReactBtn && (
         <ul className=" flex lg:flex-col gap-4 items-center">
           <li onClick={() => setLike(!like)} className="icon text-4xl">

@@ -16,7 +16,7 @@ const Home: NextPage = () => {
 
         <div
           id="Subscribe"
-          className="max-w-[800px] absolute top-[30%] left-0 right-0 mx-auto text-xl backdrop-blur-sm p-12 rounded-lg"
+          className="max-w-[800px] absolute top-[15%] md:top-[30%] left-0 right-0 mx-auto text-xl backdrop-blur-sm p-12 rounded-lg"
         >
           <div className="text-3xl font-medium dark:text-dark_accentColor my-4">
             <h2>😀 Hey friends</h2>
@@ -34,16 +34,16 @@ const Home: NextPage = () => {
                 life advice. Sign up below to join a growing community of more than 160,000 friendly readers.
               </p>
             </div>
-            <form action="" className="flex mt-6 items-center gap-4">
+            <form action="" className="flex flex-col md:flex-row mt-6 items-center gap-4">
               <input
                 type="email"
                 required
                 name="email"
                 id="email"
-                className="textInput w-[500px]"
+                className="textInput w-[300px] md:w-[400px] lg:w-[500px]"
                 placeholder="Your email"
               />
-              <input type="submit" value="SUBSCRIBE" className="button" />
+              <input type="submit" value="SUBSCRIBE" className="button w-[300px]" />
             </form>
           </div>
         </div>
