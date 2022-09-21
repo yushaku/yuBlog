@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { articleItemProps } from '@/util/types/props'
 import moment from 'moment'
 
-const BookItem = ({ title, tags, featuredImage, postSlug, createdAt, authorId }: articleItemProps) => {
+const BookItem = ({ title, tags, postSlug, createdAt, authorId }: articleItemProps) => {
   const formatCreatedAt = moment(createdAt).format('LL')
 
   return (
