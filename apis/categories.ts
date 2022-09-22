@@ -135,16 +135,3 @@ export const createCategory = async () => {
 
   return result.json()
 }
-
-export const addCategory = async () => {
-  const mutation = gql`
-    mutation addCategory($title: String!, $slug: String) {
-      insert_category_one(object: { title: $title, slug: $slug }) {
-        title
-        slug
-      }
-    }
-  `
-  const result = await myGraphQlCLient.request(mutation, fakeData)
-  return result
-}
