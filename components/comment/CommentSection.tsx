@@ -6,21 +6,20 @@ import CommentItem from './CommentItem'
 
 const CommentSection = ({ postSlug }: { postSlug: string }) => {
   const [commentList, setCommentList] = useState<CommentType[]>([])
+  const [pageNumber, setPageNumber] = useState(1)
 
   useEffect(() => {
-    getCommentsOfPost(postSlug)
-      .then((resCommentList) => {
-        setCommentList(resCommentList)
-      })
-      .catch((err) => console.error(err))
+    if (postSlug && pageNumber > 0)
+      getCommentsOfPost(postSlug, 5 * pageNumber)
+        .then((resCommentList) => {
+          setCommentList(resCommentList)
+        })
+        .catch((err) => console.error(err))
 
     return () => {
       console.log('remove side effect')
     }
-  }, [postSlug])
-
-  console.log(postSlug)
-  console.log(commentList)
+  }, [postSlug, pageNumber])
 
   return (
     <div id="CommentSection" className="container mx-auto dark:bg-dark_subBackground p-12 max-w-[1200px]">
@@ -45,6 +44,15 @@ const CommentSection = ({ postSlug }: { postSlug: string }) => {
             )
           })}
       </ul>
+
+      <div className="flex justify-center items-center mt-4">
+        <button
+          onClick={() => setPageNumber(pageNumber + 1)}
+          className="text-xl dark:text-dark_accentColor text-light_accentColor"
+        >
+          load more
+        </button>
+      </div>
     </div>
   )
 }

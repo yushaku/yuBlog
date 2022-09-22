@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import { FaUserCircle } from 'react-icons/fa'
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
-import { submitComment } from '@/apis'
+import { publicComment, submitComment } from '@/apis'
 
 interface Props {
   postSlug: string
@@ -10,7 +10,7 @@ interface Props {
 
 const CommentForm = ({ postSlug }: Props) => {
   const { data: session } = useSession()
-  const userAvatarLink = session?.user?.image ?? ''
+  const userAvatarLink = session?.user?.image
 
   const commentForm = useRef<HTMLTextAreaElement>(null)
 
@@ -23,6 +23,8 @@ const CommentForm = ({ postSlug }: Props) => {
         comment: commentForm.current.value,
         post: postSlug,
         reader: session.user.email,
+      }).then((resData) => {
+        publicComment(resData.createComment.id)
       })
 
       commentForm.current.value = ''
@@ -42,9 +44,8 @@ const CommentForm = ({ postSlug }: Props) => {
             src={userAvatarLink}
             alt="avatar user"
             className="rounded-full"
-            width={100}
-            height={100}
-            layout="responsive"
+            width={48}
+            height={48}
             loading="lazy"
           />
         ) : (
@@ -63,6 +64,7 @@ const CommentForm = ({ postSlug }: Props) => {
             className="block p-2.5 w-full text-lg 
             rounded-lg border border-gray-800 
             bg-gray-50 text-light_textColor 
+            focus:outline-none focus:ring-0
 
             dark:bg-dark_background 
             dark:border-gray-600 
