@@ -1,4 +1,4 @@
-import { getBooksOfCategory, getPostOfCategory } from '@/apis'
+import { getBooksOfCategory, getPostsOfCategory } from '@/apis'
 import { articleItemProps } from '@/util/types/props'
 import { useEffect, useState } from 'react'
 
@@ -15,7 +15,7 @@ const useGetPost = (title: string, counter?: number) => {
         })
         .catch((err) => console.error(err))
     } else {
-      getPostOfCategory(title)
+      getPostsOfCategory(title)
         .then((responsePostList) => {
           setPostList(responsePostList)
         })
