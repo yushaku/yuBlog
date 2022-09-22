@@ -36,11 +36,7 @@ export type CommentType = {
   id: string
   updatedAt: string
   createdAt: string
-  comment: {
-    raw: {
-      children: propsRenderElement[]
-    }
-  }
+  comment: string
   reader?: {
     name: string
     email: string

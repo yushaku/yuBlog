@@ -10,25 +10,19 @@ export const getCommentsOfPost = async (slug: string): Promise<CommentType[]> =>
       comments(where: { post: { postSlug: $slug } }) {
         updatedAt
         createdAt
-        comment {
-          raw
-        }
+        comment
         reader {
-          ... on Reader {
-            name
-            email
-            avatar {
-              url
-            }
+          name
+          email
+          avatar {
+            url
           }
         }
         author {
-          ... on AuthorId {
-            email
-            name
-            avatar {
-              url
-            }
+          email
+          name
+          avatar {
+            url
           }
         }
       }
@@ -38,47 +32,23 @@ export const getCommentsOfPost = async (slug: string): Promise<CommentType[]> =>
   return result?.comments
 }
 
-// const variables = {
-//   comment: 'Inception',
-//   post: 'test create comment',
-//   author: 'yushaku5011@gmail.com Yushaku',
-//   reader: null,
-// }
-
-// export const createComment = async () => {
-//   const mutation = gql`
-//     mutation addComment($comment: String!, $post: String!, $reader: String, $author: String) {
-//       addComment(
-//         data: {
-//           comment: $comment
-//           post: { connect: { postSlug: $post } }
-//           reader: { connect: { email: $reader } }
-//           author: { connect: { email: $author } }
-//         }
-//       ) {
-//         id
-//       }
-//     }
-//   `
-//   const data = await graphQLClient.request(mutation, variables)
-//   console.log(data)
-// }
-
-const variables = {
-  comment: 'Inception',
-  post: 'test create comment',
-  author: 'yushaku5011@gmail.com Yushaku',
-  reader: null,
+interface Props {
+  parentId: string
+  comment: string
+  post: string
+  reader: string | null
 }
 
-export const submitComment = async () => {
-  const result = await fetch('/api/comments', {
+export const submitComment = async ({ parentId, comment, post, reader }: Props) => {
+  console.log('call api create comment updated')
+
+  await fetch('/api/comments', {
     method: 'POST',
+    mode: 'same-origin',
+    cache: 'no-cache',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(variables),
-  })
-
-  return result.json()
+    body: JSON.stringify({ parentId, comment, post, reader }),
+  }).then((data) => data.json())
 }
