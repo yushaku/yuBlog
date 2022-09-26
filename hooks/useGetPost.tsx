@@ -15,7 +15,7 @@ const useGetPost = (title: string, counter?: number) => {
         })
         .catch((err) => console.error(err))
     } else {
-      getPostsOfCategory(title)
+      getPostsOfCategory(title, counter)
         .then((responsePostList) => {
           setPostList(responsePostList)
         })
