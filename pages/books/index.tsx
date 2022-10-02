@@ -2,14 +2,14 @@ import React from 'react'
 import BookItem from '@/components/books/BookItem'
 import useGetPost from '@/hooks/useGetPost'
 import Layout from '@/components/layout'
-import LoadingSkeletonPage from '@/components/skeleton/LoadingSkeletonPage'
 import useLoading from '@/hooks/useLoading'
+import LoadingPage from '@/components/LoadingPage'
 
 const BooksNote = () => {
   const bookList = useGetPost('books', 8)
   const isLoading = useLoading()
 
-  if (isLoading) return <LoadingSkeletonPage />
+  if (isLoading) return <LoadingPage />
   else
     return (
       <Layout title="Books">

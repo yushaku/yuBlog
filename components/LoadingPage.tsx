@@ -1,7 +1,11 @@
 import { motion } from 'framer-motion'
 import React from 'react'
 
+const name = 'yushaku'
+
 function LoadingPage() {
+  const arrayOfName = name.split('')
+
   return (
     <div
       className="w-[100vw] h-[100vh]
@@ -21,8 +25,19 @@ function LoadingPage() {
         alt="yushaku"
         className="w-[100px] h-[100px]"
       />
-
-      <h3 className="mt-4 text-3xl text-colorGreen">Yushaku</h3>
+      <div className="mt-4" id="wave">
+        {arrayOfName.map((keyword, index) => {
+          return (
+            <span
+              style={{ '--id': index } as React.CSSProperties}
+              key={index}
+              className={`relative px-[2px] inline-block uppercase text-dark_accentColor`}
+            >
+              {keyword}
+            </span>
+          )
+        })}
+      </div>
     </div>
   )
 }

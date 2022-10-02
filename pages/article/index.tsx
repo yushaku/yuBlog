@@ -3,13 +3,13 @@ import ArticleItem from '@/components/article/ArticleItem'
 import Layout from '@/components/layout'
 import useGetPost from '@/hooks/useGetPost'
 import useLoading from '@/hooks/useLoading'
-import LoadingSkeletonPage from '@/components/skeleton/LoadingSkeletonPage'
+import LoadingPage from '@/components/LoadingPage'
 
 const Article = () => {
   const articleList = useGetPost('article')
   const isLoading = useLoading()
 
-  if (isLoading) return <LoadingSkeletonPage />
+  if (isLoading) return <LoadingPage />
   else
     return (
       <Layout title="Article">
