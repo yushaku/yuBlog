@@ -2,14 +2,14 @@ import React from 'react'
 import Layout from '@/components/layout'
 import useGetPost from '@/hooks/useGetPost'
 import useLoading from '@/hooks/useLoading'
-import LoadingSkeletonPage from '@/components/skeleton/LoadingSkeletonPage'
 import DevItem from '@/components/code/DevItem'
+import LoadingPage from '@/components/LoadingPage'
 
 const Coding = () => {
   const codePostList = useGetPost('code')
   const isLoading = useLoading()
 
-  if (isLoading) return <LoadingSkeletonPage />
+  if (isLoading) return <LoadingPage />
   else
     return (
       <Layout title="developer">

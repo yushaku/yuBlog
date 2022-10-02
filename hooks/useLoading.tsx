@@ -10,7 +10,7 @@ const useLoading = () => {
       url !== router.pathname ? setLoading(true) : setLoading(false)
     }
     const handleComplete = () => setLoading(false)
-    const handleError = () => router.push('404')
+    const handleError = () => router.push('/')
 
     router.events.on('routeChangeStart', handleStart)
     router.events.on('routeChangeComplete', handleComplete)

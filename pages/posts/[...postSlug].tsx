@@ -12,6 +12,8 @@ import RelatedPostList from '@/components/relatedPost/RelatedPostList'
 import CommentSection from '@/components/comment/CommentSection'
 import ReactSection from '@/components/article/ReactSection'
 import Layout from '@/components/layout'
+import useLoading from '@/hooks/useLoading'
+import LoadingPage from '@/components/LoadingPage'
 
 // export const config = { amp: 'hybrid' }
 // export const config = { amp: true }
@@ -19,6 +21,7 @@ import Layout from '@/components/layout'
 
 const PostDetailPage = () => {
   const [postDetail, setPostDetail] = useState<PostDetail>()
+  const isLoading = useLoading()
 
   const postSlug = useRouter().query.postSlug?.[0] as string
 
@@ -42,6 +45,7 @@ const PostDetailPage = () => {
     }
   }, [postSlug])
 
+  if (isLoading) return <LoadingPage />
   return (
     <Layout title={postDetail && postDetail.title}>
       {postDetail && (

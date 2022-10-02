@@ -145,8 +145,6 @@ const renderParagraph = (modifiedText: any, index: number) => {
   return (
     <p key={index} className="text-[24px] p-2">
       {modifiedText.map((item: any, i: number) => {
-        console.log(item)
-
         if (item?.type === 'link')
           return (
             <Link href={item.href} key={i} target="_blank">
