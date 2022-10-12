@@ -16,7 +16,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     try {
       const result = await myGraphQlCLient.request(query, req.query)
-      console.log(JSON.parse(result))
 
       res.status(200).json(result)
     } catch (error) {

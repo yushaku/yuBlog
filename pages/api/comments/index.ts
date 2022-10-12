@@ -36,7 +36,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         post,
         reader,
       })
-      console.log(result)
 
       res.status(200).json(result)
     } catch (error) {

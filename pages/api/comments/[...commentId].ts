@@ -3,8 +3,6 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 import { myGraphQlCLient } from '../../../apis/graphQLClient'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log('get in to server')
-  console.log(req.query)
   const commentId = req.query.commentId as string[]
   const id = commentId[0]
 

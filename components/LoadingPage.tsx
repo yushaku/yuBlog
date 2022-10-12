@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import React from 'react'
 
-const name = 'yushaku'
+const name = 'Loading...'
 
 function LoadingPage() {
   const arrayOfName = name.split('')
