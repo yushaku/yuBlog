@@ -8,7 +8,7 @@ const useGetPost = (title: string, counter?: number) => {
   useEffect(() => {
     const abortController = new AbortController()
 
-    if (title === 'books') {
+    if (title === 'books' || title === 'article') {
       getBooksOfCategory(title, counter)
         .then((responsePostList) => {
           setPostList(responsePostList)

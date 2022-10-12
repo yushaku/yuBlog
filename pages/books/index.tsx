@@ -14,21 +14,20 @@ const BooksNote = () => {
     return (
       <Layout title="Books">
         <div className="container px-4 mx-auto min-h-[65vh]">
-          <ul className=" flex p-8 overflow-x-scroll scrollBar mt-[130px]">
+          <section className=" flex p-8 overflow-x-scroll scrollBar mt-[130px]">
             {bookList.map((bookItem) => (
-              <li key={bookItem.id}>
-                <BookItem
-                  title={bookItem.title}
-                  excerpt={bookItem.excerpt}
-                  tags={bookItem.tags}
-                  featuredImage={bookItem.featuredImage}
-                  postSlug={bookItem.postSlug}
-                  createdAt={bookItem.createdAt}
-                  authorId={bookItem.authorId}
-                />
-              </li>
+              <BookItem
+                key={bookItem.id}
+                title={bookItem.title}
+                excerpt={bookItem.excerpt}
+                tags={bookItem.tags}
+                featuredImage={bookItem.featuredImage}
+                postSlug={bookItem.postSlug}
+                createdAt={bookItem.createdAt}
+                authorId={bookItem.authorId}
+              />
             ))}
-          </ul>
+          </section>
         </div>
       </Layout>
     )

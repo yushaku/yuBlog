@@ -14,6 +14,7 @@ import ReactSection from '@/components/article/ReactSection'
 import Layout from '@/components/layout'
 import useLoading from '@/hooks/useLoading'
 import LoadingPage from '@/components/LoadingPage'
+import renderContent from '@/util/render'
 
 // export const config = { amp: 'hybrid' }
 // export const config = { amp: true }
@@ -40,7 +41,6 @@ const PostDetailPage = () => {
     })
 
     return () => {
-      console.log('remove side effect post detail')
       abortController.abort()
     }
   }, [postSlug])
@@ -61,13 +61,9 @@ const PostDetailPage = () => {
           </div>
 
           <div id="postSection" className="p-4 max-w-[800px] mx-auto text-2xl mt-[70px]">
-            {postDetail.content.raw.children.map((typeObj: any, index: number) => {
-              const children = typeObj.children.map((item: any, itemIndex: number) =>
-                renderContentFragment(itemIndex, item.text, item),
-              )
-
-              return renderContentFragment(index, children, typeObj, typeObj.type)
-            })}
+            {postDetail.content.raw.children.map((elementItem: any, index: number) =>
+              renderContent(index, elementItem),
+            )}
           </div>
         </div>
       )}

@@ -45,14 +45,16 @@ const DevItem = ({ index, title, tags, excerpt, featuredImage, postSlug, created
           <Link href={`posts/${postSlug}`}>
             <div className=" cursor-pointer">
               <h6 className="dark:text-dark_textColor">Time: {formatCreatedAt} </h6>
-              <h3 className="text-2xl font-semibold dark:text-dark_accentColor text-light_accentColor">{title}</h3>
-              <p
-                className={`py-4 ${
-                  index % 2 == 0 ? 'pr-4' : 'pl-4'
-                }text-xl text-dark_textColor md:py-8 md:rounded-lg md:bg-dark_subBackground/70`}
-              >
-                {excerpt}
-              </p>
+              <div className="md:bg-dark_subBackground/70 md:py-6 md:px-2 rounded-lg">
+                <h3 className="text-2xl font-semibold dark:text-dark_accentColor text-light_accentColor">{title}</h3>
+                <p
+                  className={`py-4 ${
+                    index % 2 == 0 ? 'pr-4' : 'pl-4'
+                  }text-xl text-dark_textColor md:py-2 md:rounded-lg`}
+                >
+                  {excerpt}
+                </p>
+              </div>
             </div>
           </Link>
 

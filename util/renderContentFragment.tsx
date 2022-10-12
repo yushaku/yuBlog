@@ -1,58 +1,57 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
 import Image from 'next/image'
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import Link from 'next/link'
 
-export default function renderContentFragment(index: number, text: any, obj: any, type?: string) {
-  let modifiedText = text
+export default function renderContentFragment(index: number, elementChildren: any, obj: any, type?: string) {
+  let modifiedElement = elementChildren
 
   if (obj) {
     if (obj.bold) {
-      modifiedText = (
+      modifiedElement = (
         <b className="font-semibold" key={index}>
-          {text}
+          {elementChildren}
         </b>
       )
     }
 
     if (obj.italic) {
-      modifiedText = (
+      modifiedElement = (
         <em className="italic" key={index}>
-          {text}
+          {elementChildren}
         </em>
       )
     }
 
     if (obj.underline) {
-      modifiedText = (
+      modifiedElement = (
         <u className="underline" key={index}>
-          {text}
+          {elementChildren}
         </u>
       )
     }
 
     if (obj.code) {
-      modifiedText = (
+      modifiedElement = (
         <code className="language-js py-2" key={index}>
-          {text}
+          {elementChildren}
         </code>
       )
     }
 
     if (obj.bold && obj.italic) {
-      modifiedText = (
+      modifiedElement = (
         <em className="font-semibold italic" key={index}>
-          {text}
+          {elementChildren}
         </em>
       )
     }
 
     if (obj.bold && obj.italic && obj.underline) {
-      modifiedText = (
+      modifiedElement = (
         <u className="font-semibold italic underline" key={index}>
-          {text}
+          {elementChildren}
         </u>
       )
     }
@@ -60,28 +59,31 @@ export default function renderContentFragment(index: number, text: any, obj: any
 
   switch (type) {
     case 'heading-one':
-      return renderHeadOne(modifiedText, index)
+      return renderHeadOne(modifiedElement, index)
 
     case 'heading-two':
-      return renderHeadOTwo(modifiedText, index)
+      return renderHeadOTwo(modifiedElement, index)
 
     case 'heading-three':
-      return renderHeadOThree(modifiedText, index)
+      return renderHeadOThree(modifiedElement, index)
 
     case 'heading-four':
-      return renderHeadOFour(modifiedText, index)
+      return renderHeadOFour(modifiedElement, index)
 
     case 'heading-five':
-      return renderHeadOFour(modifiedText, index)
+      return renderHeadOFour(modifiedElement, index)
 
     case 'paragraph':
-      return renderParagraph(modifiedText, index)
+      return renderParagraph(modifiedElement, index)
 
     case 'block-quote':
-      return renderBLockQuote(modifiedText, index)
+      return renderBLockQuote(modifiedElement, index)
 
     case 'code-block':
-      return renderCodeBlock(modifiedText, index)
+      return renderCodeBlock(modifiedElement, index)
+
+    case 'link':
+      return renderInnerLink(modifiedElement, index)
 
     case 'image':
       return (
@@ -97,7 +99,7 @@ export default function renderContentFragment(index: number, text: any, obj: any
       )
 
     default:
-      return modifiedText
+      return modifiedElement
   }
 }
 
@@ -175,12 +177,23 @@ const renderCodeBlock = (modifiedText: any, index: number) => {
 
 const renderBLockQuote = (modifiedText: any, index: number) => {
   return (
-    <div
-      key={index}
-      className="relative p-6 my-2 rounded-lg dark:bg-dark_subBackground bg-light_subBackground
-      border-2 dark:border-dark_accentColor border-light_accentColor"
-    >
-      <i id="block-quote">
+    <div key={index} id="fontQuote" className="borderQuote dark:bg-dark_subBackground bg-light_subBackground">
+      <i id="iconQuote">
+        <AiOutlineInfoCircle className="text-3xl icon" />
+      </i>
+      {modifiedText.map((item: any, i: number) => (
+        <React.Fragment key={i}>{item}</React.Fragment>
+      ))}
+    </div>
+  )
+}
+
+const renderInnerLink = (modifiedText: any, index: number) => {
+  console.log(modifiedText)
+
+  return (
+    <div key={index} id="fontQuote" className="borderQuote dark:bg-dark_subBackground bg-light_subBackground">
+      <i id="iconQuote">
         <AiOutlineInfoCircle className="text-3xl icon" />
       </i>
       {modifiedText.map((item: any, i: number) => (
