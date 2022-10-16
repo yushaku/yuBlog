@@ -118,7 +118,7 @@ const Header = () => {
           </div>
         </motion.div>
 
-        {isShowNavbar && <Sidebar onShowSideBar={handleShowSideBar} />}
+        <Sidebar onShowSideBar={handleShowSideBar} isShowNavbar={isShowNavbar} />
 
         <motion.div style={{ scaleX }} className="h-[5px] origin-left statusGradin "></motion.div>
       </header>
