@@ -1,5 +1,5 @@
 import React from 'react'
-import { navbarListItem } from '@/mocks/Navbar'
+import { navbarListItem } from '@/util/animate'
 import { AiOutlineClose } from 'react-icons/ai'
 
 interface Props {

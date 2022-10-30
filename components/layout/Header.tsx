@@ -5,7 +5,7 @@ import { motion, useScroll, useSpring } from 'framer-motion'
 import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 
-import { navbarEffect, navbarListItem } from '@/mocks/Navbar'
+import { navbarEffect, navbarListItem } from '@/util/animate'
 import AuthSession from '@/components/auth/AuthSession'
 import Sidebar from '@/components/navbar/Sidebar'
 
