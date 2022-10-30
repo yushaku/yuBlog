@@ -42,6 +42,9 @@ module.exports = withPWA({
 
     JWT_SECRET: process.env.JWT_SECRET,
     MEASUREMENT_ID: process.env.MEASUREMENT_ID,
+
+    NOTION_SECRET: process.env.NOTION_SECRET,
+    NOTION_DATABASE: process.env.NOTION_DATABASE,
   },
   pwa: {
     dest: 'public',
