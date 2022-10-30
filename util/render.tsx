@@ -192,7 +192,7 @@ const renderSubList = (item: any, index: number): JSX.Element => {
         const newItem = handleStyle(subItem)
         return (
           <>
-            <span></span>
+            <span> - </span>
             <span key={index}>{newItem}</span>
           </>
         )

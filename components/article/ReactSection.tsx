@@ -1,14 +1,15 @@
-import { AiFillHeart, AiOutlineHeart, AiOutlineShareAlt, AiOutlineComment } from 'react-icons/ai'
-import React, { useEffect, useState } from 'react'
-import { useRouter } from 'next/router'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import React, { useState } from 'react'
+import { AiFillHeart, AiOutlineComment, AiOutlineHeart, AiOutlineShareAlt } from 'react-icons/ai'
 
 import { API_URL } from '@/util/constants/url'
+import { sidebarEffect } from '@/util/animate'
+
 import FaceBookShareBtn from './shareBtn/FaceBookShareBtn'
 import LinkedinShareBtn from './shareBtn/LinkedinShareBtn'
 import TwitterShareBtn from './shareBtn/TwitterShareBtn'
-import { sidebarEffect } from '@/mocks/Navbar'
 
 const ReactSection = () => {
   const [like, setLike] = useState(false)
@@ -47,7 +48,7 @@ const ReactSection = () => {
       animate="visible"
       variants={sidebarEffect}
     >
-      {showReactBtn && (
+      {showReactBtn ? (
         <ul className=" flex lg:flex-col gap-4 items-center">
           <li onClick={() => setLike(!like)} className="icon text-4xl">
             {like ? <AiFillHeart className="" /> : <AiOutlineHeart />}
@@ -78,7 +79,7 @@ const ReactSection = () => {
             </ul>
           </li>
         </ul>
-      )}
+      ) : null}
     </motion.section>
   )
 }

@@ -1,47 +1,48 @@
-/* eslint-disable prettier/prettier */
-import { motion } from 'framer-motion'
 import React from 'react'
-import { navbarListItem, sidebarEffect, sidebarItem, sidebarListItem } from '@/mocks/Navbar'
-import { AiFillCloseCircle } from 'react-icons/ai'
+import { navbarListItem } from '@/util/animate'
+import { AiOutlineClose } from 'react-icons/ai'
 
-interface props {
+interface Props {
   onShowSideBar: () => void
+  isShowNavbar: boolean
 }
 
-const Sidebar = ({ onShowSideBar }: props) => {
+const Sidebar = ({ onShowSideBar, isShowNavbar }: Props) => {
   return (
-    <motion.nav
-      initial="hidden"
-      animate="visible"
-      variants={sidebarEffect}
-      className="w-[70vw] h-[100vh] fixed top-0 right-0 z-50 dark:bg-dark_subBackground backdrop-blur-md GrassBg"
+    <nav
+      className={`w-[100vw] h-[100vh] fixed top-0 right-0  dark:bg-dark_subBackground/40 backdrop-blur-sm ${
+        !isShowNavbar && 'hidden'
+      }`}
     >
-      <AiFillCloseCircle
-        className="absolute right-[46px] text-[44px] top-5 dark:text-dark_accentColor"
+      <AiOutlineClose
+        className="absolute right-[46px] text-[35px] top-5 dark:text-dark_accentColor"
         onClick={onShowSideBar}
       />
 
-      <motion.ul variants={sidebarListItem} className="flex flex-col justify-center gap-[60px] px-12 w-[100%] h-[100%]">
+      <ul className="w-[70vw] h-[100vh] dark:bg-dark_subBackground float-right flex flex-col justify-center gap-[60px] px-12 ">
         {navbarListItem.map((navItem) => {
           return (
-            <motion.li
-              variants={sidebarItem}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              key={navItem.id}
-              className="flex gap-2 text-4xl text-dark_textColor"
-            >
-              <p className=" text-dark_accentColor">0{navItem.id}.</p>
-              <a href={navItem.link}>{navItem.title}</a>
-            </motion.li>
+            <li key={navItem.id} className="flex gap-2 flex-col items-center text-2xl text-dark_textColor">
+              <p className=" text-dark_accentColor ">0{navItem.id}.</p>
+              <a className=" hover:text-dark_accentColor" href={navItem.link}>
+                {navItem.title}
+              </a>
+            </li>
           )
         })}
-        <motion.li initial="hidden" animate="visible" className="text-4xl icon text-dark_accentColor">
-          {/* {renderIconTheme()} */}
-        </motion.li>
-      </motion.ul>
-      <motion.div />
-    </motion.nav>
+        <li className="flex gap-2 flex-col items-center text-2xl text-dark_textColor">
+          <p className=" text-dark_accentColor ">03.</p>
+          <a className=" hover:text-dark_accentColor" href="https://yu-portfolio.vercel.app">
+            about
+          </a>
+        </li>
+
+        <li className="flex gap-2 flex-col items-center">
+          <button className="button text-2xl">dark theme</button>
+        </li>
+      </ul>
+      <div />
+    </nav>
   )
 }
 
