@@ -1,9 +1,16 @@
 import React from 'react'
 import Head from 'next/head'
+import { NextSeo } from 'next-seo'
 
 const Metadata = () => {
   return (
     <Head>
+      <NextSeo
+        title="Using More of Config"
+        description="This example uses more of the available config options."
+        canonical="https://www.canonical.ie/"
+      />
+
       <link rel="icon" href="/favicon.ico" />
       <meta name="yushaku" key="yushaku" content="dev js" />
       <meta name="description" key="description" content="welcome to yushaku blog!" />

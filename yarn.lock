@@ -3234,6 +3234,11 @@ next-pwa@^5.6.0:
     workbox-webpack-plugin "^6.5.4"
     workbox-window "^6.5.4"
 
+next-seo@^5.11.1:
+  version "5.11.1"
+  resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.11.1.tgz#256071c2c359003924c64678fbf6ac283680b66f"
+  integrity sha512-P18E5mDaUEvIK/hDlCLAl7w02Ew6a8m1E3KO3d+rIPKWPcBRMckcMzxkdFkafFqwHl4ygCLNCWlKWM9EKD3jIQ==
+
 next-share@^0.18.0:
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/next-share/-/next-share-0.18.0.tgz#5867b97727591f73b0fdf57429b299a11f9e21ec"
