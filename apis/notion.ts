@@ -64,12 +64,6 @@ export default class NotionService {
     return response.results.map((page: any) => this.postTransformer(page))
   }
 
-  async getSingleBlogPost(PageId: string): Promise<any> {
-    return await this.client.pages.retrieve({
-      page_id: PageId,
-    })
-  }
-
   async getPage(pageId: string) {
     return await this.client.pages.retrieve({
       page_id: pageId,
@@ -91,5 +85,49 @@ export default class NotionService {
       cursor = next_cursor
     }
     return blocks
+  }
+
+  async getComments(blockId: string) {
+    return await this.client.comments.list({
+      block_id: blockId,
+    })
+  }
+
+  async createComment(pageId: string, content: string, userId?: string) {
+    const body = []
+
+    body.push({
+      text: {
+        content,
+      },
+    })
+
+    if (userId) {
+      body.push({
+        mention: {
+          user: {
+            object: 'user',
+            id: '',
+          },
+        },
+      })
+    }
+
+    return this.client.comments.create({
+      parent: {
+        page_id: pageId,
+      },
+      rich_text: body,
+    })
+  }
+
+  async searchPage(query: string) {
+    return await this.client.search({
+      query,
+      sort: {
+        direction: 'ascending',
+        timestamp: 'last_edited_time',
+      },
+    })
   }
 }
