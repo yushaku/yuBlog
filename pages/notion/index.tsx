@@ -15,17 +15,6 @@ export async function getStaticProps() {
       console.log(err)
     })
 
-  notionService
-    .getSingleBlogPost('8595da15-76cc-48fe-8844-c5e7721a5fc3')
-    .then((data) => {
-      console.log(JSON.stringify(data.cover))
-
-      return data
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-
   return {
     props: {
       listPost: data,

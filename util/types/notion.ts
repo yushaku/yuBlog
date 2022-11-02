@@ -120,7 +120,7 @@ interface Slug {
   rich_text: Richtext[]
 }
 
-interface Richtext {
+export interface Richtext {
   type: string
   text: Text
   annotations: Annotations

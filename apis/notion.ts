@@ -1,5 +1,6 @@
-import { BlogPost, ResPost } from '@/util/types/notion'
+/* eslint-disable no-constant-condition */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { BlogPost, ResPost } from '@/util/types'
 import { Client } from '@notionhq/client'
 
 export default class NotionService {
@@ -69,22 +70,15 @@ export default class NotionService {
     })
   }
 
-  async getOne(blockId: string) {
-    return await this.client.blocks.retrieve({
-      block_id: blockId,
-    })
-  }
-
-  async getPostDetailChild(blockId: string) {
-    return await this.client.blocks.children.list({
-      block_id: blockId,
+  async getPage(pageId: string) {
+    return await this.client.pages.retrieve({
+      page_id: pageId,
     })
   }
 
   async getBlocks(blockId: string) {
     const blocks = []
     let cursor
-    // eslint-disable-next-line no-constant-condition
     while (true) {
       const { results, next_cursor }: any = await this.client.blocks.children.list({
         start_cursor: cursor,
