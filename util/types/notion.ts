@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export type Tag = {
   color: string
   id: string
@@ -30,7 +29,7 @@ export interface ResPost {
   url: string
 }
 
-interface Parent {
+export interface Parent {
   type: string
   database_id: string
 }
@@ -56,7 +55,7 @@ interface properties {
   status: Category
   goal: Finish
   link: Link
-  Date: Date
+  Date: NotionDate
   process: Process
   Name: Name
 }
@@ -78,16 +77,16 @@ interface Formula {
   string: string
 }
 
-interface Date {
+interface NotionDate {
   id: string
   type: string
-  date?: any
+  date?: Date
 }
 
 interface Link {
   id: string
   type: string
-  url?: any
+  url?: string
 }
 
 interface Finish {
@@ -125,10 +124,10 @@ export interface Richtext {
   text: Text
   annotations: Annotations
   plain_text: string
-  href?: any
+  href?: (Link | null)[]
 }
 
-interface Annotations {
+export interface Annotations {
   bold: boolean
   italic: boolean
   strikethrough: boolean
@@ -137,12 +136,12 @@ interface Annotations {
   color: string
 }
 
-interface Text {
+export interface Text {
   content: string
-  link?: any
+  link?: (Link | null)[]
 }
 
-interface CreatedBy {
+export interface CreatedBy {
   object: string
   id: string
 }
