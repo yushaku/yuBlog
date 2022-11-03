@@ -19,12 +19,12 @@ module.exports = withPWA({
   reactStrictMode: true,
   images: {
     domains: [
-      'aliabdaal.com',
       'images.unsplash.com',
       'media.graphassets.com',
       'platform-lookaside.fbsbx.com',
       'avatars.githubusercontent.com',
       'lh3.googleusercontent.com',
+      'www.notion.so',
     ],
   },
   env: {

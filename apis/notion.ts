@@ -34,7 +34,15 @@ export default class NotionService {
     }
   }
 
-  async getAll(category = 'article'): Promise<BlogPost[]> {
+  async getAll(
+    category = 'article',
+    startCursor?: string,
+    pageSize = 10,
+  ): Promise<{
+    posts: BlogPost[]
+    next_cursor: string | null
+    has_more: boolean
+  }> {
     const response = await this.client.databases.query({
       database_id: this.database,
       filter: {
@@ -59,9 +67,18 @@ export default class NotionService {
           direction: 'descending',
         },
       ],
+      start_cursor: startCursor,
+      page_size: pageSize,
     })
 
-    return response.results.map((page: any) => this.postTransformer(page))
+    const { page, has_more, next_cursor, object } = response
+    console.table({ page, has_more, next_cursor, object })
+
+    return {
+      posts: response.results.map((page: any) => this.postTransformer(page)),
+      next_cursor: response.next_cursor,
+      has_more: response.has_more,
+    }
   }
 
   async getPage(pageId: string) {

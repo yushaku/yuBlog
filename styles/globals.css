@@ -135,22 +135,6 @@
   grid-template-columns: 65px 1fr;
 }
 
-/* article session */
-#ArticleContainerItem {
-  box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.2), inset -3px -3px 15px rgba(255, 255, 255, 0.1),
-    3px 3px 15px rgba(0, 0, 0, 0.3), -3px -3px 15px rgba(255, 255, 255, 0.1);
-}
-#ArticleItem {
-  transition: all 0.5s;
-  inset: 12px;
-  border: 2px solid #1e1f23;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-}
-#ArticleItem:hover {
-  transform: translateY(-10px) translateX(-10px);
-  box-shadow: 0 40px 70px rgba(0, 0, 0, 0.5);
-}
-
 /* loading page animation */
 #wave {
   position: relative;
