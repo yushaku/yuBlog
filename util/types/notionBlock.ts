@@ -7,7 +7,7 @@ export interface NotionBlocks {
   has_more: boolean
 }
 
-interface NotionBlock {
+export interface NotionBlock {
   object: string
   id: string
   created_time: string

@@ -9,7 +9,7 @@ const ArticleItem = ({ title, tags, image, date, id }: BlogPost) => {
   return (
     <div className=" rounded-2xl w-[250px]">
       <section className="flex flex-col rounded-xl dark:bg-dark_subBackground">
-        <Link href={`/posts/${id}`}>
+        <Link href={`/notion/${id}`}>
           <div className="cursor-pointer">
             <Image src={image} alt={title} width={312} height={170} className="rounded-lg" loading="lazy" />
             <div className="px-4 pt-2 pb-4">

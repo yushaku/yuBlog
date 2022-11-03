@@ -2,12 +2,10 @@
 import { useRouter } from 'next/router'
 import React, { useEffect, useState } from 'react'
 import Prism from 'prismjs'
-// import { useAmp } from 'next/amp'
 import 'prismjs/themes/prism-tomorrow.css'
 import Image from 'next/image'
 import { getPostDetail } from '@/apis'
 import { PostDetail } from '@/util/types/post'
-import renderContentFragment from '@/util/renderContentFragment'
 import RelatedPostList from '@/components/relatedPost/RelatedPostList'
 import CommentSection from '@/components/comment/CommentSection'
 import ReactSection from '@/components/article/ReactSection'
@@ -15,10 +13,6 @@ import Layout from '@/components/layout'
 import useLoading from '@/hooks/useLoading'
 import LoadingPage from '@/components/LoadingPage'
 import renderContent from '@/util/render'
-
-// export const config = { amp: 'hybrid' }
-// export const config = { amp: true }
-// const loadAmp = useAmp()
 
 const PostDetailPage = () => {
   const [postDetail, setPostDetail] = useState<PostDetail>()

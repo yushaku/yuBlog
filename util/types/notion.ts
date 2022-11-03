@@ -124,7 +124,7 @@ export interface Richtext {
   text: Text
   annotations: Annotations
   plain_text: string
-  href?: (Link | null)[]
+  href?: Link
 }
 
 export interface Annotations {
@@ -138,7 +138,7 @@ export interface Annotations {
 
 export interface Text {
   content: string
-  link?: (Link | null)[]
+  link?: Link
 }
 
 export interface CreatedBy {

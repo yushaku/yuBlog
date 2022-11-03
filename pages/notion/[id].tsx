@@ -1,34 +1,49 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import NotionService from '@/apis/notion'
-import { renderBlock, Text } from '@/util/renderBlock'
-import { ResPost } from '@/util/types'
+import { renderBlock } from '@/util/renderBlock'
+import { BlogPost, ResPost } from '@/util/types'
 import Link from 'next/link'
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import Layout from '@/components/layout'
+import Prism from 'prismjs'
+import 'prismjs/themes/prism-tomorrow.css'
 
-const NotionDetail = ({ page, blocks }: { page: ResPost; blocks: any }) => {
+import { AiOutlineArrowLeft } from 'react-icons/ai'
+
+const NotionDetail = ({ page, blocks }: { page: BlogPost; blocks: any }) => {
+  useEffect(() => {
+    Prism.highlightAll()
+  }, [])
+
   if (!page || !blocks) {
     return <div />
   }
 
-  return (
-    <Layout title={page.properties.Name.title[0].plain_text}>
-      <div>
-        <article className="px-8 max-w-[700px] mx-auto leading-6">
-          <h1 className="text-2xl">
-            <Text text={page.properties.Name.title} />
-          </h1>
+  const title = page.title
 
-          <section>
-            {blocks.map((block: any) => (
-              <Fragment key={block.id}>{renderBlock(block)}</Fragment>
-            ))}
-            <Link href="/" className="inline-block mb-5">
-              ← Go home
-            </Link>
-          </section>
-          <h1>text</h1>
-        </article>
+  return (
+    <Layout title={title}>
+      <div className="bg-dark_subBackground pt-[20vh] pb-[5vh] px-6 tracking-wider">
+        <div className="max-w-[800px] mx-auto">
+          <h1 className="text-[30px] font-extrabold leading-10">{title}</h1>
+          <p className="mt-1">{page.date}</p>
+        </div>
       </div>
+
+      <article className="py-[5vh] max-w-[800px] mx-auto leading-6 px-6">
+        <section className="text-[20px]">
+          {blocks.map((block: any) => (
+            <Fragment key={block.id}>{renderBlock(block)}</Fragment>
+          ))}
+
+          <Link href="/notion" className="block mb-5 pt-8">
+            <div className="flex items-center gap-2">
+              <AiOutlineArrowLeft />
+              Go Back
+            </div>
+          </Link>
+        </section>
+      </article>
     </Layout>
   )
 }
@@ -38,7 +53,7 @@ export default NotionDetail
 export const getStaticPaths = async () => {
   const notionService = new NotionService()
 
-  const database = await notionService.getAll()
+  const database = await notionService.getAll().then((data) => data.posts)
   return {
     paths: database.map(({ id }) => ({ params: { id } })),
     fallback: true,

@@ -2,6 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { BlogPost, ResPost } from '@/util/types'
 import { Client } from '@notionhq/client'
+import moment from 'moment'
 
 export default class NotionService {
   client: Client
@@ -28,7 +29,7 @@ export default class NotionService {
       id: page.id,
       tags: page.properties.Tags.multi_select,
       title: page.properties.Name.title[0].text.content,
-      date: page.created_time,
+      date: moment(page.created_time).format('LL'),
       image: cover,
       author: page.created_by.id,
     }
@@ -71,9 +72,6 @@ export default class NotionService {
       page_size: pageSize,
     })
 
-    const { page, has_more, next_cursor, object } = response
-    console.table({ page, has_more, next_cursor, object })
-
     return {
       posts: response.results.map((page: any) => this.postTransformer(page)),
       next_cursor: response.next_cursor,
@@ -82,9 +80,11 @@ export default class NotionService {
   }
 
   async getPage(pageId: string) {
-    return await this.client.pages.retrieve({
+    const page: any = await this.client.pages.retrieve({
       page_id: pageId,
     })
+
+    return this.postTransformer(page)
   }
 
   async getBlocks(blockId: string) {

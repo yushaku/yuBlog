@@ -16,7 +16,9 @@ module.exports = {
         light_secondBackground: '#fffaf4',
         light_textColor: '#1d1d1f',
         light_accentColor: '#009adc',
+
         textGrayLight: '#5e5e5e',
+        yellow_accent: '#ffe100',
       },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],

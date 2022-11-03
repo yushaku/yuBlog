@@ -29,9 +29,9 @@ const Notion = ({ listPost }: { listPost: BlogPost[] }) => {
     <Layout title="Notion">
       <div className="container px-4 lg:px-[100px] min-h-[65vh] mt-[12vh]">
         <section className="flex gap-4 p-8 mt-[130px]">
-          {listPost.map((post: BlogPost) => (
+          {listPost.map((post: BlogPost, index: number) => (
             <ArticleItem
-              key={post.id}
+              key={index}
               title={post.title}
               tags={post.tags}
               image={post.image}
