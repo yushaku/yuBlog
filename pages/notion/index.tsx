@@ -1,30 +1,23 @@
-import NotionService from '@/apis/notion'
+import { getPostList } from '@/apis/notion'
 import ArticleItem from '@/components/article/ArticleItem'
 import Layout from '@/components/layout'
-import { BlogPost } from '@/util/types/notion'
+import LoadingPage from '@/components/LoadingPage'
+import { BlogPost, ResCallDb } from '@/util/types/notion'
 import React from 'react'
+import { useQuery } from 'react-query'
 
-export async function getStaticProps() {
-  const notionService = new NotionService()
-  const data = await notionService
-    .getAll('article')
-    .then((data) => {
-      return data
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+const Notion = () => {
+  const key = '/notion'
 
-  return {
-    props: {
-      listPost: data?.posts || [],
-      next_cursor: data?.next_cursor,
-      has_more: data?.has_more,
-    },
-  }
-}
+  const { isLoading, data } = useQuery(key, (): Promise<ResCallDb> => getPostList(key), {
+    cacheTime: Infinity,
+    staleTime: 10000,
+    refetchOnWindowFocus: false,
+  })
 
-const Notion = ({ listPost }: { listPost: BlogPost[] }) => {
+  const listPost = data?.posts || []
+
+  if (isLoading) return <LoadingPage />
   return (
     <Layout title="Notion">
       <div className="container px-4 lg:px-[100px] min-h-[65vh] mt-[12vh]">

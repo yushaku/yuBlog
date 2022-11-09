@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import NotionService from '@/apis/notion'
 import { renderBlock } from '@/util/renderBlock'
-import { BlogPost, ResPost } from '@/util/types'
+import { BlogPost } from '@/util/types'
 import Link from 'next/link'
 import React, { Fragment, useEffect } from 'react'
 import Layout from '@/components/layout'
@@ -9,24 +8,38 @@ import Prism from 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
 
 import { AiOutlineArrowLeft } from 'react-icons/ai'
+import { useQuery } from 'react-query'
+import { useRouter } from 'next/router'
+import LoadingPage from '@/components/LoadingPage'
+import { getPostDetail } from '@/apis'
 
-const NotionDetail = ({ page, blocks }: { page: BlogPost; blocks: any }) => {
+const NotionDetail = () => {
+  const key = '/notion'
+  const id = useRouter().query.id as string
+
+  const { isLoading, data } = useQuery([key, id], (): Promise<{ page: BlogPost; blocks: any }> => getPostDetail(id), {
+    cacheTime: Infinity,
+    staleTime: 10000,
+    refetchOnWindowFocus: false,
+  })
+
   useEffect(() => {
     Prism.highlightAll()
   }, [])
 
-  if (!page || !blocks) {
-    return <div />
-  }
+  const title = data?.page.title || ''
+  const blocks = data?.blocks || []
 
-  const title = page.title
+  console.log(blocks)
+
+  if (isLoading) return <LoadingPage />
 
   return (
-    <Layout title={title}>
+    <Layout title={'title'}>
       <div className="bg-dark_subBackground pt-[20vh] pb-[5vh] px-6 tracking-wider">
         <div className="max-w-[800px] mx-auto">
           <h1 className="text-[30px] font-extrabold leading-10">{title}</h1>
-          <p className="mt-1">{page.date}</p>
+          <p className="mt-1">{data?.page.date}</p>
         </div>
       </div>
 
@@ -49,48 +62,3 @@ const NotionDetail = ({ page, blocks }: { page: BlogPost; blocks: any }) => {
 }
 
 export default NotionDetail
-
-export const getStaticPaths = async () => {
-  const notionService = new NotionService()
-
-  const database = await notionService.getAll().then((data) => data.posts)
-  return {
-    paths: database.map(({ id }) => ({ params: { id } })),
-    fallback: true,
-  }
-}
-
-export const getStaticProps = async (context: { params: { id: string } }) => {
-  const { id } = context.params
-
-  const notionService = new NotionService()
-
-  const page = await notionService.getPage(id)
-  const blocks = await notionService.getBlocks(id)
-
-  const childBlocks = await Promise.all(
-    blocks
-      .filter((block) => block.has_children)
-      .map(async (block) => {
-        return {
-          id: block.id,
-          children: await notionService.getBlocks(block.id),
-        }
-      }),
-  )
-
-  const blocksWithChildren = blocks.map((block) => {
-    if (block.has_children && !block[block.type].children) {
-      block[block.type]['children'] = childBlocks.find((x) => x.id === block.id)?.children
-    }
-    return block
-  })
-
-  return {
-    props: {
-      page,
-      blocks: blocksWithChildren,
-    },
-    revalidate: 1,
-  }
-}

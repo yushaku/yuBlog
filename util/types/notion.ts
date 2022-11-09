@@ -13,6 +13,12 @@ export type BlogPost = {
   author: string
 }
 
+export type ResCallDb = {
+  posts: BlogPost[]
+  next_cursor: string
+  has_more: boolean
+}
+
 //? --------------------------------------
 export interface ResPost {
   id: string
