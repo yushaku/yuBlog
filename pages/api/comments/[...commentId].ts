@@ -46,8 +46,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'PUT') {
     const { comment } = req.body
 
-    console.log(comment)
-
     const mutation = gql`
       mutation publishComment($id: ID, $comment: String!) {
         publishComment(where: { id: $id, comment: $comment }) {

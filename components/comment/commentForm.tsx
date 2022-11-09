@@ -33,7 +33,7 @@ const CommentForm = ({ postSlug }: Props) => {
   }
 
   const handleCancel = () => {
-    if (commentForm.current) console.log(commentForm.current?.value)
+    if (commentForm.current) console.debug(commentForm.current?.value)
   }
 
   return (

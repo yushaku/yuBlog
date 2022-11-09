@@ -2,7 +2,6 @@ import { FacebookShareButton, FacebookIcon } from 'next-share'
 import React from 'react'
 
 const FaceBookShareBtn = ({ url }: { url: string }) => {
-  // console.log(url)
   return (
     <FacebookShareButton
       url={url}

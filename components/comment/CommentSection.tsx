@@ -15,10 +15,6 @@ const CommentSection = ({ postSlug }: { postSlug: string }) => {
           setCommentList(resCommentList)
         })
         .catch((err) => console.error(err))
-
-    return () => {
-      console.log('remove side effect')
-    }
   }, [postSlug, pageNumber])
 
   return (

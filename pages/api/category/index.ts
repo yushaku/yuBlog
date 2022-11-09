@@ -4,7 +4,7 @@ import { myGraphQlCLient } from '../../../apis/graphQLClient'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
-    console.log('[post] create category')
+    console.debug('[post] create category')
     const { title, slug } = req.body
 
     const mutation = gql`

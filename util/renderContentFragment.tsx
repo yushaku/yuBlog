@@ -189,8 +189,6 @@ const renderBLockQuote = (modifiedText: any, index: number) => {
 }
 
 const renderInnerLink = (modifiedText: any, index: number) => {
-  console.log(modifiedText)
-
   return (
     <div key={index} id="fontQuote" className="borderQuote dark:bg-dark_subBackground bg-light_subBackground">
       <i id="iconQuote">

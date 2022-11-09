@@ -189,8 +189,6 @@ export const renderBlock = (block: any) => {
       )
 
     case 'callout':
-      console.log(value)
-
       return (
         <div className="flex items-center bg-dark_subBackground p-4 rounded-lg">
           <span className="icon m-2 ">{value.icon.emoji}</span>
