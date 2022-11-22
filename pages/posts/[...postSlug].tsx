@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import Prism from 'prismjs'
 import 'prismjs/themes/prism-tomorrow.css'
 import Image from 'next/image'
-import { getPostDetail } from '@/apis'
+import { getArticleDetail } from '@/apis'
 import { PostDetail } from '@/util/types/post'
 import RelatedPostList from '@/components/relatedPost/RelatedPostList'
 import CommentSection from '@/components/comment/CommentSection'
@@ -30,7 +30,7 @@ const PostDetailPage = () => {
   useEffect(() => {
     const abortController = new AbortController()
 
-    getPostDetail(postSlug).then((responsePostDetail) => {
+    getArticleDetail(postSlug).then((responsePostDetail) => {
       setPostDetail(responsePostDetail)
     })
 

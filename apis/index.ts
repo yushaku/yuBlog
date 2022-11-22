@@ -1,6 +1,9 @@
-export { getPosts, getPostDetail } from './post'
-export { getCategories, getPostOfTags, createCategory, getBooksOfCategory, getPostsOfCategory } from './categories'
+export * from './post'
 
-export { getCommentsOfPost, submitComment, publicComment, EditComment, deleteComment } from './comments'
+export * from './categories'
 
-export { getReader, getReaderByEmail, checkReaderEmailExist } from './reader'
+export * from './comments'
+
+export * from './reader'
+
+export * from './notion'

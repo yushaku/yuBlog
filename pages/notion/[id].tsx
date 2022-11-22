@@ -11,17 +11,21 @@ import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useQuery } from 'react-query'
 import { useRouter } from 'next/router'
 import LoadingPage from '@/components/LoadingPage'
-import { getPostDetail } from '@/apis'
+import { getArticleDetail } from '@/apis'
 
 const NotionDetail = () => {
   const key = '/notion'
   const id = useRouter().query.id as string
 
-  const { isLoading, data } = useQuery([key, id], (): Promise<{ page: BlogPost; blocks: any }> => getPostDetail(id), {
-    cacheTime: Infinity,
-    staleTime: 10000,
-    refetchOnWindowFocus: false,
-  })
+  const { isLoading, data } = useQuery(
+    [key, id],
+    (): Promise<{ page: BlogPost; blocks: any }> => getArticleDetail(id),
+    {
+      cacheTime: Infinity,
+      staleTime: 10000,
+      refetchOnWindowFocus: false,
+    },
+  )
 
   useEffect(() => {
     Prism.highlightAll()

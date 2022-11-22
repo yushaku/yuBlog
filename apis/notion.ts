@@ -1,4 +1,4 @@
-export const getPostDetail = async (id: string) => {
+export const getArticleDetail = async (id: string) => {
   if (!id) return
 
   return fetch(`/api/notion/${id}`, {
@@ -11,7 +11,7 @@ export const getPostDetail = async (id: string) => {
   }).then((data) => data.json())
 }
 
-export const getPostList = async (path: string) => {
+export const getArticleList = async (path: string) => {
   if (!path) return
 
   return fetch(`/api/${path}`, {

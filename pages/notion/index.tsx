@@ -1,4 +1,4 @@
-import { getPostList } from '@/apis/notion'
+import { getArticleList } from '@/apis/notion'
 import ArticleItem from '@/components/article/ArticleItem'
 import Layout from '@/components/layout'
 import LoadingPage from '@/components/LoadingPage'
@@ -9,7 +9,7 @@ import { useQuery } from 'react-query'
 const Notion = () => {
   const key = '/notion'
 
-  const { isLoading, data } = useQuery(key, (): Promise<ResCallDb> => getPostList(key), {
+  const { isLoading, data } = useQuery(key, (): Promise<ResCallDb> => getArticleList(key), {
     cacheTime: Infinity,
     staleTime: 10000,
     refetchOnWindowFocus: false,
