@@ -1,6 +1,6 @@
 /* eslint-disable no-constant-condition */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { BlogPost, ResPost } from '@/util/types'
+import { BlogPost, ResCallDb, ResPost } from '@/util/types'
 import { Client } from '@notionhq/client'
 import moment from 'moment'
 
@@ -35,15 +35,7 @@ export default class NotionService {
     }
   }
 
-  async getAll(
-    category = 'article',
-    startCursor?: string,
-    pageSize = 10,
-  ): Promise<{
-    posts: BlogPost[]
-    next_cursor: string | null
-    has_more: boolean
-  }> {
+  async getAll(category = 'article', startCursor?: string, pageSize = 10): Promise<ResCallDb> {
     const response = await this.client.databases.query({
       database_id: this.database,
       filter: {

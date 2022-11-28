@@ -1,3 +1,5 @@
+import { ResCallDb } from '@/util/types'
+
 export const getArticleDetail = async (id: string) => {
   if (!id) return
 
@@ -11,9 +13,7 @@ export const getArticleDetail = async (id: string) => {
   }).then((data) => data.json())
 }
 
-export const getArticleList = async (path: string) => {
-  if (!path) return
-
+export const getArticleList = async (path: string): Promise<ResCallDb> => {
   return fetch(`/api/${path}`, {
     method: 'GET',
     mode: 'same-origin',

@@ -15,7 +15,7 @@ export type BlogPost = {
 
 export type ResCallDb = {
   posts: BlogPost[]
-  next_cursor: string
+  next_cursor: string | null
   has_more: boolean
 }
 
