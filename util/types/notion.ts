@@ -4,6 +4,8 @@ export type Tag = {
   name: string
 }
 
+export type CategoryList = 'article'
+
 export type BlogPost = {
   id: string
   tags: Tag[]

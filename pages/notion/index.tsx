@@ -1,19 +1,12 @@
 import ArticleItem from '@/components/article/ArticleItem'
 import Layout from '@/components/layout'
 import LoadingSkeletonPage from '@/components/skeleton/LoadingSkeletonPage'
-import { getArticleList } from '@/services'
-import { BlogPost, ResCallDb } from '@/util/types/notion'
+import { useGetArticle } from '@/services'
+import { BlogPost } from '@/util/types/notion'
 import React from 'react'
-import { useQuery } from 'react-query'
 
 const Notion = () => {
-  const key = '/notion'
-
-  const { isLoading, data } = useQuery(key, (): Promise<ResCallDb> => getArticleList(key), {
-    cacheTime: Infinity,
-    staleTime: 10000,
-    refetchOnWindowFocus: false,
-  })
+  const { isLoading, data } = useGetArticle('article')
 
   const listPost = data?.posts || []
 
@@ -28,7 +21,7 @@ const Notion = () => {
         {isLoading ? (
           <LoadingSkeletonPage />
         ) : (
-          <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-y-8 mt-[80px]">
+          <section className="flex flex-wrap gap-8 mt-[80px]">
             {listPost.map((post: BlogPost, index: number) => (
               <ArticleItem
                 key={index}

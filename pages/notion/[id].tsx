@@ -11,7 +11,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useQuery } from 'react-query'
 import { useRouter } from 'next/router'
 import LoadingPage from '@/components/LoadingPage'
-import { getArticleDetail } from '@/apis'
+import { getArticleDetail } from '@/services'
 
 const NotionDetail = () => {
   const key = '/notion'
@@ -34,10 +34,7 @@ const NotionDetail = () => {
   const title = data?.page.title || ''
   const blocks = data?.blocks || []
 
-  console.log(blocks)
-
   if (isLoading) return <LoadingPage />
-
   return (
     <Layout title={'title'}>
       <div className="bg-dark_subBackground pt-[20vh] pb-[5vh] px-6 tracking-wider">
@@ -54,9 +51,9 @@ const NotionDetail = () => {
           ))}
 
           <Link href="/notion" className="block mb-5 pt-8">
-            <div className="flex items-center gap-2">
+            <div className="flex text-dark_accentColor items-center gap-2">
               <AiOutlineArrowLeft />
-              Go Back
+              <span className="">Go Back</span>
             </div>
           </Link>
         </section>
