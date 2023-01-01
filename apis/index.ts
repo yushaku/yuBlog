@@ -6,4 +6,4 @@ export * from './comments'
 
 export * from './reader'
 
-export * from './notion'
+export * from '../services/article'

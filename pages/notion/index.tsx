@@ -1,7 +1,7 @@
-import { getArticleList } from '@/apis/notion'
 import ArticleItem from '@/components/article/ArticleItem'
 import Layout from '@/components/layout'
 import LoadingSkeletonPage from '@/components/skeleton/LoadingSkeletonPage'
+import { getArticleList } from '@/services'
 import { BlogPost, ResCallDb } from '@/util/types/notion'
 import React from 'react'
 import { useQuery } from 'react-query'

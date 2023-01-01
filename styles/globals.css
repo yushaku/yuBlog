@@ -35,6 +35,10 @@
     dark:text-dark_textColor;
   }
 
+  .flexCenter {
+    @apply flex items-center justify-center;
+  }
+
   .onTextHover {
     @apply hover:text-transparent 
     hover:bg-clip-text 

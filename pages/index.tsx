@@ -39,13 +39,10 @@ const Home: NextPage = () => {
             <div className="">
               <div className="">
                 <motion.p custom={4} variants={delayShowOf} initial="hidden" animate="visible">
-                  On this site we explore the strategies and tools that help us live happier, healthier, more productive
-                  lives.
-                </motion.p>
-                <motion.p custom={5} variants={delayShowOf} initial="hidden" animate="visible">
-                  And over at Sunday Snippets - my weekly newsletter - I share actionable productivity tips and
-                  practical life advice. Sign up below to join a growing community of more than 160,000 friendly
-                  readers.
+                  On this blog I share tips and tricks, frameworks, projects, tutorials, etc...
+                  <motion.p custom={5} variants={delayShowOf} initial="hidden" animate="visible">
+                    Make sure you subscribe to get the latest updates
+                  </motion.p>
                 </motion.p>
               </div>
               <motion.div custom={7} variants={delayShowOf} initial="hidden" animate="visible">

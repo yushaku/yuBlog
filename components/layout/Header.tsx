@@ -62,7 +62,7 @@ const Header = () => {
       <header
         className={`${scrollDirection === 'up' ? 'top-0' : '-top-[8vh]'}
         ${!transparentHeader ? 'bg-transparent' : 'shadow-md bg-light_subBackground dark:bg-dark_background'}
-        fixed top-0  left-0 z-50 w-full  transition-all duration-1000 ease-in-out 
+        fixed top-0  left-0 z-50 w-full  transition-all duration-1000 ease-in-out flexCenter
         `}
       >
         <motion.div
@@ -70,7 +70,7 @@ const Header = () => {
           initial="hidden"
           animate="visible"
           variants={navbarEffect}
-          className="flex h-[8vh] items-center justify-between px-12"
+          className="flex h-[8vh] items-center justify-between px-12 container"
         >
           <div id="logo" className=" cursor-pointer">
             <Link href="/">
@@ -82,7 +82,7 @@ const Header = () => {
           </div>
 
           <div id="navbar" className="hidden md:block">
-            <ul className="flex text-xl font-semibold gap-9 dark:text-dark_textColor">
+            <ul className="flex items-center text-xl font-semibold gap-9 dark:text-dark_textColor">
               {navbarListItem.map((navItem) => {
                 return (
                   <motion.li
@@ -104,14 +104,24 @@ const Header = () => {
                 animate="visible"
                 variants={navbarEffect}
               >
-                <Link href={`https://yu-portfolio.vercel.app/`}>about</Link>
+                <Link href={`https://yu-portfolio.vercel.app/`}>About</Link>
+              </motion.li>
+
+              <motion.li
+                className="onTextHover text-[20px]"
+                custom={5}
+                initial="hidden"
+                animate="visible"
+                variants={navbarEffect}
+              >
+                <Link href="https://www.buymeacoffee.com/Yushaku" target="_blank">
+                  <Image src="/buymeacoffe.png" alt="Buy Me A Coffee" width={200} height={50} />
+                </Link>
               </motion.li>
             </ul>
           </div>
 
-          <div id="social" className="hidden lg:block">
-            <AuthSession />
-          </div>
+          {/* <div id="social" className="hidden lg:block"></div> */}
 
           <div id="menubar" className="text-4xl cursor-pointer icon md:hidden" onClick={handleShowSideBar}>
             <AiOutlineUnorderedList />

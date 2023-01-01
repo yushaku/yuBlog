@@ -6,7 +6,6 @@ export const getArticleDetail = async (id: string) => {
   return fetch(`/api/notion/${id}`, {
     method: 'GET',
     mode: 'same-origin',
-    cache: 'no-cache',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -17,7 +16,6 @@ export const getArticleList = async (path: string): Promise<ResCallDb> => {
   return fetch(`/api/${path}`, {
     method: 'GET',
     mode: 'same-origin',
-    cache: 'no-cache',
     headers: {
       'Content-Type': 'application/json',
     },
