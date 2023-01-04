@@ -39,6 +39,10 @@
     @apply flex items-center justify-center;
   }
 
+  .animationAll {
+    @apply transition-all duration-500;
+  }
+
   .onTextHover {
     @apply hover:text-transparent 
     hover:bg-clip-text 

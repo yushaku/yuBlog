@@ -22,7 +22,7 @@ const CategoryBlock = () => {
         </svg>
       </div>
 
-      <ul className="flex flex-wrap items-center justify-center gap-8 lg:flex-row">
+      <ul className="flex flex-wrap items-center justify-between gap-8 lg:flex-row">
         <CategoryCard
           title="Article"
           link="article"
