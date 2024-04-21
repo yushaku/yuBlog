@@ -71,10 +71,10 @@ export const Header = ({
 
   return (
     <header
-      className={`${dynamicHeaderStyle} ${transparentStyle} max-w-7xl animationShow fixed left-0 right-0 z-50 mx-auto`}
+      className={`${dynamicHeaderStyle} ${transparentStyle} animationShow fixed left-0 px-6 py-4 right-0 z-50 mx-auto`}
     >
       <div
-        className={`mx-auto flex container items-center justify-between gap-4 px-6 py-4`}
+        className={`max-w-7xl mx-auto flex container items-center justify-between gap-4`}
       >
         <Link href="/">
           <div className="flex items-center gap-2">
@@ -117,14 +117,14 @@ export const Header = ({
                 </Link>
               </li>
             )}
-
-            <li
-              className="float-right cursor-pointer px-6"
-              onClick={ontoggleSideBar}
-            >
-              <IconMenu className="hover:stroke-primaryColor dark:hover:stroke-secondColor stroke-black dark:stroke-white" />
-            </li>
           </ul>
+
+          <span
+            className="md:hidden float-right cursor-pointer px-6"
+            onClick={ontoggleSideBar}
+          >
+            <IconMenu className="hover:stroke-primaryColor dark:hover:stroke-secondColor stroke-black dark:stroke-white" />
+          </span>
         </div>
       </div>
     </header>
