@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
       type,
       title: plainText,
       href: rnrSlugify(plainText),
-    })
+    }),
   );
 
   return (
@@ -46,9 +46,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
               {post.properties.Name.title[0].plain_text}
             </h3>
             <p className="text-grayColor flex items-center gap-3">
-              <span className="animate_fade_down animate-delay-200">yushaku</span>
+              <span className="animate_fade_down animate-delay-200">
+                yushaku
+              </span>
               <span className="animate_fade_down animate-delay-300 bg-primaryColor dark:bg-secondColor inline-block h-2 w-2 rounded-full" />
-              <span className="animate_fade_down animate-delay-400">{moment(post.created_time).format("LL")}</span>
+              <span className="animate_fade_down animate-delay-400">
+                {moment(post.created_time).format("LL")}
+              </span>
             </p>
             <div className="relative animate_fade_down animate-delay-500 h-[410px] w-full">
               <Image

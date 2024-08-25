@@ -42,7 +42,6 @@ const MeteorPreview = () => {
         message: Yup.string().required("You don't have any thing to say?"),
       }),
       onSubmit: (values, { resetForm }) => {
-        console.log(values);
         emailjs
           .send(YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, values, PUBLIC_API_KEY)
           .then(() => {

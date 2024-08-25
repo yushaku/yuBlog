@@ -1,12 +1,11 @@
-import React from "react";
-import { MarkerType, Position } from "reactflow";
+import { MarkerType, Position, Node, Edge } from "reactflow";
 
-export const nodes = [
+const initialNodes: Node[] = [
   {
     id: "1",
     type: "input",
     data: {
-      label: "Input Node",
+      label: "Welcome to Ts path",
     },
     position: { x: 250, y: 0 },
   },
@@ -70,21 +69,14 @@ export const nodes = [
     id: "7",
     type: "default",
     className: "annotation",
-    data: {
-      label: (
-        <>
-          On the bottom left you see the <strong>Controls</strong> and the
-          bottom right the <strong>MiniMap</strong>. This is also just a node 🥳
-        </>
-      ),
-    },
+    data: { label: "fuck" },
     draggable: false,
     selectable: false,
     position: { x: 150, y: 400 },
   },
-] as const;
+];
 
-export const edges = [
+const initialEdges: Edge[] = [
   { id: "e1-2", source: "1", target: "2", label: "this is an edge label" },
   { id: "e1-3", source: "1", target: "3", animated: true },
   {
@@ -114,3 +106,8 @@ export const edges = [
     },
   },
 ];
+
+export const tsFlow = {
+  initialNodes,
+  initialEdges,
+};

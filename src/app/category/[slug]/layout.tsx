@@ -11,9 +11,9 @@ const layout = ({
   params: { slug: string };
 }) => {
   return (
-    <div className="max-w-[1100px] mx-auto grid grid-cols-1 gap-x-10 px-6 md:grid-cols-2 md:px-3 lg:grid-cols-3 lg:p-0">
-      <div className="md:col-span-2">
-        <div className="flex items-center gap-4">
+    <section className="max-w-7xl mx-auto gap-x-10 px-6 md:px-3 lg:p-0">
+      <article className="">
+        <ul className="flex items-center gap-4 mb-8">
           {topics.map((el, index) => {
             return (
               <Link
@@ -29,22 +29,22 @@ const layout = ({
               </Link>
             );
           })}
-        </div>
+        </ul>
 
-        <TopicTitle title="Latest Posts" className="my-12" />
+        {/* <TopicTitle title="Latest Posts" className="my-12" /> */}
 
         <div>{children}</div>
-      </div>
+      </article>
 
-      <div className="md:hidden">
-        <TopicTitle title="Relate Topics" className="my-12 text-2xl" />
-      </div>
+      {/* <div className="md:hidden"> */}
+      {/*   <TopicTitle title="Relate Topics" className="my-12 text-2xl" /> */}
+      {/* </div> */}
 
-      <div className="col-span-1 flex flex-wrap md:col-span-2 lg:col-span-1">
-        <IntroBlock />
-        <CategoryList />
-      </div>
-    </div>
+      {/* <article className="col-span-1 md:col-span-2 lg:col-span-1"> */}
+      {/*   <IntroBlock /> */}
+      {/*   <CategoryList /> */}
+      {/* </article> */}
+    </section>
   );
 };
 

@@ -1,29 +1,25 @@
-import { Card } from "@/components/card";
-import { fetchPagesByCategory } from "@/utils/notion";
+"use client";
 
-export default async function Category({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const blogList = await fetchPagesByCategory(params.slug);
+import FlowChart from "@/components/Node/FlowChart";
+import { nvimFlow, tsFlow } from "@/moc";
+
+export default async function Page({ params }: { params: { slug: string } }) {
+  let flowComponent = tsFlow;
+  switch (params.slug) {
+    case "ts":
+      flowComponent = tsFlow;
+      break;
+    case "nvim":
+      flowComponent = nvimFlow;
+      break;
+    default:
+      flowComponent = tsFlow;
+      break;
+  }
 
   return (
-    <ul className="flex flex-wrap gap-6">
-      {blogList.results.map((el) => {
-        return (
-          <li key={el.id}>
-            <Card
-              summary={el.properties?.tldr?.rich_text[0]?.plain_text}
-              author={el.created_by.id}
-              imageUrl={el.cover?.external?.url ?? el.cover?.file.url}
-              slug={el.properties.slug.rich_text[0].plain_text}
-              name={el.properties.Name.title[0].plain_text}
-              date={el.created_time}
-            />
-          </li>
-        );
-      })}
-    </ul>
+    <div className="h-[80dvh]">
+      <FlowChart flowComponent={flowComponent} />
+    </div>
   );
 }
