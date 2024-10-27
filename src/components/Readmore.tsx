@@ -34,7 +34,7 @@ const ReadMoreSection = async ({ blogPost }: { blogPost: BlogList }) => {
             tags={el.properties.category.multi_select}
             postSlug={el.properties.slug.rich_text[0].plain_text}
             createdAt={el.created_time}
-            tlir={el.properties.tldr.rich_text[0].plain_text}
+            tlir={el.properties?.tldr?.rich_text.at(0)?.plain_text}
           />
         ))}
       </section>
@@ -53,7 +53,7 @@ const StackItem = ({
   tags: multi_select[];
   postSlug: string;
   createdAt: string;
-  tlir: string;
+  tlir?: string;
 }) => {
   const formatCreatedAt = moment(createdAt).format("LL");
 
