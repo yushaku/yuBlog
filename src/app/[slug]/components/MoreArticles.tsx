@@ -3,9 +3,9 @@ import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { IconArrowRight } from "./Icons";
+import { IconArrowRight } from "../../../components/Icons";
 
-const ReadMoreSection = async ({ blogPost }: { blogPost: BlogList }) => {
+export const ReadMoreSection = async ({ blogPost }: { blogPost: BlogList }) => {
   return (
     <div className="min-h-[25vh] flex flex-col md:flex-row" id="related_posts">
       <section className="py-10 flexCenter flex-col">
@@ -122,4 +122,3 @@ const TagItem = ({ title }: { title: string }) => (
   </Link>
 );
 
-export default ReadMoreSection;
