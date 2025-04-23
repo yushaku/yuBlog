@@ -62,7 +62,7 @@ const StackItem = ({
       id="card"
       className="group relative p-6 rounded-2xl flex flex-col h-[340px] min-w-[280px] max-w-[300px]
       dark:bg-[#1a202c] bg-white dark:hover:bg-[#2d3748] hover:bg-strokeColor 
-      hover:-translate-y-4 hover:-rotate-3 [&:not(:first-child)]:ml-[-130px] 
+      hover:-translate-y-4 hover:-rotate-3 not-first:ml-[-130px] 
       dark:shadow-dark_stack shadow-light_stack duration-200"
     >
       <Link href={`/${postSlug}`}>

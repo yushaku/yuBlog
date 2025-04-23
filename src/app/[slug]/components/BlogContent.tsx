@@ -26,14 +26,14 @@ const components = {
     <h3 {...props} className="text-2xl font-bold mb-3 text-strokeColor mt-4" />
   ),
   p: (props: any) => (
-    <p {...props} className="text-base mb-4 leading-relaxed text-grayColor" />
+    <p {...props} className="text-textColor/80 dark:text-strokeColor/90 my-6" />
   ),
   code: (props: any) => {
     useEffect(() => {
       Prism.highlightAll();
     }, []);
     return (
-      <pre className="rounded-lg overflow-auto mb-4 text-sm">
+      <pre className="rounded-lg overflow-auto">
         <code {...props} className="language-javascript" />
       </pre>
     );
@@ -41,16 +41,21 @@ const components = {
   ul: (props: any) => (
     <ul
       {...props}
-      className="list-disc list-inside mb-4 space-y-2 text-grayColor ml-4"
+      className="list-disc list-inside mb-4 space-y-2 text-textColor/80 dark:text-strokeColor/90 ml-4"
     />
   ),
   ol: (props: any) => (
     <ol
       {...props}
-      className="list-decimal list-inside mb-4 space-y-2 text-grayColor ml-4"
+      className="list-decimal list-inside mb-4 space-y-2 text-textColor/80 dark:text-strokeColor/90 ml-4"
     />
   ),
-  li: (props: any) => <li {...props} className="mb-2 text-grayColor" />,
+  li: (props: any) => (
+    <li
+      {...props}
+      className="mb-2 text-textColor/80 dark:text-strokeColor/90"
+    />
+  ),
   a: (props: any) => (
     <a
       {...props}
@@ -60,7 +65,7 @@ const components = {
   blockquote: (props: any) => (
     <blockquote
       {...props}
-      className="border-l-4 border-secondColor pl-4 italic my-6 text-grayColor"
+      className="border-l-4 border-secondColor pl-4 italic my-6 text-textColor/80 dark:text-strokeColor/90"
     />
   ),
   img: (props: any) => (

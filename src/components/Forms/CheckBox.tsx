@@ -40,7 +40,7 @@ export const InputCheckbox = ({
         onChange={onClick}
         checked={isChecked}
         value={value ? value : title}
-        className="w-6 h-6 accent-primaryColor rounded"
+        className="w-6 h-6 accent-primaryColor rounded-sm"
       />
       <span className="select-none ml-4 text-textColor baseText">{title}</span>
     </label>

@@ -16,7 +16,7 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark">
-      <section className="dark:bg-dark-200">
+      <section className="dark:bg-dark-200 min-h-[100dvh]">
         <StarrySky />
 
         <Header

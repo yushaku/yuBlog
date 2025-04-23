@@ -58,7 +58,7 @@ const MeteorPreview = () => {
   return (
     <section className="max-w-[1000px] mx-auto">
       <article className="relative">
-        <div className="absolute hidden dark:block inset-0 h-full w-full bg-gradient-to-r from-blue-500 to-teal-500 transform scale-[0.70] bg-red-500 rounded-full blur-3xl" />
+        <div className="absolute hidden dark:block inset-0 h-full w-full bg-linear-to-r from-blue-500 to-teal-500 transform scale-[0.70] bg-red-500 rounded-full blur-3xl" />
 
         <div className="relative shadow-xl dark:bg-gray-900/80 border dark:border-gray-800 py-8 px-8 h-full overflow-hidden rounded-2xl flex items-center">
           <Meteors number={10} />

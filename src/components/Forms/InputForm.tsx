@@ -23,7 +23,7 @@ export function FormInput<TType>({
   const [isShowPassword, setIsShowPassword] = useState(false);
 
   const classes = twMerge(
-    `mt-3 h-[52px] w-full appearance-none rounded-[8px] border bg-white px-[20px] py-[15px] text-sm text-[#627480] placeholder-[#A3A9B1] focus:outline-none md:text-base ${
+    `mt-3 h-[52px] w-full appearance-none rounded-[8px] border bg-white px-[20px] py-[15px] text-sm text-[#627480] placeholder-[#A3A9B1] focus:outline-hidden md:text-base ${
       className ?? ""
     } ${errors && "border-red-700 text-red-700 placeholder-red-400"}`
   );
