@@ -17,23 +17,23 @@ export const InputRadio = ({ name, title, description, isDisable }: Props) => {
         isDisable ? "cursor-not-allowed" : "cursor-pointer"
       }`}
     >
-      <div className="flex gap-4 ">
+      <div className='flex gap-4 '>
         <input
-          type="radio"
+          type='radio'
           name={name}
           value={title}
           disabled={isDisable}
-          className="w-6 h-6 accent-primaryColor"
+          className='w-6 h-6 primary-foreground'
         />
-        <p className="text-lg text-textColor font-medium">{title}</p>
+        <p className='text-lg text-foreground font-medium'>{title}</p>
       </div>
 
-      <div className="ml-[40px] mt-3">
-        <p className="baseText">{description}</p>
+      <div className='ml-[40px] mt-3'>
+        <p className='baseText'>{description}</p>
         {isDisable && (
           <Link
-            href="/settings/billing"
-            className="block p-0 mt-3 baseText text-textColor hover:text-primaryColor"
+            href='/settings/billing'
+            className='block p-0 mt-3 baseText text-foreground hover:text-primary'
           >
             Upgrade to Premium
           </Link>

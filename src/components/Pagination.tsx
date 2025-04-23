@@ -9,8 +9,8 @@ export const Pagination = ({
   limit?: number;
 }) => {
   return (
-    <section className="mt-5 flex gap-5 justify-center flex-1">
-      <Link className="dark:hover:text-secondColor" href={`?limit=${limit}`}>
+    <section className='mt-5 flex gap-5 justify-center flex-1'>
+      <Link className='' href={`?limit=${limit}`}>
         {hasMore ?? "Next page"}
       </Link>
     </section>

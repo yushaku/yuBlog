@@ -56,16 +56,16 @@ const MeteorPreview = () => {
   const animation = "animate-fade-down animate-once animate-duration-1000";
 
   return (
-    <section className="max-w-[1000px] mx-auto">
-      <article className="relative">
-        <div className="absolute hidden dark:block inset-0 h-full w-full bg-linear-to-r from-blue-500 to-teal-500 transform scale-[0.70] bg-red-500 rounded-full blur-3xl" />
+    <section className='max-w-[1000px] mx-auto'>
+      <article className='relative'>
+        <div className='absolute hidden inset-0 h-full w-full bg-linear-to-r from-blue-500 to-teal-500 transform scale-[0.70] bg-red-500 rounded-full blur-3xl' />
 
-        <div className="relative shadow-xl dark:bg-gray-900/80 border dark:border-gray-800 py-8 px-8 h-full overflow-hidden rounded-2xl flex items-center">
+        <div className='relative shadow-xl border py-8 px-8 h-full overflow-hidden rounded-2xl flex items-center'>
           <Meteors number={10} />
 
           <div>
             <h1
-              className={`text-2xl font-bold text-primaryColor dark:text-secondColor ${animation} animate-delay-300`}
+              className={`text-2xl font-bold text-foreground ${animation} animate-delay-300`}
             >
               Just say hello!!!
             </h1>
@@ -77,23 +77,23 @@ const MeteorPreview = () => {
             </p>
 
             <div className={`${animation} animate-delay-600`}>
-              <label className="flex gap-3">
+              <label className='flex gap-3'>
                 <FormInput<FormContact>
                   errors={errors.firstName}
                   value={values.firstName}
                   onChange={handleChange}
-                  name="firstName"
-                  placeholder="First name"
-                  className="dark:bg-[#4f5c88]/60 dark:text-white dark:border-none"
+                  name='firstName'
+                  placeholder='First name'
+                  className=''
                 />
 
                 <FormInput<FormContact>
                   errors={errors.lastName}
                   value={values.lastName}
                   onChange={handleChange}
-                  name="lastName"
-                  placeholder="Last name"
-                  className="dark:bg-[#4f5c88]/60 dark:text-white dark:border-none"
+                  name='lastName'
+                  placeholder='Last name'
+                  className=''
                 />
               </label>
 
@@ -101,9 +101,9 @@ const MeteorPreview = () => {
                 errors={errors.email}
                 value={values.email}
                 onChange={handleChange}
-                name="email"
-                className="dark:bg-[#4f5c88]/60 dark:text-white dark:border-none"
-                placeholder="Your email"
+                name='email'
+                className=''
+                placeholder='Your email'
               />
 
               <FormInput<FormContact>
@@ -111,27 +111,27 @@ const MeteorPreview = () => {
                 value={values.message}
                 isTextArea={true}
                 onChange={handleChange}
-                name="message"
-                className="h-32 dark:bg-[#4f5c88]/60 dark:text-white dark:border-none"
-                placeholder="Message"
+                name='message'
+                className='h-32 '
+                placeholder='Message'
               />
 
               <Button
-                type="submit"
-                title="Send"
-                // Icon={<SendIcon className='dark:stroke-white stroke-primaryColor' />}
+                type='submit'
+                title='Send'
+                // Icon={<SendIcon className='stroke-foreground' />}
                 disabled={!isValid || isSubmitting}
-                className={`mt-4 border border-gray-700 hover:bg-primaryColor ${animation} animate-delay-700`}
+                className={`mt-4 border border-gray-700 hover:bg-foreground ${animation} animate-delay-700`}
                 onClick={() => handleSubmit()}
               />
             </div>
           </div>
 
-          <div className="hidden md:block">
+          <div className='hidden md:block'>
             <Image
-              placeholder="empty"
-              src="/coder.png"
-              alt="coder form"
+              placeholder='empty'
+              src='/coder.png'
+              alt='coder form'
               width={464}
               height={464}
             />

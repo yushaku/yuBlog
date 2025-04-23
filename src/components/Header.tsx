@@ -67,7 +67,7 @@ export const Header = ({
   const dynamicHeaderStyle = scrollDirection === "up" ? "top-0" : "-top-[11vh]";
   const transparentStyle = !transparent
     ? "bg-transparent shadow-md mt-0"
-    : `shadow-lg bg-white/70 dark:bg-dark-200/90`;
+    : `shadow-lg bg-transparent`;
 
   return (
     <header
@@ -76,30 +76,30 @@ export const Header = ({
       <div
         className={`mx-auto flex container items-center justify-between gap-4 px-6 py-4`}
       >
-        <Link href="/">
-          <div className="flex items-center gap-2">
+        <Link href='/'>
+          <div className='flex items-center gap-2'>
             <Image
-              alt="yushaku"
-              src="/logo.png"
+              alt='yushaku'
+              src='/logo.png'
               width={35}
               height={35}
-              loading="lazy"
-              className="animate-fade-down"
+              loading='lazy'
+              className='animate-fade-down'
             />
-            <span className="text-primaryColor animate-fade-right animate-duration-500 animate-delay-200 dark:text-secondColor text-[24px] font-semibold">
+            <span className='text-primary animate-fade-right animate-duration-500 animate-delay-200 text-[24px] font-semibold'>
               Yushaku
             </span>
           </div>
         </Link>
 
-        <div className="max-w-[600px] flex-1">
-          <ul className="relative hidden items-center justify-between md:flex">
+        <div className='max-w-[600px] flex-1'>
+          <ul className='relative hidden items-center justify-between md:flex'>
             {topItems.map(({ href, title }, index: number) => {
               return (
-                <li key={index} className="group">
+                <li key={index} className='group'>
                   <Link
                     href={href}
-                    className={`${delays[index]} animationShow hover:text-primaryColor animate_fade_down text-grayColor dark:hover:text-secondColor relative cursor-pointer text-lg font-medium`}
+                    className={`${delays[index]} animationShow hover:text-primary animate_fade_down text-grayColor relative cursor-pointer text-lg font-medium`}
                   >
                     {title}
                   </Link>
@@ -111,18 +111,18 @@ export const Header = ({
               <li>
                 <Link href={"/auth/login"}>
                   <Button
-                    title="Login"
-                    className="bg-primaryColor text-white lg:w-20"
+                    title='Login'
+                    className='bg-foreground text-white lg:w-20'
                   />
                 </Link>
               </li>
             )}
 
             <li
-              className="float-right cursor-pointer px-6"
+              className='float-right cursor-pointer px-6'
               onClick={ontoggleSideBar}
             >
-              <IconMenu className="hover:stroke-primaryColor dark:hover:stroke-secondColor stroke-black dark:stroke-white" />
+              <IconMenu className='hover:stroke-primary stroke-foreground ' />
             </li>
           </ul>
         </div>

@@ -15,8 +15,8 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
   const [showSidebar, setShowSidebar] = useState(false);
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark">
-      <section className="dark:bg-dark-200 min-h-[100dvh]">
+    <ThemeProvider attribute='class' defaultTheme='dark'>
+      <section className='min-h-[100dvh]'>
         <StarrySky />
 
         <Header
@@ -30,8 +30,8 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
           ontoggleSideBar={() => setShowSidebar(!showSidebar)}
         />
 
-        <div className="mx-auto relative min-h-[83dvh] container px-6 pt-[15vh] z-10">
-          <Toaster position="bottom-center" />
+        <div className='mx-auto relative min-h-[83dvh] container px-6 pt-[15vh] z-10'>
+          <Toaster position='bottom-center' />
           {children}
         </div>
 

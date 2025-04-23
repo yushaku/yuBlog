@@ -1,3 +1,5 @@
+"use client";
+
 import anime from "animejs";
 import { useState, useEffect } from "react";
 
@@ -76,26 +78,26 @@ const StarrySky = () => {
   };
 
   return (
-    <div id="StarrySky">
-      <svg id="sky">
+    <div id='StarrySky'>
+      <svg id='sky'>
         {[...Array(num)].map((x, y) => (
           <circle
             cx={getRandomX()}
             cy={getRandomY()}
             r={randomRadius()}
-            stroke="none"
-            strokeWidth="0"
-            fill="white"
+            stroke='none'
+            strokeWidth='0'
+            fill='white'
             key={y}
-            className="star"
+            className='star'
           />
         ))}
       </svg>
-      <div id="shootingstars">
+      <div id='shootingstars'>
         {[...Array(60)].map((x, y) => (
           <div
             key={y}
-            className="wish"
+            className='wish'
             style={{
               left: `${getRandomY()}px`,
               top: `${getRandomX()}px`,

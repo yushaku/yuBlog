@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type JSX } from "react";
 import { twMerge } from "tailwind-merge";
 
 type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
