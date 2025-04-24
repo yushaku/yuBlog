@@ -1,26 +1,86 @@
+import React from "react";
+
+import { allPosts } from "contentlayer/generated";
+import { notFound } from "next/navigation";
+import { Metadata } from "next";
+import { absoluteUrl } from "@/utils";
+import { siteConfig } from "@/utils/siteConfig";
+import { Mdx } from "@/components/mdx/mdx-components";
 import moment from "moment";
-import { getPostBySlug } from "@/utils/mdx";
-import { BlogContent } from "./components";
 
-export type TableOfContent = {
-  id: string;
-  href: string;
-  title: string;
-};
+interface PostPageProps {
+  params: {
+    slug: string;
+  };
+}
 
-export default async function Page(props: {
-  params: Promise<{ slug: string }>;
-}) {
-  const params = await props.params;
-  const post = getPostBySlug(params.slug);
+export async function generateStaticParams(): Promise<
+  PostPageProps["params"][]
+> {
+  return allPosts.map((post) => ({
+    slug: post.slug,
+  }));
+}
+
+async function getPostFromParams({ params }: PostPageProps) {
+  const slug = params.slug;
+  const post = allPosts.find((post) => post.slug === slug);
 
   if (!post) {
-    return (
-      <div className='flex h-[80vh] items-center justify-center'>
-        <h1 className='text-4xl font-bold'>Post not found</h1>
-      </div>
-    );
+    return null;
   }
+
+  return post;
+}
+
+export async function generateMetadata(props: {
+  params: Promise<PostPageProps["params"]>;
+}): Promise<Metadata> {
+  const params = await props.params;
+  const post = await getPostFromParams({ params });
+
+  if (!post) {
+    return {};
+  }
+
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: "article",
+      url: absoluteUrl(post.slug),
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: siteConfig.name,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.description,
+      images: [siteConfig.ogImage],
+      creator: "@strlrd29",
+    },
+  };
+}
+
+export default async function PostPage(props: {
+  params: Promise<PostPageProps["params"]>;
+}) {
+  const params = await props.params;
+  const post = await getPostFromParams({ params });
+
+  if (!post) {
+    notFound();
+  }
+
+  console.log(post.body.code);
 
   return (
     <article className='mx-auto max-w-4xl px-6 py-10'>
@@ -31,7 +91,7 @@ export default async function Page(props: {
         <div className='flex items-center gap-4 text-sm text-primary'>
           <time>{moment(post.date).format("LL")}</time>
           <div className='flex gap-2'>
-            {post.tags.map((tag) => (
+            {post?.tags?.map((tag) => (
               <span key={tag} className='rounded-full bg-gray-700 px-3 py-1'>
                 {tag}
               </span>
@@ -40,9 +100,9 @@ export default async function Page(props: {
         </div>
       </header>
 
-      <BlogContent content={post.content} />
-
-      {/* <ReadMoreSection /> */}
+      <div className='pb-12 pt-8'>
+        <Mdx code={post.body.code} />
+      </div>
     </article>
   );
 }

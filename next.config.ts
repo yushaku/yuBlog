@@ -1,5 +1,7 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next"
+import { createContentlayerPlugin } from "next-contentlayer2"
+
+const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     domains: ['plus.unsplash.com', 'www.notion.so', 's3.us-west-2.amazonaws.com'],
@@ -14,4 +16,8 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+const withContentlayer = createContentlayerPlugin({
+  // Additional Contentlayer config options
+})
+
+export default withContentlayer(nextConfig)

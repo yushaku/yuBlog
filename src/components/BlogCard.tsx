@@ -6,8 +6,8 @@ import React from "react";
 type BlogPost = {
   title: string;
   date: string;
-  description: string;
-  thumbnail: string;
+  description?: string;
+  thumbnail?: string;
   slug: string;
 };
 
@@ -20,7 +20,7 @@ export const BlogCard = ({
 }: BlogPost) => {
   return (
     <article className='group w-[300px] rounded-lg border border-gray-700 overflow-hidden'>
-      <Link href={`/${slug}`}>
+      <Link href={slug}>
         <div className='relative h-[200px] w-full overflow-hidden'>
           <Image
             src={thumbnail ?? "/images/default-thumbnail.svg"}
