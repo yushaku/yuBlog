@@ -29,6 +29,6 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "src/components/mdx/component-preview.bak"
-  ],
+, "src/lib/rehype-component.bak"  ],
   "exclude": ["node_modules"]
 }

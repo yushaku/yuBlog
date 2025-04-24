@@ -133,8 +133,8 @@ importers:
         specifier: 5.1.3
         version: 5.1.3
       unist-builder:
-        specifier: ^4.0.0
-        version: 4.0.0
+        specifier: 3.0.0
+        version: 3.0.0
       unist-util-visit:
         specifier: ^4.1.2
         version: 4.1.2
@@ -3222,8 +3222,8 @@ packages:
   unified@11.0.5:
     resolution: {integrity: sha512-xKvGhPWw3k84Qjh8bI3ZeJjqnyadK+GEFtazSfZv/rKeTkTjOJho6mFqh2SM96iIcZokxiOpg78GazTSg8+KHA==}
 
-  unist-builder@4.0.0:
-    resolution: {integrity: sha512-wmRFnH+BLpZnTKpc5L7O67Kac89s9HMrtELpnNaE6TAobq5DTZZs5YaTQfAZBA9bFPECx2uVAPO31c+GVug8mg==}
+  unist-builder@3.0.0:
+    resolution: {integrity: sha512-GFxmfEAa0vi9i5sd0R2kcrI9ks0r82NasRq5QHh2ysGngrc6GiqD5CDf1FjPenY4vApmFASBIIlk/jj5J5YbmQ==}
 
   unist-util-is@5.2.1:
     resolution: {integrity: sha512-u9njyyfEh43npf1M+yGKDGVPbY/JWEemg5nH05ncKPfi+kBbKBJoTdsogMu33uhytuLlv9y0O7GH7fEdwLdLQw==}
@@ -7039,9 +7039,9 @@ snapshots:
       trough: 2.2.0
       vfile: 6.0.3
 
-  unist-builder@4.0.0:
+  unist-builder@3.0.0:
     dependencies:
-      '@types/unist': 3.0.3
+      '@types/unist': 2.0.11
 
   unist-util-is@5.2.1:
     dependencies:

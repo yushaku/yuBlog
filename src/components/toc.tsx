@@ -1,11 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 "use client";
 
 import * as React from "react";
 
-import { TableOfContents } from "@/lib/toc";
 import { cn } from "@/lib/utils";
+import { TableOfContents } from "@/utils/toc";
 
 interface TocProps {
   toc: TableOfContents;
@@ -23,7 +21,10 @@ export function DashboardTableOfContents({ toc }: TocProps) {
         : [],
     [toc]
   );
-  const activeHeading = useActiveItem(itemIds);
+
+  const activeHeading = useActiveItem(
+    itemIds.filter((id): id is string => id !== undefined)
+  );
 
   if (!toc?.items?.length) {
     return null;
@@ -31,8 +32,8 @@ export function DashboardTableOfContents({ toc }: TocProps) {
 
   return (
     <div className='space-y-2'>
-      <p className='font-medium'>On This Page</p>
-      <Tree tree={toc} activeItem={activeHeading} />
+      <p className='font-medium text-xl'>On This Page</p>
+      <Tree tree={toc} activeItem={activeHeading || undefined} />
     </div>
   );
 }
@@ -87,9 +88,9 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
             <a
               href={item.url}
               className={cn(
-                "inline-block no-underline transition-colors hover:text-foreground",
+                "inline-block no-underline transition-colors hover:text-primary",
                 item.url === `#${activeItem}`
-                  ? "font-medium text-foreground"
+                  ? "font-medium text-primary"
                   : "text-muted-foreground"
               )}
             >

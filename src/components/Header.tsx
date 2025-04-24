@@ -1,10 +1,10 @@
 "use client";
 
-import { IconMenu } from "./Icons";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Button } from "./Buttons";
+import { AlignRight } from "lucide-react";
 
 type Props = {
   isAuth?: boolean;
@@ -71,7 +71,7 @@ export const Header = ({
 
   return (
     <header
-      className={`${dynamicHeaderStyle} ${transparentStyle} max-w-7xl animationShow fixed left-0 right-0 z-50 mx-auto`}
+      className={`${dynamicHeaderStyle} ${transparentStyle} animationShow fixed left-0 right-0 z-50 mx-auto`}
     >
       <div
         className={`mx-auto flex container items-center justify-between gap-4 px-6 py-4`}
@@ -122,7 +122,7 @@ export const Header = ({
               className='float-right cursor-pointer px-6'
               onClick={ontoggleSideBar}
             >
-              <IconMenu className='hover:stroke-primary stroke-foreground ' />
+              <AlignRight className='hover:stroke-primary stroke-foreground size-7' />
             </li>
           </ul>
         </div>

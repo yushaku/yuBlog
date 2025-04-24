@@ -7,6 +7,8 @@ import { absoluteUrl } from "@/utils";
 import { siteConfig } from "@/utils/siteConfig";
 import { Mdx } from "@/components/mdx/mdx-components";
 import moment from "moment";
+import { DashboardTableOfContents } from "@/components/toc";
+import { getTableOfContents } from "@/utils/toc";
 
 interface PostPageProps {
   params: {
@@ -79,11 +81,10 @@ export default async function PostPage(props: {
   if (!post) {
     notFound();
   }
-
-  console.log(post.body.code);
+  const toc = await getTableOfContents(post.body.raw);
 
   return (
-    <article className='mx-auto max-w-4xl px-6 py-10'>
+    <article className='mx-auto relative px-6 py-5'>
       <header className='mb-8'>
         <h1 className='mb-4 text-4xl font-bold text-foreground'>
           {post.title}
@@ -92,7 +93,7 @@ export default async function PostPage(props: {
           <time>{moment(post.date).format("LL")}</time>
           <div className='flex gap-2'>
             {post?.tags?.map((tag) => (
-              <span key={tag} className='rounded-full bg-gray-700 px-3 py-1'>
+              <span key={tag} className='rounded-full bg-card px-3 py-1'>
                 {tag}
               </span>
             ))}
@@ -100,8 +101,16 @@ export default async function PostPage(props: {
         </div>
       </header>
 
-      <div className='pb-12 pt-8'>
-        <Mdx code={post.body.code} />
+      <div className='pb-12 pt-8 flex gap-10'>
+        <div className=''>
+          <Mdx code={post.body.code} />
+        </div>
+
+        <div className='hidden lg:block sticky top-20 -mt-6 h-[calc(100vh-3.5rem)] pt-4'>
+          <div className='no-scrollbar h-full space-y-4 overflow-auto pb-10'>
+            <DashboardTableOfContents toc={toc} />
+          </div>
+        </div>
       </div>
     </article>
   );
