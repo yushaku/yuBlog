@@ -8,7 +8,7 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 export const Button = ({ title, className, Icon, ...props }: Props) => {
   const classes = twMerge(
-    `flexCenter cursor-pointer h-[52px] w-full gap-3 rounded-lg text-lg font-medium animationShow ${className}`,
+    `flex items-center justify-center cursor-pointer h-[52px] w-full gap-3 rounded-lg text-lg font-medium animationShow ${className}`
   );
 
   return (

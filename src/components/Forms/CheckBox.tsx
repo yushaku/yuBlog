@@ -8,7 +8,7 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export const CheckBox = ({ title, ...props }: Props) => {
   return (
-    <label className='flexCenter gap-2'>
+    <label className='flex items-center justify-center gap-2'>
       <input
         type='checkbox'
         className='primary-foreground h-5 w-5'

@@ -81,12 +81,12 @@ export const Header = ({
             <Image
               alt='yushaku'
               src='/logo.png'
-              width={35}
-              height={35}
+              width={45}
+              height={45}
               loading='lazy'
-              className='animate-fade-down'
+              className='animate-fade-down border-2 border-foreground/10 rounded-full'
             />
-            <span className='text-primary animate-fade-right animate-duration-500 animate-delay-200 text-[24px] font-semibold'>
+            <span className='text-foreground hover:text-primary animate-fade-right animate-duration-500 animate-delay-200 text-[24px] font-semibold'>
               Yushaku
             </span>
           </div>

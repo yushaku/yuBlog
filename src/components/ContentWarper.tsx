@@ -95,7 +95,7 @@ export const ContentWarper = ({
           </TwitterShareButton>
         </li>
         <li
-          className='flexCenter bg-foreground/20 h-8 w-8 cursor-pointer rounded-full border border-grayColor/70'
+          className='flex items-center justify-center bg-foreground/20 h-8 w-8 cursor-pointer rounded-full border border-grayColor/70'
           onClick={() => {
             navigator.clipboard.writeText(path);
             toast.success("Copied!");
@@ -109,7 +109,7 @@ export const ContentWarper = ({
         </li>
 
         <li
-          className='flexCenter bg-foreground/20 h-8 w-8 cursor-pointer rounded-full border border-grayColor/70'
+          className='flex items-center justify-center bg-foreground/20 h-8 w-8 cursor-pointer rounded-full border border-grayColor/70'
           onClick={() => {
             setTheme(theme === "dark" ? "light" : "dark");
           }}

@@ -8,7 +8,7 @@ import { IconArrowRight } from "../../../components/Icons";
 export const ReadMoreSection = async ({ blogPost }: { blogPost: BlogList }) => {
   return (
     <div className='min-h-[25vh] flex flex-col md:flex-row' id='related_posts'>
-      <section className='py-10 flexCenter flex-col'>
+      <section className='py-10 flex items-center justify-center flex-col'>
         <h2 className='text-2xl text-foreground'>Related Posts</h2>
         <p className='text-lg text-grayColor'>Find more posts like this one.</p>
         <div className='relative w-[260px] h-[260px]'>

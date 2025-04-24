@@ -1,10 +1,10 @@
 "use client";
 
-import { IconMoon, IconSun } from "./Icons";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { SocialMedia } from "./SocialMedia";
 import { ButtonSwitch } from "./Buttons";
+import { MoonIcon, SunIcon } from "lucide-react";
 
 type Props = {
   ontoggleSideBar: () => void;
@@ -22,7 +22,7 @@ export const Sidebar = ({ topItems, ontoggleSideBar, showSidebar }: Props) => {
   return (
     <section>
       <div
-        className={`${positionStyle} animationShow dark:shadow-darkShadow fixed top-0 z-50 flex h-screen w-[300px] flex-col justify-between bg-white px-8 py-10 shadow-lg dark:bg-dark-200`}
+        className={`${positionStyle} animationShow fixed top-0 z-50 flex h-screen w-[300px] flex-col justify-between bg-background px-8 py-10 shadow-lg`}
       >
         <ul className='flex flex-col gap-6'>
           <h3 className='text-foreground mb-4 text-xl font-semibold'>
@@ -32,7 +32,7 @@ export const Sidebar = ({ topItems, ontoggleSideBar, showSidebar }: Props) => {
             return (
               <li
                 key={index}
-                className='hover:text-primary dark:hover:text-primary text-lg'
+                className='hover:text-primary text-lg'
                 onClick={ontoggleSideBar}
               >
                 <Link href={el.href}>{el.title}</Link>
@@ -41,14 +41,15 @@ export const Sidebar = ({ topItems, ontoggleSideBar, showSidebar }: Props) => {
           })}
         </ul>
 
-        <div className='flexCenter justify-between'>
+        <div className='flex items-center justify-between'>
           <SocialMedia />
-          <span className='flexCenter gap-2'>
-            <IconSun color='#234f66' width='20px' height='20px' />
+
+          <span className='flex items-center gap-2'>
+            <SunIcon className='size-5 stroke-foreground stroke-2' />
             <ButtonSwitch
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             />
-            <IconMoon color='#234f66' width='20px' height='20px' />
+            <MoonIcon className='size-5 stroke-foreground stroke-2' />
           </span>
         </div>
       </div>

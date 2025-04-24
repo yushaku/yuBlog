@@ -80,7 +80,7 @@ export const Navbar = ({ topItems }: Props) => {
           <button
             className={`${
               theme === "dark" ? "" : "bg-white"
-            } flexCenter h-[52px] w-full gap-3 rounded-lg`}
+            } flex items-center justify-center h-[52px] w-full gap-3 rounded-lg`}
             onClick={() => setTheme("light")}
           >
             <IconSun color='#234f66' width='20px' height='20px' />
@@ -90,7 +90,7 @@ export const Navbar = ({ topItems }: Props) => {
           <button
             className={`${
               theme === "dark" && "bg-dark-300"
-            } flexCenter h-[52px] w-full gap-3 rounded-lg`}
+            } flex items-center justify-center h-[52px] w-full gap-3 rounded-lg`}
             onClick={() => setTheme("dark")}
           >
             <IconMoon color='#234f66' width='20px' height='20px' />
