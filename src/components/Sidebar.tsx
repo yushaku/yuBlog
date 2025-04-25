@@ -3,8 +3,8 @@
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { SocialMedia } from "./SocialMedia";
-import { ButtonSwitch } from "./Buttons";
 import { MoonIcon, SunIcon } from "lucide-react";
+import { Switch } from "./ui/switch";
 
 type Props = {
   ontoggleSideBar: () => void;
@@ -46,7 +46,7 @@ export const Sidebar = ({ topItems, ontoggleSideBar, showSidebar }: Props) => {
 
           <span className='flex items-center gap-2'>
             <SunIcon className='size-5 stroke-foreground stroke-2' />
-            <ButtonSwitch
+            <Switch
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             />
             <MoonIcon className='size-5 stroke-foreground stroke-2' />

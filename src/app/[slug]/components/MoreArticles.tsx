@@ -1,11 +1,10 @@
-import { BlogList, multi_select } from "@/types";
+import { Post } from "contentlayer/generated";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import { IconArrowRight } from "../../../components/Icons";
 
-export const ReadMoreSection = async ({ blogPost }: { blogPost: BlogList }) => {
+export const ReadMoreSection = async ({ blogPost }: { blogPost: Post[] }) => {
   return (
     <div className='min-h-[25vh] flex flex-col md:flex-row' id='related_posts'>
       <section className='py-10 flex items-center justify-center flex-col'>
@@ -25,14 +24,14 @@ export const ReadMoreSection = async ({ blogPost }: { blogPost: BlogList }) => {
       </section>
 
       <section className='flex py-10 overflow-x-scroll pl-8'>
-        {blogPost?.results.map((el) => (
+        {blogPost?.map((el) => (
           <StackItem
-            key={el.id}
-            title={el.properties.Name.title[0].plain_text}
-            tags={el.properties.category.multi_select}
-            postSlug={el.properties.slug.rich_text[0].plain_text}
-            createdAt={el.created_time}
-            tlir={el.properties?.tldr?.rich_text.at(0)?.plain_text}
+            key={el._id}
+            title={el.title}
+            tags={el.tags}
+            postSlug={el.slug}
+            createdAt={el.date}
+            tlir={el.description}
           />
         ))}
       </section>
@@ -48,7 +47,7 @@ const StackItem = ({
   tlir,
 }: {
   title: string;
-  tags: multi_select[];
+  tags?: string[];
   postSlug: string;
   createdAt: string;
   tlir?: string;
@@ -95,9 +94,7 @@ const StackItem = ({
       </Link>
 
       <div id='tags' className='flex gap-2 mt-4 mb-0 pt-2 pb-4'>
-        {tags.map((tag) => (
-          <TagItem title={tag.name} key={tag.id} />
-        ))}
+        {tags?.map((tag, index) => <TagItem title={tag} key={index} />)}
       </div>
 
       <div className='flex items-center gap-2'>

@@ -9,6 +9,7 @@ import { Mdx } from "@/components/mdx/mdx-components";
 import moment from "moment";
 import { DashboardTableOfContents } from "@/components/toc";
 import { getTableOfContents } from "@/utils/toc";
+import { ReadMoreSection } from "./components";
 
 interface PostPageProps {
   params: {
@@ -112,6 +113,10 @@ export default async function PostPage(props: {
           </div>
         </div>
       </div>
+
+      <ReadMoreSection
+        blogPost={allPosts.filter((p) => p.slug !== post.slug)}
+      />
     </article>
   );
 }

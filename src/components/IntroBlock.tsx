@@ -1,11 +1,9 @@
-import { ListItem } from "./ListItem";
 import { TopicTitle } from "./TopicTitle";
 import { topics } from "@/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { IconArrowRight, IconGithub, IconLinkedin } from "./Icons";
-import { Result } from "@/types";
 import { siteConfig } from "@/utils/siteConfig";
 
 export const IntroBlock = () => {
@@ -71,31 +69,6 @@ export const CategoryList = () => {
                   {el.title}
                 </span>
               </Link>
-            </li>
-          );
-        })}
-      </ul>
-    </Warper>
-  );
-};
-
-export const RelatePosts = ({ blogList }: { blogList: Result[] }) => {
-  return (
-    <Warper className='animate-fade-down animate-once animate-delay-400'>
-      <TopicTitle title='Popular Posts' />
-
-      <ul className='divide-y divide-grayColor'>
-        {blogList.map((el, index) => {
-          if (index > 4) return;
-          return (
-            <li key={el.id}>
-              <ListItem
-                slug={el.properties.slug.id}
-                imageUrl={el.cover?.external?.url ?? el.cover?.file.url}
-                name={el.properties.Name.title[0].plain_text}
-                date={el.created_time}
-                category={el.properties.category.multi_select}
-              />
             </li>
           );
         })}

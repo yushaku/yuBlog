@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Button } from "./Buttons";
 import { AlignRight } from "lucide-react";
+import { Button } from "./ui/button";
 
 type Props = {
   isAuth?: boolean;

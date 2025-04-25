@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/components/Buttons";
 import { FormInput } from "@/components/Forms";
 import { Meteors } from "@/components/Meteors";
+import { Button } from "@/components/ui/button";
 import emailjs from "@emailjs/browser";
 import { useFormik } from "formik";
 import Image from "next/image";
