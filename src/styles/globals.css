@@ -55,12 +55,7 @@
   --color-dark-400: #0f2243;
   --color-dark-500: #0a0f2f;
 
-  --shadow-light-shadow: -2px 2px 20px 10px #00000024;
-  --shadow-dark-shadow: -2px 5px 10px rgba(255, 255, 255, 0.1);
-  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
-  --shadow-card: 0px 35px 120px -15px #211e35;
-  --shadow-dark_stack: -1rem 0 1rem #131313;
-  --shadow-light_stack: -1rem 0 1rem #6e6e6e;
+  --shadow-card: -1rem 0 1rem var(--sidebar);
 
   --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
   --background-image-gradient-conic: conic-gradient(
@@ -146,7 +141,7 @@
   --chart-3: hsl(183 30% 22%);
   --chart-4: hsl(183 30% 22%);
   --chart-5: hsl(0 53% 30%);
-  --sidebar: hsl(221 50% 10%);
+  --sidebar: hsl(221 50% 13%);
   --sidebar-foreground: hsl(221 5% 90%);
   --sidebar-primary: hsl(221 98% 60%);
   --sidebar-primary-foreground: hsl(0 0% 100%);
@@ -155,7 +150,6 @@
   --sidebar-border: hsl(221 30% 22%);
   --sidebar-ring: hsl(221 98% 60%);
 }
-
 
 @layer base {
   * {

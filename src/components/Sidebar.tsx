@@ -22,7 +22,7 @@ export const Sidebar = ({ topItems, ontoggleSideBar, showSidebar }: Props) => {
   return (
     <section>
       <div
-        className={`${positionStyle} animationShow fixed top-0 z-50 flex h-screen w-[300px] flex-col justify-between bg-background px-8 py-10 shadow-lg`}
+        className={`${positionStyle} animationShow fixed top-0 z-50 flex h-screen w-[300px] flex-col justify-between bg-sidebar px-8 py-10 shadow-lg`}
       >
         <ul className='flex flex-col gap-6'>
           <h3 className='text-foreground mb-4 text-xl font-semibold'>

@@ -6,7 +6,7 @@ import { allPosts } from "contentlayer/generated";
 
 export default async function Home() {
   return (
-    <section className='max-w-7xl mx-auto'>
+    <section className='container mx-auto'>
       <article className='flex lg:gap-10'>
         <ul className='w-full flex flex-wrap justify-center gap-6'>
           {allPosts.map((post) => (

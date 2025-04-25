@@ -81,6 +81,9 @@ importers:
       mdast-util-toc:
         specifier: ^7.1.0
         version: 7.1.0
+      mdx-bundler:
+        specifier: ^10.1.1
+        version: 10.1.1(acorn@8.14.1)(esbuild@0.25.3)
       moment:
         specifier: ^2.30.1
         version: 2.30.1

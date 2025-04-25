@@ -1,0 +1,219 @@
+---
+title: "Understanding NestJS Architectural Pattern"
+date: "2024-01-10"
+tags: ["nestjs"]
+thumbnail: "https://plus.unsplash.com/premium_photo-1707353401897-da9ba223f807?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+---
+
+# Understanding NestJS Architectural Pattern
+
+NestJS is a NodeJs framework built on top of ExpressJs and is used for building efficient, scalable, loosely coupled, testable and easily maintainable server side web applications using architecture principles in mind.
+
+> The problem NestJs trying to solve is that of architecture. As [Lee Barker](https://madecurious.com/curiosities/the-benefits-of-taking-an-architectural-approach-to-software-development/) says: Architectural approach promotes a whole heap of things from good design through to the early identification of potential risks, and gives stakeholders more clarity, among other things
+
+## Controller
+
+**Hello NestJS**: The simplest approach is to create a Controller doing all things: from validation to request-processing to handling business logic to interacting with data base and so on.
+
+Fat Ugly Controller
+![[Excalidraw/nestjs.md#^frame=lnQy8iAfxOKGG_EiB88Xb|controller]]
+
+```ts
+// simple/convert/12
+import { Controller, Get, Param } from "@nestjs/common";
+@Controller("simple")
+export class SimpleController {
+  @Get("/convert/:inr")
+  convert(@Param("inr") inr: number) {
+    return inr * 80;
+  }
+}
+```
+
+## Services
+
+**Rule# 1:** Business logic should be delegated to a separate entity known as service.
+![[Excalidraw/nestjs.md#^frame=0RQh-el3dNSQ4gkO6zy9B|servise]]
+
+Controller using Service
+Let’s create a service first:
+
+```ts
+import { Injectable } from "@nestjs/common";
+@Injectable()
+export class ConverterService {
+  convert(inr: number): number {
+    return inr * 80;
+  }
+}
+```
+
+Services have to “Injectable” and has be registered in Module under providers section :
+
+```ts
+providers: [ConverterService],
+```
+
+NestJS follows dependency injection of [SOLID principles](https://medium.com/backticks-tildes/the-s-o-l-i-d-principles-in-pictures-b34ce2f1e898). We do not want Controller to instantiate services to be used. Injectable reduces the dependency of Controller on dependent services. NestJs is responsible for “instantiating” service as per requirement. Inside controller we have used constructor for service injection.
+
+```ts
+import { Controller, Get, Param } from "@nestjs/common";
+import { ConverterService } from "./converter.service";
+@Controller("service")
+export class ServiceController {
+  /* ConverterService is Injectable, 
+  so NestJS handles task of instantiation*/
+  constructor(private readonly converterService: ConverterService) {}
+
+  @Get("/convert/:inr")
+  convert(@Param("inr") inr: number): number {
+    return this.converterService.convert(inr);
+  }
+}
+```
+
+So far so good. But what about Validation ?
+
+- Executing [http://127.0.0.1:3000/service/convert/12](http://127.0.0.1:3000/service/convert/12) will work,
+- but [http://127.0.0.1:3000/service/convert/aa](http://127.0.0.1:3000/service/convert/aa) won’t.
+  It will return NaN (Not a number). What we are missing is Validation layer. Implementing validation logic inside controller will again turn it into a FAT UGLY Controller. In NestJS we can use Pipes for validation.
+
+## Pipes
+
+**Rule# 2:** Validation logic should be delegated to a separate entity known as pipe.
+
+![[Excalidraw/nestjs.md#^frame=699YaO3XG6ggWKkLa6WHK|validation]]
+
+Controller using Service and Pipes
+
+In NestJS pipes are mainly used for transformation and validation. Let’s create a smart pipe. It not only validates input to be numeric, but also allows input containing commas. So while values like “abc” is not allowed, Pipe will accept “1,000” and strip commas from input before passing it to controller.
+`/smart/convert/12` is allowed
+`/smart/convert/1,000` is allowed, 1,000 will be treated as 1000
+`/smart/convert/abc` is not allowed, raise 422 (UnprocessableEntityException)
+
+```ts
+import {
+  ArgumentMetadata,
+  Injectable,
+  PipeTransform,
+  UnprocessableEntityException,
+} from "@nestjs/common";
+
+@Injectable()
+export class CommaPipe implements PipeTransform {
+  transform(value: any, metadata: ArgumentMetadata) {
+    /* remove comma from input */
+    var output = value.replaceAll(",", "");
+    /* If input is Not a Number, raise 422 error  */
+    if (isNaN(output)) {
+      throw new UnprocessableEntityException(
+        ["Non numeric input"],
+        "Incorrect Parameter",
+      );
+    }
+    return output;
+  }
+}
+```
+
+And updated controller (using Pipe) is:
+
+```ts
+import { Controller, Get, Param } from "@nestjs/common";
+import { ConverterService } from "./converter.service";
+import { CommaPipe } from "./comma.pipe";
+
+@Controller("smart")
+export class SmartController {
+  constructor(private readonly converterService: ConverterService) {}
+  /*
+    We have used CommaPipe to validate the "inr" path parameter
+  */
+  @Get("/convert/:inr")
+  convert(@Param("inr", new CommaPipe()) inr: number): number {
+    return this.converterService.convert(inr);
+  }
+}
+```
+
+> Lesson learnt so far: Delegate business logic to service and validation logic to pipes.
+
+## Interceptors
+
+**Rule# 3:** Response transformation should be delegated to a separate entity known as interceptor.
+
+![[Excalidraw/nestjs.md#^frame=qhShaj0NgMCzIVmZdvMDb|interceptor]]
+
+Controller using Service and Pipes and Interceptor
+
+So far so good. But What if i want output to be in more presentable/readable form ? I want output to be formatted from **2400000** to **2,400,000** so as to offer readability to user. How can i do this ?
+The answer is interceptors. Interceptors.
+
+> Interceptors are used for applying custom logic and transforming response.
+
+```ts
+import {
+  CallHandler,
+  ExecutionContext,
+  Injectable,
+  NestInterceptor,
+  UnprocessableEntityException,
+} from "@nestjs/common";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+
+@Injectable()
+export class CommaInterceptor implements NestInterceptor {
+  intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    const request = context.switchToHttp().getRequest();
+    return next.handle().pipe(
+      map((data) => {
+        /* adding comma every 3 digits */
+        data = data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        return data;
+      }),
+    );
+  }
+}
+```
+
+Controller:
+
+```ts
+import { Controller, Get, Param, UseInterceptors } from "@nestjs/common";
+import { ConverterService } from "./converter.service";
+import { CommaPipe } from "./comma.pipe";
+import { CommaInterceptor } from "./comma.interceptor";
+
+@Controller("intercept")
+export class InterceptController {
+  constructor(private readonly converterService: ConverterService) {}
+
+  @Get("/convert/:inr")
+  /* Interceptor */
+  @UseInterceptors(CommaInterceptor)
+  /* Pipe for Param */
+  convert(@Param("inr", new CommaPipe()) inr: number): number {
+    return this.converterService.convert(inr);
+  }
+}
+```
+
+## Repository
+
+**Rule# 4:** Data Layer should be isolated. Data access and manipulation logic should be delegated to a separate entity known as Repository.
+
+![[Excalidraw/nestjs.md#^frame=pz2xW1sGddscl--Fu12tL|repository]]
+
+Controller using Service and Pipes and Interceptor and Repository
+
+Connecting NestJs App to MongoDb or MYSQL or accessing external data via APIs is a vast topic. I will publish another tutorial for the same.
+NestJs provides Middlewares and Guards as well. A Complete NestJS App using all nuts and bolts is explained below:
+
+![[Excalidraw/nestjs.md#^frame=qw3K2I3cTO8w0UYnZl5rz|overview]]
+
+I suggest all readers to read the concept of providers from [official documentation of NestJs](https://docs.nestjs.com/first-steps).
+
+Please read about [NestJS modules](https://docs.nestjs.com/modules) and refer to [app.module.ts](https://github.com/mansha99/nestjs-arch/blob/master/src/app.module.ts) file from repository. Source code may be downloaded from [this](https://github.com/mansha99/nestjs-arch/tree/master) repo.
+Feel free to connect if you have any doubt, query or discussion.
+Happy Coding.

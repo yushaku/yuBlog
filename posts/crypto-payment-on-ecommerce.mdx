@@ -1,0 +1,50 @@
+---
+title: "Implement Crypto Payment on E-commerce App"
+date: "2024-01-10"
+tags: ["solidity", "architecture"]
+description: "Learn how to build modern web applications with Next.js, from setup to deployment"
+thumbnail: "https://plus.unsplash.com/premium_photo-1707353401897-da9ba223f807?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+---
+
+# Implement Crypto Payment on E-commerce App
+
+Imagine this: You’re browsing your favorite online store, and right there next to “Pay with Card” is a shiny new “Pay with Crypto” button. It’s not replacing cash, but offering a fresh, optional way for the crypto-savvy to check out. The thing is, many stores are slow to add it, despite the crypto craze growing daily.
+
+In this article, we’ll show you how to integrate crypto payments into your store—not as a replacement for cash, but as a cool, forward-thinking option.
+
+With tools like Truffle Suite and Infura nodes, you’ll get a secure, custom crypto solution without relying on third-party services, making the whole process smooth and seamless.
+
+## Scenario: The KeyBay Store
+
+Our mission? To build a web store for sale stuff like keyboard, accepting payments on the Ethereum blockchain with native currency ("Ether"). Let’s call it “KeyBay” from now on.
+
+You can find the complete implementation on the accompanying [GitHub repository](https://github.com/yushaku/NFTs_marketplace_contract/blob/main/contracts/market/ShopPayment.sol)
+
+## Application Structure
+
+The store backend is built as a **CRUD API** that is not connected to any blockchain itself.
+Its frontend triggers payment requests on that API, which customers fulfill using their crypto wallets.
+
+**KeyBay** is designed as a "traditional" ecommerce application that takes care of the business logic and doesn't rely on any on-chain data besides the payment itself. During checkout, the backend issues `PaymentRequest` objects that carry a unique identifier (such as an "invoice number") that users attach to their payment transactions.
+
+A background daemon listens to the respective contract events and updates the store's database when it detects a payment.
+
+![[Excalidraw/design system]]
+
+1. **User Initiates Payment**: The user selects a product and proceeds to checkout. The frontend sends a payment request to the backend API, which includes details such as the product price and user’s order.
+
+2. **API Prepares Payment**: The backend API processes the payment request by calculating the total price (in BNB or BUSD on Binance Smart Chain). It then generates encodedData for the blockchain transaction and creates a PaymentRequest, attaching a unique identifier (like an invoice number).
+
+3. **Payment Details Sent to User**: The backend responds to the frontend with the generated orderId and encodedData. This data is passed to the user’s crypto wallet, enabling the user to send a payment to the smart contract on the BSC.
+
+4. **Blockchain Transaction**: When the user sends the payment from their crypto wallet, the transaction is recorded on the blockchain. Upon successful completion, the smart contract emits a **payment event** signaling that the payment has been received.
+
+5. **Daemon Monitors Blockchain Events**: A **background daemon** (a continuously running process) is listening for events from the blockchain. When it detects the specific payment event emitted by the smart contract, it collects the details of the payment transaction (such as orderId, amount, and payer address).
+
+6. **Daemon Updates Backend API**: The daemon relays the payment event details back to the backend API, which cross-references the orderId from the event with the store’s database. The API updates the status of the payment for that particular order, marking it as “paid” or “completed.”
+
+7. **Business Logic Execution**: Once the payment status is updated, the backend executes the necessary business logic. This could include sending a confirmation email, processing the download for the purchased keyboard theme, or updating inventory.
+
+8. **User Receives Confirmation**: The store frontend is updated with the confirmed payment status, notifying the user that their transaction was successful and their product (e.g., a keyboard theme) is ready for download or use.
+
+This flow illustrates how **KeyBay** handles crypto payments on the blockchain while keeping all business logic (order management, payment status, etc.) on traditional backend systems, leveraging the blockchain purely for the payment step.
