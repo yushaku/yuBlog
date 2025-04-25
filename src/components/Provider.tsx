@@ -5,7 +5,7 @@ import { ThemeProvider } from "next-themes";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { Footer } from "./Footer";
+import { FooterSection } from "./Footer";
 import { Header } from "./Header";
 import { Sidebar } from "./Sidebar";
 
@@ -35,7 +35,7 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
           {children}
         </div>
 
-        <Footer />
+        <FooterSection />
       </section>
     </ThemeProvider>
   );

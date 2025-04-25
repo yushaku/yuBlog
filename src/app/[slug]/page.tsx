@@ -9,8 +9,7 @@ import { Mdx } from "@/components/mdx/mdx-components";
 import moment from "moment";
 import { DashboardTableOfContents } from "@/components/toc";
 import { getTableOfContents } from "@/utils/toc";
-import { ReadMore } from "./components";
-import { Comments } from "@/components/Comments";
+import { ReadMore, Comments } from "./components";
 
 interface PostPageProps {
   params: {
