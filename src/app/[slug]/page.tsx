@@ -9,7 +9,7 @@ import { Mdx } from "@/components/mdx/mdx-components";
 import moment from "moment";
 import { DashboardTableOfContents } from "@/components/toc";
 import { getTableOfContents } from "@/utils/toc";
-import { ReadMoreSection } from "./components";
+import { ReadMore } from "./components";
 import { Comments } from "@/components/Comments";
 
 interface PostPageProps {
@@ -86,7 +86,7 @@ export default async function PostPage(props: {
   const toc = await getTableOfContents(post.body.raw);
 
   return (
-    <article className='mx-auto relative px-6 py-5'>
+    <article className='mx-auto max-w-7xl relative px-6 py-5'>
       <header className='mb-8'>
         <h1 className='mb-4 text-4xl font-bold text-foreground'>
           {post.title}
@@ -104,7 +104,7 @@ export default async function PostPage(props: {
       </header>
 
       <div className='pb-12 pt-8 flex gap-10'>
-        <div className=''>
+        <div>
           <Mdx code={post.body.code} />
         </div>
 
@@ -119,9 +119,9 @@ export default async function PostPage(props: {
         <Comments />
       </div>
 
-      <ReadMoreSection
-        blogPost={allPosts.filter((p) => p.slug !== post.slug)}
-      />
+      <div className='mt-10 border-t border-gray-700 pt-10'>
+        <ReadMore blogPost={allPosts.filter((p) => p.slug !== post.slug)} />
+      </div>
     </article>
   );
 }

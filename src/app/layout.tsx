@@ -69,11 +69,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
           "min-h-svh overflow-x-hidden bg-background font-sans antialiased",
-          inter.variable,
+          inter.variable
         )}
         suppressHydrationWarning
       >
