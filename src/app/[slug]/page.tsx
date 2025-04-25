@@ -10,6 +10,7 @@ import moment from "moment";
 import { DashboardTableOfContents } from "@/components/toc";
 import { getTableOfContents } from "@/utils/toc";
 import { ReadMoreSection } from "./components";
+import { Comments } from "@/components/Comments";
 
 interface PostPageProps {
   params: {
@@ -112,6 +113,10 @@ export default async function PostPage(props: {
             <DashboardTableOfContents toc={toc} />
           </div>
         </div>
+      </div>
+
+      <div className='comment mt-10 border-t border-gray-700 pt-10'>
+        <Comments />
       </div>
 
       <ReadMoreSection
