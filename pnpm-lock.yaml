@@ -57,9 +57,6 @@ importers:
       contentlayer2:
         specifier: 0.5.3
         version: 0.5.3(acorn@8.14.1)(esbuild@0.25.3)
-      dracula-prism:
-        specifier: ^2.1.13
-        version: 2.1.16
       eslint:
         specifier: ^7.32.0
         version: 7.32.0
@@ -93,18 +90,9 @@ importers:
       next-contentlayer2:
         specifier: 0.5.3
         version: 0.5.3(acorn@8.14.1)(contentlayer2@0.5.3(acorn@8.14.1)(esbuild@0.25.3))(esbuild@0.25.3)(next@15.3.1(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      next-mdx-remote:
-        specifier: ^5.0.0
-        version: 5.0.0(@types/react@19.1.2)(acorn@8.14.1)(react@19.1.0)
-      next-share:
-        specifier: ^0.20.0
-        version: 0.20.0(react@19.1.0)
       next-themes:
         specifier: ^0.2.1
         version: 0.2.1(next@15.3.1(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      prismjs:
-        specifier: ^1.29.0
-        version: 1.29.0
       react:
         specifier: 19.1.0
         version: 19.1.0
@@ -198,16 +186,8 @@ packages:
   '@babel/code-frame@7.12.11':
     resolution: {integrity: sha512-Zt1yodBx1UcyiePMSkWnU4hPqhwq7hGi2nFL1LeA3EUl+q2LQx16MISgJ0+z7dnmgvP9QtIleuETGOiOH1RcIw==}
 
-  '@babel/code-frame@7.26.2':
-    resolution: {integrity: sha512-RJlIHRueQgwWitWgF8OdFYGZX328Ax5BCemNGlqHfplnRT9ESi8JkFlvaVYbS+UubVY6dpv87Fs2u5M29iNFVQ==}
-    engines: {node: '>=6.9.0'}
-
   '@babel/helper-validator-identifier@7.22.20':
     resolution: {integrity: sha512-Y4OZ+ytlatR8AI+8KZfKuL5urKp7qey08ha31L8b3BwewJAoJamTzyvxPR/5D+KkdJCGPq/+8TukHBlY10FX9A==}
-    engines: {node: '>=6.9.0'}
-
-  '@babel/helper-validator-identifier@7.25.9':
-    resolution: {integrity: sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==}
     engines: {node: '>=6.9.0'}
 
   '@babel/highlight@7.24.2':
@@ -1545,14 +1525,6 @@ packages:
     resolution: {integrity: sha512-t/Ygsytq+R995EJ5PZlD4Cu56sWa8InXySaViRzw9apusqsOO2bQP+SbYzAhR0pFKoB+43lYy8rWban9JSuXnA==}
     engines: {node: '>= 0.4'}
 
-  debug@2.6.9:
-    resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
-
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
     peerDependencies:
@@ -1610,9 +1582,6 @@ packages:
   doctrine@3.0.0:
     resolution: {integrity: sha512-yS+Q5i3hBf7GBkd4KG8a7eBNNWNGLTaEwwYWUijIYM7zrlYDM0BFXHjjPWlWZ1Rg7UaddZeIDmi9jF3HmqiQ2w==}
     engines: {node: '>=6.0.0'}
-
-  dracula-prism@2.1.16:
-    resolution: {integrity: sha512-fNZU8sMYOFYq/K8WFtsVUJEHemYlQJy7E3wm+Lndp3hTWG+Hp3+sCcbQdWVvQTfw+xIJeI+mIrjfUWHb9Q/s2Q==}
 
   emoji-regex-xs@1.0.0:
     resolution: {integrity: sha512-LRlerrMYoIDrT6jgpeZ2YYl/L8EulRTt5hQcYjy5AInh7HWXKimpqx68aknBFpGL2+/IcogTcaydJEgaTmOpDg==}
@@ -2264,9 +2233,6 @@ packages:
     resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
     hasBin: true
 
-  jsonp@0.2.1:
-    resolution: {integrity: sha512-pfog5gdDxPdV4eP7Kg87M8/bHgshlZ5pybl+yKxAnCZ5O7lCIn7Ixydj03wOlnDQesky2BPyA91SQ+5Y/mNwzw==}
-
   jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
     engines: {node: '>=4.0'}
@@ -2596,9 +2562,6 @@ packages:
   moment@2.30.1:
     resolution: {integrity: sha512-uEmtNhbDOrWPFS+hdjFCBfy9f2YoyzRpwcl+DqpC6taX21FzsTLQVbMV/W7PzNSX6x/bhC1zA3c2UQ5NzH6how==}
 
-  ms@2.0.0:
-    resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
-
   ms@2.1.2:
     resolution: {integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==}
 
@@ -2625,18 +2588,6 @@ packages:
       next: '>=12.0.0'
       react: ^18 || ^19 || ^19.0.0-rc
       react-dom: ^18 || ^19 || ^19.0.0-rc
-
-  next-mdx-remote@5.0.0:
-    resolution: {integrity: sha512-RNNbqRpK9/dcIFZs/esQhuLA8jANqlH694yqoDBK8hkVdJUndzzGmnPHa2nyi90N4Z9VmzuSWNRpr5ItT3M7xQ==}
-    engines: {node: '>=14', npm: '>=7'}
-    peerDependencies:
-      react: '>=16'
-
-  next-share@0.20.0:
-    resolution: {integrity: sha512-7EZem/fJe9QljTt4SrhKzKjC5i+aiBw5YxIGJNH1+G+El0tKzwAYcrm35KWe+R3j4apqWl+Bpyjo2FKbpj7fow==}
-    engines: {node: '>=8', npm: '>=5'}
-    peerDependencies:
-      react: '>=17.0.2'
 
   next-themes@0.2.1:
     resolution: {integrity: sha512-B+AKNfYNIzh0vqQQKqQItTS8evEouKD7H5Hj3kmuPERwddR2TxvDSFZuTj6T7Jfn1oyeUyJMydPl1Bkxkh0W7A==}
@@ -2789,10 +2740,6 @@ packages:
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
     engines: {node: '>= 0.8.0'}
-
-  prismjs@1.29.0:
-    resolution: {integrity: sha512-Kx/1w86q/epKcmte75LNrEoT+lX8pBpavuAbvJWRXar7Hz8jrtF+e3vY751p0R8H9HdArwaCTNDDzHg/ScJK1Q==}
-    engines: {node: '>=6'}
 
   progress@2.0.3:
     resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
@@ -3274,9 +3221,6 @@ packages:
   unist-util-position@5.0.0:
     resolution: {integrity: sha512-fucsC7HjXvkB5R3kTCO7kUjRdrS0BJt3M/FPxmHMBOm8JQi2BsHAHFsy27E0EolP8rp0NzXsJ+jNPyDWvOJZPA==}
 
-  unist-util-remove@3.1.1:
-    resolution: {integrity: sha512-kfCqZK5YVY5yEa89tvpl7KnBBHu2c6CzMkqHUrlOqaRgGOMp0sMvwWOVrbAtj03KhovQB7i96Gda72v/EFE0vw==}
-
   unist-util-stringify-position@4.0.0:
     resolution: {integrity: sha512-0ASV06AAoKCDkS2+xw5RXJywruurpbC4JZSm7nr7MOt1ojAzvyyaO+UxZf18j8FCF6kmzCZKcAgN/yu2gm2XgQ==}
 
@@ -3307,9 +3251,6 @@ packages:
 
   vfile-location@5.0.3:
     resolution: {integrity: sha512-5yXvWDEgqeiYiBe1lbxYF7UMAIm/IcopxMHrMQDq3nvKcjPKIhZklUKL+AE7J7uApI4kwe2snsK+eI6UTj9EHg==}
-
-  vfile-matter@5.0.1:
-    resolution: {integrity: sha512-o6roP82AiX0XfkyTHyRCMXgHfltUNlXSEqCIS80f+mbAyiQBE2fxtDVMtseyytGx75sihiJFo/zR6r/4LTs2Cw==}
 
   vfile-message@4.0.2:
     resolution: {integrity: sha512-jRDZ1IMLttGj41KcZvlrYAaI3CfqpLpfpf+Mfig13viT6NKvRzWZ+lXz0Y5D60w6uJIBAOGq9mSHf0gktF0duw==}
@@ -3386,15 +3327,7 @@ snapshots:
     dependencies:
       '@babel/highlight': 7.24.2
 
-  '@babel/code-frame@7.26.2':
-    dependencies:
-      '@babel/helper-validator-identifier': 7.25.9
-      js-tokens: 4.0.0
-      picocolors: 1.0.0
-
   '@babel/helper-validator-identifier@7.22.20': {}
-
-  '@babel/helper-validator-identifier@7.25.9': {}
 
   '@babel/highlight@7.24.2':
     dependencies:
@@ -4736,10 +4669,6 @@ snapshots:
       es-errors: 1.3.0
       is-data-view: 1.0.1
 
-  debug@2.6.9:
-    dependencies:
-      ms: 2.0.0
-
   debug@3.2.7:
     dependencies:
       ms: 2.1.3
@@ -4787,8 +4716,6 @@ snapshots:
   doctrine@3.0.0:
     dependencies:
       esutils: 2.0.3
-
-  dracula-prism@2.1.16: {}
 
   emoji-regex-xs@1.0.0: {}
 
@@ -5676,12 +5603,6 @@ snapshots:
     dependencies:
       minimist: 1.2.8
 
-  jsonp@0.2.1:
-    dependencies:
-      debug: 2.6.9
-    transitivePeerDependencies:
-      - supports-color
-
   jsx-ast-utils@3.3.5:
     dependencies:
       array-includes: 3.1.8
@@ -6286,8 +6207,6 @@ snapshots:
 
   moment@2.30.1: {}
 
-  ms@2.0.0: {}
-
   ms@2.1.2: {}
 
   ms@2.1.3: {}
@@ -6311,27 +6230,6 @@ snapshots:
       - acorn
       - esbuild
       - markdown-wasm
-      - supports-color
-
-  next-mdx-remote@5.0.0(@types/react@19.1.2)(acorn@8.14.1)(react@19.1.0):
-    dependencies:
-      '@babel/code-frame': 7.26.2
-      '@mdx-js/mdx': 3.1.0(acorn@8.14.1)
-      '@mdx-js/react': 3.1.0(@types/react@19.1.2)(react@19.1.0)
-      react: 19.1.0
-      unist-util-remove: 3.1.1
-      vfile: 6.0.3
-      vfile-matter: 5.0.1
-    transitivePeerDependencies:
-      - '@types/react'
-      - acorn
-      - supports-color
-
-  next-share@0.20.0(react@19.1.0):
-    dependencies:
-      jsonp: 0.2.1
-      react: 19.1.0
-    transitivePeerDependencies:
       - supports-color
 
   next-themes@0.2.1(next@15.3.1(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0):
@@ -6506,8 +6404,6 @@ snapshots:
       source-map-js: 1.2.1
 
   prelude-ls@1.2.1: {}
-
-  prismjs@1.29.0: {}
 
   progress@2.0.3: {}
 
@@ -7124,12 +7020,6 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
-  unist-util-remove@3.1.1:
-    dependencies:
-      '@types/unist': 2.0.11
-      unist-util-is: 5.2.1
-      unist-util-visit-parents: 5.1.3
-
   unist-util-stringify-position@4.0.0:
     dependencies:
       '@types/unist': 3.0.3
@@ -7170,11 +7060,6 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
       vfile: 6.0.3
-
-  vfile-matter@5.0.1:
-    dependencies:
-      vfile: 6.0.3
-      yaml: 2.4.1
 
   vfile-message@4.0.2:
     dependencies:

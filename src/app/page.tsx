@@ -1,13 +1,16 @@
 import { BlogCard } from "@/components/BlogCard";
 import { CategoryList, IntroBlock } from "@/components/IntroBlock";
 import { TopicTitle } from "@/components/TopicTitle";
+import { HeroSection } from "@/components/HeroSection";
 
 import { allPosts } from "contentlayer/generated";
 
 export default async function Home() {
   return (
-    <section className='container mx-auto'>
-      <article className='flex lg:gap-10'>
+    <section className='min-h-screen container mx-auto'>
+      <HeroSection />
+
+      <article className='flex lg:gap-10 mt-10'>
         <ul className='w-full flex flex-wrap justify-center gap-6'>
           {allPosts.map((post) => (
             <li key={post.slug}>

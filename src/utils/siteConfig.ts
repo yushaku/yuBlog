@@ -1,6 +1,6 @@
-import { link } from "fs";
 
 export const siteConfig = {
+  logo: "/logo.png",
   name: "Yushaku blog",
   url: "https://hookcn.ouassim.tech",
   ogImage: "https://hookcn.ouassim.tech/og.png",
