@@ -3,7 +3,7 @@
 import * as React from "react";
 import { CheckIcon, ClipboardIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils";
 import { Button, type ButtonProps } from "@/components/ui/button";
 
 interface CopyButtonProps extends ButtonProps {

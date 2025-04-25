@@ -51,25 +51,24 @@ export const GradientCard = ({
             "linear-gradient(135deg, #3BC4F2, #7A69F9,#F26378,#F5833F)",
         }}
       />
-      <div className='absolute inset-px rounded-[19px] bg-neutral-100/80 dark:bg-neutral-900/80' />
+
+      <div className='absolute inset-px rounded-[19px] bg-sidebar/80' />
+
       {children && (
         <div
           className={cn(
-            "gird relative h-40 place-content-center overflow-hidden rounded-[15px] border-white bg-white/70 dark:border-neutral-950 dark:bg-black/50",
+            "gird relative h-40 place-content-center overflow-hidden rounded-[15px] border bg-background/80",
             className
           )}
         >
           {children}
         </div>
       )}
+
       <div className='relative px-4 pt-4 pb-2'>
-        <h3 className='font-semibold text-lg text-neutral-800 dark:text-neutral-300'>
-          {title}
-        </h3>
+        <h3 className='font-semibold text-lg text-foreground'>{title}</h3>
         {description && (
-          <p className='mt-2 text-neutral-600 dark:text-neutral-400'>
-            {description}
-          </p>
+          <p className='mt-2 text-muted-foreground'>{description}</p>
         )}
       </div>
     </div>

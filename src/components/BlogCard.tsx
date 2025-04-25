@@ -11,36 +11,21 @@ type BlogPost = {
   slug: string;
 };
 
-export const BlogCard = ({
-  title,
-  date,
-  description,
-  thumbnail,
-  slug,
-}: BlogPost) => {
+export const ListItem = ({ title, date, description, slug }: BlogPost) => {
   return (
-    <article className='group w-full md:w-[300px] bg-background rounded-lg border border-gray-700 overflow-hidden'>
-      <Link href={slug}>
-        <div className='relative hidden md:block h-[200px] w-full overflow-hidden'>
-          <Image
-            src={thumbnail ?? "/images/default-thumbnail.svg"}
-            alt={title}
-            placeholder='empty'
-            object-fit='cover'
-            sizes='384px'
-            fill
-          />
-        </div>
+    <article className='group w-full max-w-2xl hover:bg-card/50 rounded-lg p-6 transition-colors'>
+      <Link href={slug} className='block'>
+        <p className='text-grayColor text-sm mb-2'>
+          {moment(date).format("MMMM D, YYYY")}
+        </p>
 
-        <div className='p-6'>
-          <p className='text-grayColor text-sm'>
-            <span>Posted on {moment(date).format("LL")}</span>
-          </p>
-          <h3 className='text-foreground group-hover:text-primary my-2 text-xl font-semibold line-clamp-2'>
-            {title}
-          </h3>
-          <p className='text-grayColor line-clamp-3 text-sm'>{description}</p>
-        </div>
+        <h3 className='text-foreground group-hover:text-primary text-2xl font-bold mb-3'>
+          {title}
+        </h3>
+
+        <p className='text-grayColor text-base leading-relaxed'>
+          {description}
+        </p>
       </Link>
     </article>
   );

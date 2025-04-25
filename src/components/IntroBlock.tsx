@@ -5,10 +5,13 @@ import Link from "next/link";
 import React from "react";
 import { IconArrowRight, IconGithub, IconLinkedin } from "./Icons";
 import { siteConfig } from "@/utils/siteConfig";
+import { BorderTrail } from "./cuicui/cards";
+import { cn } from "@/utils";
 
 export const IntroBlock = () => {
   return (
     <Warper className='relative animate-fade-down animate-once animate-delay-200'>
+      <BorderTrail size={120} />
       <Image
         src='/map-doted.png'
         alt='dot_map_world'
@@ -45,10 +48,16 @@ export const Warper = ({
   children: any;
   className?: string;
 }) => {
-  const classes = `mx-auto h-fit mb-10 py-6 flex border border-foreground/30 max-w-[350px] flex-col items-center justify-center gap-y-4 rounded-lg px-6 text-center shadow-lg ${
-    className ?? ""
-  }`;
-  return <article className={classes}>{children}</article>;
+  return (
+    <article
+      className={cn(
+        "mx-auto h-fit mb-10 bg-sidebar/50 py-6 flex max-w-[350px] flex-col items-center justify-center gap-y-4 rounded-lg px-6 text-center shadow-lg",
+        className
+      )}
+    >
+      {children}
+    </article>
+  );
 };
 
 export const CategoryList = () => {
