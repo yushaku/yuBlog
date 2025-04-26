@@ -12,7 +12,7 @@ export const topItems = [
   },
   {
     title: "About me",
-    href: "https://yu-portfolio.vercel.app/",
+    href: "about",
   },
 ];
 

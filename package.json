@@ -42,6 +42,7 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-hot-toast": "^2.4.1",
+    "react-icon-cloud": "^4.1.7",
     "react-wrap-balancer": "^1.1.1",
     "rehype-pretty-code": "^0.14.1",
     "rehype-slug": "^6.0.0",

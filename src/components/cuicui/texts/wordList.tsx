@@ -49,7 +49,7 @@ interface WordObject {
   needsSpace: boolean;
 }
 
-const WordListSwap = forwardRef<WordListSwapRef, WordListSwapProps>(
+export const WordListSwap = forwardRef<WordListSwapRef, WordListSwapProps>(
   (
     {
       texts,
