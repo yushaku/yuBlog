@@ -29,9 +29,9 @@ export function FormInput<TType>({
   );
 
   return (
-    <div className="relative">
+    <div className='relative'>
       {label && (
-        <label className="text-grayColor mb-3 text-base font-bold">
+        <label className='text-grayColor mb-3 text-base font-bold'>
           {label}
         </label>
       )}
@@ -49,13 +49,13 @@ export function FormInput<TType>({
 
       {type === "password" && (
         <span
-          className="absolute right-5 top-[46px] z-20 w-7 h-7 cursor-pointer"
+          className='absolute right-5 top-[46px] z-20 w-7 h-7 cursor-pointer'
           onClick={() => setIsShowPassword(!isShowPassword)}
         >
           {isShowPassword ? (
-            <EyeSlashIcon color="#234f66" />
+            <EyeSlashIcon color='#234f66' />
           ) : (
-            <EyeIcon color="#234f66" />
+            <EyeIcon color='#234f66' />
           )}
         </span>
       )}

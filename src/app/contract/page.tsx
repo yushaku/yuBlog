@@ -3,55 +3,14 @@
 import { FormInput } from "@/components/Forms";
 import { Meteors } from "@/components/Meteors";
 import { Button } from "@/components/ui/button";
-import emailjs from "@emailjs/browser";
-import { useFormik } from "formik";
+import { SendIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import { toast } from "react-hot-toast";
-import * as Yup from "yup";
+import { FormContact, useContactForm } from "@/hooks/useContactForm";
 
-type FormContact = {
-  email: string;
-  firstName: string;
-  lastName: string;
-  message: string;
-};
-
-const {
-  YOUR_SERVICE_ID = "",
-  YOUR_TEMPLATE_ID = "",
-  PUBLIC_API_KEY = "",
-} = process.env;
-
-const MeteorPreview = () => {
+export default function ContactPage() {
   const { handleSubmit, handleChange, isValid, isSubmitting, values, errors } =
-    useFormik({
-      validateOnChange: false,
-      initialValues: {
-        email: "",
-        firstName: "",
-        lastName: "",
-        message: "",
-      },
-      validationSchema: Yup.object().shape({
-        email: Yup.string()
-          .email("Please enter your email")
-          .required("This field is required"),
-        firstName: Yup.string().required("Please let me know your name"),
-        lastName: Yup.string(),
-        message: Yup.string().required("You don't have any thing to say?"),
-      }),
-      onSubmit: (values, { resetForm }) => {
-        console.log(values);
-        emailjs
-          .send(YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, values, PUBLIC_API_KEY)
-          .then(() => {
-            toast.success("thanks! your email has be sended");
-            resetForm();
-          })
-          .catch(() => toast.error("send email failed"));
-      },
-    });
+    useContactForm();
 
   const animation = "animate-fade-down animate-once animate-duration-1000";
 
@@ -61,7 +20,7 @@ const MeteorPreview = () => {
         <div className='absolute hidden inset-0 h-full w-full bg-linear-to-r from-blue-500 to-teal-500 transform scale-[0.70] bg-red-500 rounded-full blur-3xl' />
 
         <div className='relative shadow-xl border py-8 px-8 h-full overflow-hidden rounded-2xl flex items-center'>
-          <Meteors number={10} />
+          {/* <Meteors number={10} /> */}
 
           <div>
             <h1
@@ -84,7 +43,6 @@ const MeteorPreview = () => {
                   onChange={handleChange}
                   name='firstName'
                   placeholder='First name'
-                  className=''
                 />
 
                 <FormInput<FormContact>
@@ -93,7 +51,6 @@ const MeteorPreview = () => {
                   onChange={handleChange}
                   name='lastName'
                   placeholder='Last name'
-                  className=''
                 />
               </label>
 
@@ -118,12 +75,12 @@ const MeteorPreview = () => {
 
               <Button
                 type='submit'
-                title='Send'
-                // Icon={<SendIcon className='stroke-foreground' />}
                 disabled={!isValid || isSubmitting}
-                className={`mt-4 border border-gray-700 hover:bg-foreground ${animation} animate-delay-700`}
+                className={`mt-4 w-full h-14 border bg-card hover:bg-primary ${animation} animate-delay-700`}
                 onClick={() => handleSubmit()}
-              />
+              >
+                Send <SendIcon className='stroke-foreground' />
+              </Button>
             </div>
           </div>
 
@@ -140,6 +97,4 @@ const MeteorPreview = () => {
       </article>
     </section>
   );
-};
-
-export default MeteorPreview;
+}
