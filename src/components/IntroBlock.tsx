@@ -7,7 +7,7 @@ import { IconArrowRight, IconGithub, IconLinkedin } from "./Icons";
 import { siteConfig } from "@/utils/siteConfig";
 import { BorderTrail } from "./cuicui/cards";
 import { cn } from "@/utils";
-import { ShinyBorderButton } from "./cuicui/ShinyBorderButton";
+import { ShinyText } from "./cuicui/texts";
 
 export const Warper = ({
   children,
@@ -30,7 +30,7 @@ export const Warper = ({
 
 export const IntroBlock = () => {
   return (
-    <Warper className='relative animate-fade-down animate-once animate-delay-200'>
+    <Warper className='relative border border-transparent hover:border-border animate-fade-down animate-once animate-delay-200'>
       <BorderTrail size={160} />
       <Image
         src='/map-doted.png'
@@ -41,7 +41,9 @@ export const IntroBlock = () => {
         sizes='326px'
         fill
       />
-      <h3 className='text-foreground text-xl font-semibold'>Dev Lào</h3>
+      <h3 className='text-foreground text-xl font-semibold'>
+        <ShinyText className='text-xl font-medium'>{siteConfig.name}</ShinyText>
+      </h3>
       <p className='text-grayColor text-sm'>
         Become better Full-stack developer. Following our tips, tricks and real
         life experiences.
@@ -73,7 +75,7 @@ export const CategoryList = () => {
           return (
             <li key={index} className='group'>
               <Link
-                href={`/category/${el.href}`}
+                href={`/category/${el.title.toLowerCase()}`}
                 className='flex items-center py-3 '
               >
                 <IconArrowRight className='animationShow mr-2 rotate-180 w-4 h-4 stroke-foreground group-hover:mr-4' />

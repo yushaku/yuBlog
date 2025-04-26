@@ -1,6 +1,6 @@
-import { CategoryList, IntroBlock } from "@/components/IntroBlock";
+import { IntroBlock } from "@/components/IntroBlock";
 import { TopicTitle } from "@/components/TopicTitle";
-import { HeroSection } from "@/components/HeroSection";
+// import { IntroSection } from "@/components/HeroSection";
 import Image from "next/image";
 
 import { allPosts } from "contentlayer/generated";
@@ -12,7 +12,7 @@ import { topics } from "@/utils/constants";
 export default async function Home() {
   return (
     <section className='min-h-screen max-w-7xl mx-auto'>
-      {/* <HeroSection /> */}
+      {/* <IntroSection /> */}
 
       <TopicTitle title='Map of Contents' className='my-12' />
 
