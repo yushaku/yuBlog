@@ -7,39 +7,7 @@ import { IconArrowRight, IconGithub, IconLinkedin } from "./Icons";
 import { siteConfig } from "@/utils/siteConfig";
 import { BorderTrail } from "./cuicui/cards";
 import { cn } from "@/utils";
-
-export const IntroBlock = () => {
-  return (
-    <Warper className='relative animate-fade-down animate-once animate-delay-200'>
-      <BorderTrail size={120} />
-      <Image
-        src='/map-doted.png'
-        alt='dot_map_world'
-        loading='lazy'
-        placeholder='empty'
-        object-fit='cover'
-        sizes='326px'
-        fill
-      />
-      <h3 className='text-foreground text-xl font-semibold'>
-        Dev &quot;phèn&quot;
-      </h3>
-      <p className='text-grayColor text-sm'>
-        From &quot;Phèn&quot; developer Become better Full-stack developer.
-        Following our tips, tricks and real life experiences.
-      </p>
-      <span className='flex gap-4'>
-        <Link href={siteConfig.links.linkedin}>
-          <IconLinkedin className='fill-white hover:fill-primary' />
-        </Link>
-
-        <Link href={siteConfig.links.github}>
-          <IconGithub className='fill-white hover:fill-primary' />
-        </Link>
-      </span>{" "}
-    </Warper>
-  );
-};
+import { ShinyBorderButton } from "./cuicui/ShinyBorderButton";
 
 export const Warper = ({
   children,
@@ -51,7 +19,7 @@ export const Warper = ({
   return (
     <article
       className={cn(
-        "mx-auto h-fit mb-10 bg-sidebar/50 py-6 flex max-w-[350px] flex-col items-center justify-center gap-y-4 rounded-lg px-6 text-center shadow-lg",
+        "mx-auto h-fit mb-10 bg-sidebar/50 py-6 flex flex-col items-center justify-center gap-y-4 rounded-lg px-6 text-center shadow-lg",
         className
       )}
     >
@@ -60,10 +28,45 @@ export const Warper = ({
   );
 };
 
+export const IntroBlock = () => {
+  return (
+    <Warper className='relative animate-fade-down animate-once animate-delay-200'>
+      <BorderTrail size={160} />
+      <Image
+        src='/map-doted.png'
+        alt='dot_map_world'
+        loading='lazy'
+        placeholder='empty'
+        object-fit='cover'
+        sizes='326px'
+        fill
+      />
+      <h3 className='text-foreground text-xl font-semibold'>Dev Lào</h3>
+      <p className='text-grayColor text-sm'>
+        Become better Full-stack developer. Following our tips, tricks and real
+        life experiences.
+      </p>
+      <span className='flex gap-4'>
+        <Link href={siteConfig.links.linkedin}>
+          <IconLinkedin className='fill-white hover:fill-primary' />
+        </Link>
+
+        <Link href={siteConfig.links.github}>
+          <IconGithub className='fill-white hover:fill-primary' />
+        </Link>
+      </span>
+
+      {/* <ShinyBorderButton>
+        <Link href='/about'>About Me</Link>
+      </ShinyBorderButton> */}
+    </Warper>
+  );
+};
+
 export const CategoryList = () => {
   return (
     <Warper className='w-[350px] animate-fade-down animate-once animate-delay-600'>
-      <TopicTitle title='Explore Topics' />
+      <TopicTitle title='Popular Content' />
 
       <ul className='divide-grayColor/40 w-full divide-y'>
         {topics.map((el, index) => {

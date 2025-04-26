@@ -1,3 +1,5 @@
+import { IconEth, IconNodejs, IconReact, IconTypescript } from "@/components/Icons";
+
 export const topItems = [
   {
     title: "Article",
@@ -16,22 +18,22 @@ export const topItems = [
 export const topics = [
   {
     title: "Typescript",
-    href: "Typescript",
+    description: "Typescript is a superset of JavaScript that adds optional static typing to the language.",
+    logo: IconTypescript,  
   },
   {
-    title: "React JS",
-    href: "React",
+    title: "ReactJS",
+    description: "A JavaScript library for building user interfaces with reusable components and efficient DOM updates.",
+    logo: IconReact
   },
   {
     title: "Nodejs",
-    href: "Nodejs",
+    description: "A JavaScript runtime built on Chrome's V8 JavaScript engine for building scalable network applications.",
+    logo: IconNodejs
   },
   {
-    title: "Nvim",
-    href: "Nvim",
-  },
-  {
-    title: "Solidity",
-    href: "Solidity",
-  },
+    title: "Ethereum",
+    description: "A decentralized blockchain platform that enables smart contracts and decentralized applications (DApps).",
+    logo: IconEth
+  }
 ];
