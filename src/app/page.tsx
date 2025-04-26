@@ -18,16 +18,18 @@ export default async function Home() {
 
       <div className='grid grid-cols-2 md:grid-cols-4 gap-5'>
         {topics.map(({ title, description, logo: Logo }) => (
-          <GradientCard
-            key={title}
-            title={title}
-            description={description}
-            withArrow={true}
-            circleSize={400}
-            className='flex items-center justify-center'
-          >
-            <Logo className='size-20' />
-          </GradientCard>
+          <Link href={`/mocs/${title.toLocaleLowerCase()}`}>
+            <GradientCard
+              key={title}
+              title={title}
+              description={description}
+              withArrow={true}
+              circleSize={400}
+              className='flex items-center justify-center'
+            >
+              <Logo className='size-20' />
+            </GradientCard>
+          </Link>
         ))}
       </div>
 

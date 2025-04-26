@@ -5,6 +5,9 @@ import Link from "next/link";
 import { SocialMedia } from "./SocialMedia";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { Switch } from "./ui/switch";
+import { ShinyText } from "./cuicui/texts";
+import { siteConfig } from "@/utils/siteConfig";
+import { cn } from "@/utils";
 
 type Props = {
   ontoggleSideBar: () => void;
@@ -22,12 +25,17 @@ export const Sidebar = ({ topItems, ontoggleSideBar, showSidebar }: Props) => {
   return (
     <section>
       <div
-        className={`${positionStyle} animationShow fixed top-0 z-50 flex h-screen w-[300px] flex-col justify-between bg-sidebar px-8 py-10 shadow-lg`}
+        className={cn(
+          "fixed top-0 z-50 flex h-screen w-[300px] flex-col justify-between bg-sidebar px-8 py-10",
+          "shadow-lg transition-all duration-300 ease-in-out",
+          positionStyle
+        )}
       >
         <ul className='flex flex-col gap-6'>
-          <h3 className='text-foreground mb-4 text-xl font-semibold'>
-            Dev &quot;phèn&quot;
-          </h3>
+          <ShinyText className='text-xl font-medium'>
+            {siteConfig.name}
+          </ShinyText>
+
           {topItems.map((el, index) => {
             return (
               <li
@@ -55,8 +63,8 @@ export const Sidebar = ({ topItems, ontoggleSideBar, showSidebar }: Props) => {
       </div>
 
       <div
-        className={`fixed top-0 z-30 h-screen w-screen bg-white/30 dark:bg-dark/50 ${
-          showSidebar ? "block" : "hidden"
+        className={`fixed top-0 z-30 h-screen w-screen bg-white/30 dark:bg-dark/50 transition-opacity duration-300 ease-in-out ${
+          showSidebar ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         onClick={ontoggleSideBar}
       ></div>

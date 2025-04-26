@@ -14,7 +14,7 @@ export const GradientCard = ({
   children,
   size = "md",
 }: {
-  title: string;
+  title?: string;
   description?: string;
   withArrow?: boolean;
   circleSize?: number;
@@ -65,8 +65,12 @@ export const GradientCard = ({
         </div>
       )}
 
-      <div className='relative px-4 pt-4 pb-2'>
-        <h3 className='font-semibold text-lg text-foreground'>{title}</h3>
+      <div
+        className={cn("relative", (title || description) && "px-4 pt-4 pb-2")}
+      >
+        {title && (
+          <h3 className='font-semibold text-lg text-foreground'>{title}</h3>
+        )}
         {description && (
           <p className='mt-2 text-muted-foreground'>{description}</p>
         )}
