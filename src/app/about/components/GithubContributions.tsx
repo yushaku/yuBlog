@@ -5,6 +5,7 @@ import Link from "next/link";
 import Calendar from "./GithubCalender";
 import { IconGithub } from "@/components/Icons";
 import AnimateCounter from "./AnimateCounter";
+import { siteConfig } from "@/utils/siteConfig";
 
 export function GithubContributions() {
   const [data, setData] = useState<any>(null);
@@ -64,7 +65,7 @@ export function GithubContributions() {
               <span>My </span>
               <Link
                 target='_blank'
-                href='https://github.com/saif-arshad'
+                href={siteConfig.links.github}
                 className='text-primary hover:underline px-1'
               >
                 Github

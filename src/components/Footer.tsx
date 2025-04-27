@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function FooterSection() {
   return (
-    <footer className='py-16 border-t'>
+    <footer className='py-8 border-t my-8'>
       <div className='mx-auto max-w-5xl px-6'>
         <Link href='/' aria-label='go home' className='mx-auto block size-fit'>
           <Image

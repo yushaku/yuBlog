@@ -226,3 +226,12 @@
   transform: translateX(130px);
 }
 
+@keyframes looping-tag {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}

@@ -6,13 +6,11 @@ import { LayoutGroup, motion } from "motion/react";
 import Link from "next/link";
 import IconCloud from "./icon-cloud";
 
-export default function AboutHero() {
+export const AboutHero = () => {
   const slugs = [
     "typescript",
     "javascript",
-    "mysql",
     "python",
-    "vue",
     "react",
     "reactnative",
     "postman",
@@ -21,7 +19,7 @@ export default function AboutHero() {
     "nodedotjs",
     "express",
     "prisma",
-    "amazonaws",
+    "aws",
     "postgresql",
     "firebase",
     "nginx",
@@ -37,6 +35,10 @@ export default function AboutHero() {
     "visualstudiocode",
     "nextjs",
     "figma",
+    "solidity",
+    "ethereum",
+    "solana",
+    "neovim",
   ];
   return (
     <div className='flex flex-wrap w-full px-4 sm:px-5 lg:px-10 items-start mb-20'>
@@ -55,7 +57,7 @@ export default function AboutHero() {
                   "Blockchain developer",
                   "🕶️🕶️🕶️",
                 ]}
-                mainClassName='text-white px-2 sm:px-2 md:px-3 overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg'
+                mainClassName='text-foreground px-2 sm:px-2 md:px-3 overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg'
                 staggerFrom={"last"}
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
@@ -70,48 +72,40 @@ export default function AboutHero() {
         </div>
 
         <div className='flex flex-col items-start sm:pl-[10px]'>
-          <p className='mt-5 text-white sm:text-lg'>
+          <p className='mt-5 text-foreground sm:text-lg'>
             I am a Full-Stack Developer specializing in both
-            <span className='text-primaryColor font-semibold px-1'>web</span>
+            <span className='text-primary font-semibold px-1'>web</span>
             and
-            <span className='text-primaryColor font-semibold px-1'>mobile</span>
+            <span className='text-primary font-semibold px-1'>mobile</span>
             applications.
           </p>
-          <p className='mt-1 text-white sm:text-lg leading-relaxed'>
+          <p className='mt-1 text-foreground sm:text-lg leading-relaxed'>
             I handle both the
-            <span className='text-primaryColor font-semibold px-1'>
-              frontend
-            </span>
-            (<span className='italic'>the interface you see on the screen</span>
-            ) and the
-            <span className='text-primaryColor font-semibold px-1'>
-              backend
-            </span>
-            (
+            <span className='text-primary font-semibold px-1'>frontend</span>(
+            <span className='italic'>the interface you see on the screen</span>)
+            and the
+            <span className='text-primary font-semibold px-1'>backend</span>(
             <span className='italic'>
               the behind-the-scenes logic and infrastructure
             </span>
             ).
           </p>
-          <p className='mt-1 text-white sm:text-lg leading-relaxed'>
+          <p className='mt-1 text-foreground sm:text-lg leading-relaxed'>
             I create clean, responsive, engaging, and accessible digital
             experiences. My expertise lies in crafting
-            <span className='text-primaryColor font-semibold px-1'>
-              complex
-            </span>
-            ,<span className='text-primaryColor font-semibold px-1'>fast</span>,
-            and
-            <span className='text-primaryColor font-semibold px-1'>
+            <span className='text-primary font-semibold px-1'>complex</span>,
+            <span className='text-primary font-semibold px-1'>fast</span>, and
+            <span className='text-primary font-semibold px-1'>
               functional
             </span>{" "}
             digital products that deliver
-            <span className='text-primaryColor font-semibold px-1'>
+            <span className='text-primary font-semibold px-1'>
               exceptional user experiences
             </span>
             .
           </p>
           <Link href={`/resume`}>
-            <button className='bg-emerald-700 hover:bg-emerald-800 mt-7 items-center flex text-white p-2 rounded-full px-5 group'>
+            <button className='bg-emerald-700 hover:bg-emerald-800 mt-7 items-center flex text-foreground p-2 rounded-full px-5 group'>
               <FileUser className='h-5 w-5 me-2 group-hover:animate-shake' />
               My Resume
             </button>
@@ -124,4 +118,4 @@ export default function AboutHero() {
       </div>
     </div>
   );
-}
+};

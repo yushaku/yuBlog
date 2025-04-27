@@ -8,7 +8,7 @@ import {
 export const topItems = [
   {
     title: "Contact",
-    href: "/contract",
+    href: "/contact",
   },
   {
     title: "About me",
@@ -38,7 +38,7 @@ export const topics = [
   {
     title: "Ethereum",
     description:
-      "A decentralized blockchain platform that enables smart contracts and decentralized applications (DApps).",
+      "A decentralized blockchain platform that enables decentralized applications.",
     logo: IconEth,
   },
 ];

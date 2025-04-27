@@ -102,13 +102,13 @@ export default async function PostPage(props: {
         </div>
       </header>
 
-      <div className='pb-12 pt-8 flex gap-10'>
-        <div>
+      <div className='flex flex-col lg:flex-row gap-6 lg:gap-10 pb-12 pt-8'>
+        <div className='w-full lg:w-[calc(100%-20rem)]'>
           <Mdx code={post.body.code} />
         </div>
 
-        <div className='hidden lg:block sticky top-20 -mt-6 h-[calc(100vh-3.5rem)] pt-4'>
-          <div className='no-scrollbar h-full space-y-4 overflow-auto pb-10'>
+        <div className='lg:sticky lg:top-20 lg:h-[calc(100vh-3.5rem)] lg:pt-4'>
+          <div className='no-scrollbar lg:h-full space-y-4 overflow-auto pb-6 lg:pb-10'>
             <DashboardTableOfContents toc={toc} />
           </div>
         </div>

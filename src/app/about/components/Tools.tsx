@@ -139,19 +139,19 @@ function Tools() {
   ];
 
   return (
-    <div className="flex flex-col w-full mt-10 px-4 lg:px-10 xl:px-20 text-gray-200">
-      <div className="mb-6 border-b border-neutral-500 border-dashed pb-4">
-        <h3 className="text-xl sm:text-2xl font-semibold">
+    <div className='flex flex-col w-full mt-10 px-4 lg:px-10 xl:px-20 text-gray-200'>
+      <div className='mb-6 border-b border-neutral-500 border-dashed pb-4'>
+        <h3 className='text-xl sm:text-2xl font-semibold'>
           Tools that I have used.
         </h3>
-        <span className="block text-sm text-primaryColor font-normal">
+        <span className='block text-sm text-primary font-normal'>
           Here's a curated list of tools and technologies that I have utilized
           in my projects to build innovative solutions.
         </span>
       </div>
 
-      <div className="flex flex-col md:flex-row w-full mt-7">
-        <div className="md:w-1/4 mb-4 sm:mb-0">
+      <div className='flex flex-col md:flex-row w-full mt-7'>
+        <div className='md:w-1/4 mb-4 sm:mb-0'>
           {TOOLS_DATA.map((item, index) => {
             const IconComponent = toolCategoryIcons[index];
 
@@ -172,7 +172,7 @@ function Tools() {
           })}
         </div>
 
-        <div className="md:w-3/4 pl-0 sm:pl-6">
+        <div className='md:w-3/4 pl-0 sm:pl-6'>
           <TransitionPanel
             activeIndex={activeIndex}
             transition={{ duration: 0.2, ease: "easeInOut" }}
@@ -183,14 +183,14 @@ function Tools() {
             }}
           >
             {TOOLS_DATA.map((item, index) => (
-              <div key={index} className="py-2">
-                <ul className="flex items-center gap-4 flex-wrap">
+              <div key={index} className='py-2'>
+                <ul className='flex items-center gap-4 flex-wrap'>
                   {item.tools.map((tool, toolIndex) => {
                     const IconComponent = toolIcons[tool];
                     return (
                       <li
                         key={toolIndex}
-                        className="flex w-max items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-5 py-2 text-[12px] sm:text-[15px] shadow-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-50"
+                        className='flex w-max items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-5 py-2 text-[12px] sm:text-[15px] shadow-sm dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-50'
                       >
                         {IconComponent && <IconComponent size={20} />}
                         <span>{tool}</span>

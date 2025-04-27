@@ -1,50 +1,57 @@
 "use client";
 
-import { TransitionPanel } from "@/app/_components/ui/Tabs";
+import { cn } from "@/utils";
+import {
+  AnimatePresence,
+  motion,
+  MotionProps,
+  Transition,
+  Variant,
+} from "motion/react";
 import React, { useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 
-function WhyUs() {
+const ITEMS = [
+  {
+    title: "Experience",
+    description:
+      "With extensive expertise, we excel in delivering bespoke mobile applications for iOS and Android. Utilizing advanced frameworks like React Native and the MERN stack, we ensure seamless collaboration to craft solutions tailored to your business needs.",
+    bullets: [
+      "A reliable and experienced partner",
+      "State-of-the-art product security",
+      "Comprehensive system security protocols",
+      "Operational excellence and integrity",
+    ],
+  },
+  {
+    title: "Why Us",
+    description:
+      "Our value goes beyond development. By choosing us, you benefit from transparent pricing, discounts for large orders, and a dedication to delivering premium-quality web and mobile solutions designed with your goals in mind.",
+    bullets: [
+      "Affordable, high-quality solutions",
+      "Customized approaches for unique challenges",
+      "Modern, responsive designs",
+      "Dedicated, ongoing technical support",
+    ],
+  },
+  {
+    title: "My Approach",
+    description:
+      "Driven by innovation, My approach ensures that every project is handled with care, from conceptualization to deployment. Leveraging cutting-edge tools like MERN stack and Next.js, we create scalable, efficient, and user-friendly digital experiences.",
+    bullets: [
+      "Providing daily updates to keep clients informed",
+      "Conducting weekly meetings to gather feedback",
+      "Delivering live demonstrations of progress",
+      "Proactively resolving challenges for seamless development",
+    ],
+  },
+];
+
+export function WhyUs() {
   const [activeIndex, setActiveIndex] = useState(2);
 
-  const ITEMS = [
-    {
-      title: "Experience",
-      description:
-        "With extensive expertise, we excel in delivering bespoke mobile applications for iOS and Android. Utilizing advanced frameworks like React Native and the MERN stack, we ensure seamless collaboration to craft solutions tailored to your business needs.",
-      bullets: [
-        "A reliable and experienced partner",
-        "State-of-the-art product security",
-        "Comprehensive system security protocols",
-        "Operational excellence and integrity",
-      ],
-    },
-    {
-      title: "Why Us",
-      description:
-        "Our value goes beyond development. By choosing us, you benefit from transparent pricing, discounts for large orders, and a dedication to delivering premium-quality web and mobile solutions designed with your goals in mind.",
-      bullets: [
-        "Affordable, high-quality solutions",
-        "Customized approaches for unique challenges",
-        "Modern, responsive designs",
-        "Dedicated, ongoing technical support",
-      ],
-    },
-    {
-      title: "My Approach",
-      description:
-        "Driven by innovation, My approach ensures that every project is handled with care, from conceptualization to deployment. Leveraging cutting-edge tools like MERN stack and Next.js, we create scalable, efficient, and user-friendly digital experiences.",
-      bullets: [
-        "Providing daily updates to keep clients informed",
-        "Conducting weekly meetings to gather feedback",
-        "Delivering live demonstrations of progress",
-        "Proactively resolving challenges for seamless development",
-      ],
-    },
-  ];
-
   return (
-    <section className='py-14 px-4 sm:px-5 lg:px-10 relative xl:mr-0 lg:mr-5  text-gray-300'>
+    <section className='py-14 px-4 sm:px-5 lg:px-10 relative xl:mr-0 lg:mr-5  text-foreground'>
       <div className='w-full mx-auto'>
         <div className='grid lg:grid-cols-2 grid-cols-1 gap-10'>
           <div className='flex flex-col gap-10'>
@@ -62,8 +69,8 @@ function WhyUs() {
                     onClick={() => setActiveIndex(index)}
                     className={`rounded-full px-4 py-2 text-sm transition-all duration-300 ${
                       activeIndex === index
-                        ? "bg-emerald-700 text-white"
-                        : "bg-neutral-800 text-gray-300 hover:bg-neutral-600"
+                        ? "bg-primary text-card"
+                        : "bg-sidebar text-foreground hover:bg-card"
                     }`}
                   >
                     {item.title}
@@ -83,14 +90,14 @@ function WhyUs() {
                 >
                   {ITEMS.map((item, index) => (
                     <div key={index} className='py-2'>
-                      <p className='mb-4 text-gray-300'>{item.description}</p>
+                      <p className='mb-4 text-foreground'>{item.description}</p>
                       {item.bullets.map((bullet, bulletIndex) => (
                         <div
                           key={bulletIndex}
                           className='flex items-start gap-3 mb-3'
                         >
-                          <FaCheckCircle className='text-primaryColor mt-1' />
-                          <p className='text-gray-300'>{bullet}</p>
+                          <FaCheckCircle className='text-primary mt-1' />
+                          <p className='text-foreground'>{bullet}</p>
                         </div>
                       ))}
                     </div>
@@ -105,7 +112,7 @@ function WhyUs() {
             <div className='w-full h- relative'>
               <img
                 className='w-full h-full object-cover'
-                src='/workshop-.png'
+                src='/dev.png'
                 alt='About Us'
               />
             </div>
@@ -116,4 +123,41 @@ function WhyUs() {
   );
 }
 
-export default WhyUs;
+export type TransitionPanelProps = {
+  children: React.ReactNode[];
+  className?: string;
+  transition?: Transition;
+  activeIndex: number;
+  variants?: { enter: Variant; center: Variant; exit: Variant };
+} & MotionProps;
+
+export function TransitionPanel({
+  children,
+  className,
+  transition,
+  variants,
+  activeIndex,
+  ...motionProps
+}: TransitionPanelProps) {
+  return (
+    <div className={cn("relative", className)}>
+      <AnimatePresence
+        initial={false}
+        mode='popLayout'
+        custom={motionProps.custom}
+      >
+        <motion.div
+          key={activeIndex}
+          variants={variants}
+          transition={transition}
+          initial='enter'
+          animate='center'
+          exit='exit'
+          {...motionProps}
+        >
+          {children[activeIndex]}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}

@@ -45,7 +45,7 @@ const CareerPath = () => {
               <span>
                 My professional journey into the world of coding has always been
                 a reflection of my belief that{" "}
-                <strong className='text-primaryColor'>
+                <strong className='text-primary'>
                   experience ≠ the number of years you’ve worked in a job
                 </strong>
                 .
