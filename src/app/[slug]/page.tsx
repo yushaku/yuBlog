@@ -10,6 +10,7 @@ import moment from "moment";
 import { DashboardTableOfContents } from "@/components/toc";
 import { getTableOfContents } from "@/utils/toc";
 import { ReadMore, Comments } from "./components";
+import "../../styles/mdx.css";
 
 interface PostPageProps {
   params: {
@@ -68,7 +69,7 @@ export async function generateMetadata(props: {
       title: post.title,
       description: post.description,
       images: [siteConfig.ogImage],
-      creator: "@strlrd29",
+      creator: "@yushaku",
     },
   };
 }
@@ -86,15 +87,18 @@ export default async function PostPage(props: {
 
   return (
     <article className='mx-auto max-w-7xl relative px-6 py-5'>
-      <header className='mb-8'>
-        <h1 className='mb-4 text-4xl font-bold text-foreground'>
+      <header className='mb-8 animate-fadeIn'>
+        <h1 className='mb-4 text-4xl font-bold text-foreground animate-fade-down'>
           {post.title}
         </h1>
-        <div className='flex items-center gap-4 text-sm text-primary'>
+        <div className='flex items-center gap-4 text-sm text-primary animate-fade-up'>
           <time>{moment(post.date).format("LL")}</time>
           <div className='flex gap-2'>
             {post?.tags?.map((tag) => (
-              <span key={tag} className='rounded-full bg-card px-3 py-1'>
+              <span
+                key={tag}
+                className='rounded-full bg-card px-3 py-1 animate-fade-left'
+              >
                 {tag}
               </span>
             ))}
@@ -119,7 +123,14 @@ export default async function PostPage(props: {
       </div>
 
       <div className='mt-10 border-t border-gray-700 pt-10'>
-        <ReadMore blogPost={allPosts.filter((p) => p.slug !== post.slug)} />
+        <ReadMore
+          blogPost={allPosts.filter(
+            (post) =>
+              (process.env.NEXT_PUBLIC_EVM === "dev" ||
+                post.status === "public") &&
+              post.slug !== post.slug,
+          )}
+        />
       </div>
     </article>
   );

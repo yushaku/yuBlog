@@ -1,7 +1,10 @@
 import { defineDocumentType, makeSource } from "contentlayer2/source-files";
+import rehypePrettyCode from "rehype-pretty-code";
+import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
-
-import { rehypePlugins } from "@/lib/rehype-config";
+import { createHighlighter } from "shiki";
+import { transformerNotationDiff } from "@shikijs/transformers";
+import { transformerCopyButton } from "@rehype-pretty/transformers";
 
 export const Doc = defineDocumentType(() => ({
   name: "Post",
@@ -9,7 +12,9 @@ export const Doc = defineDocumentType(() => ({
   contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
-    date: { type: "date", required: true },
+    status: { type: "string", required: true },
+
+    date: { type: "date", required: false },
     description: { type: "string", required: false },
     tags: { type: "list", of: { type: "string" }, required: false },
     thumbnail: { type: "string", required: false },
@@ -27,6 +32,22 @@ export default makeSource({
   documentTypes: [Doc],
   mdx: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: rehypePlugins,
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypePrettyCode,
+        {
+          createHighlighter,
+          theme: "catppuccin-frappe",
+          defaultLang: "ts",
+          transformers: [
+            transformerCopyButton({
+              visibility: "hover",
+              feedbackDuration: 2000,
+            }),
+          ],
+        },
+      ],
+    ],
   },
 });

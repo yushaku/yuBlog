@@ -1,0 +1,70 @@
+---
+title: "why did i start build a blog?"
+date: "2024-01-10"
+tags: ["dev"]
+thumbnail: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+status: "draft"
+---
+
+Là một dev thì chắc hẳn ai cũng đều phải đọc 1 technical blog nào đó, nơi mà rất nhiều những senior dev nhiều kinh nhiệm cùng với khả năng văn
+
+<Tabs defaultValue="pnpm">
+ <TabsList>
+  {["npm", "yarn", "pnpm"].map((key) => {
+    return (
+      <TabsTrigger
+        key={key}
+        value={key}
+      >
+        {key}
+      </TabsTrigger>
+    );
+  })}
+</TabsList>
+
+{Object.entries({
+npm: "npm install shit",
+yarn: "yarn install shit",
+pnpm: "pnpm install shit",
+}).map(([key, value]) => {
+return (
+
+<TabsContent key={key} value={key} className='mt-0'>
+  <pre className='overflow-x-auto px-4 py-5'>
+    <code
+      className='relative font-mono text-sm leading-none'
+      data-language='bash'
+    >
+      {value}
+    </code>
+  </pre>
+</TabsContent>
+); })}
+
+</Tabs>
+
+```tsx {1,2}#v {9,10}#s
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { Button } from "@/components/ui/button";
+
+export function Component() {
+  const [copy, isCopied] = useCopyToClipboard();
+
+  return (
+    <Button
+      onClick={() =>
+        copy("hello world").then(() => console.info("Text copied!"))
+      }
+    >
+      {isCopied ? "Text Copied" : "Click to copy"}
+    </Button>
+  );
+}
+```
+
+## text
+
+```js /age/#v /name/#v /setAge/#s /setName/#s /50/#i /"Taylor"/#i
+const [age, setAge] = useState(50);
+const [name, setName] = useState("Taylor");
+```

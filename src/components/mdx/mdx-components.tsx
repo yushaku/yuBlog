@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useMDXComponent } from "next-contentlayer2/hooks";
 
-import type { NpmCommands } from "@/types/unist";
 import { cn } from "@/utils";
 import {
   Accordion,
@@ -15,10 +14,8 @@ import {
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Callout } from "@/components/callout";
-import { CodeBlockCommand } from "@/components/mdx/code-block-command";
 import { CodeBlockWrapper } from "@/components/mdx/code-block-wrapper";
 import { ComponentSource } from "@/components/mdx/component-source";
-import { CopyButton } from "@/components/mdx/copy-button";
 
 interface MdxProps {
   code: string;
@@ -97,9 +94,11 @@ const components = {
       {...props}
     />
   ),
-  p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
-    <p className={cn("leading-7 not-first:mt-6", className)} {...props} />
-  ),
+  p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => {
+    return (
+      <p className={cn("leading-7 not-first:mt-6", className)} {...props} />
+    );
+  },
   ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
     <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />
   ),
@@ -161,48 +160,15 @@ const components = {
       {...props}
     />
   ),
-  pre: ({
-    className,
-    __npmCommand__,
-    __yarnCommand__,
-    __pnpmCommand__,
-    __bunCommand__,
-    __rawstring__,
-    ...props
-  }: React.HTMLAttributes<HTMLPreElement> & {
-    __rawstring__?: string;
-    __withMeta__?: boolean;
-  } & NpmCommands) => {
-    const isNpmCommand =
-      __npmCommand__ && __yarnCommand__ && __pnpmCommand__ && __bunCommand__;
-
-    if (isNpmCommand) {
-      return (
-        <CodeBlockCommand
-          __npmCommand__={__npmCommand__}
-          __yarnCommand__={__yarnCommand__}
-          __pnpmCommand__={__pnpmCommand__}
-          __bunCommand__={__bunCommand__}
-        />
-      );
-    }
-
+  pre: ({ className, ...props }: React.HTMLAttributes<HTMLPreElement>) => {
     return (
-      <>
-        <pre
-          className={cn(
-            "mt-6 max-h-[650px] overflow-x-auto rounded-xl bg-card py-4",
-            className
-          )}
-          {...props}
-        />
-        {__rawstring__ && (
-          <CopyButton
-            value={__rawstring__}
-            className='absolute right-4 top-4'
-          />
+      <pre
+        className={cn(
+          "mt-6 max-h-[650px] overflow-x-auto rounded-md p-4",
+          className
         )}
-      </>
+        {...props}
+      />
     );
   },
   code: ({ className, ...props }: React.HTMLAttributes<HTMLElement>) => {

@@ -42,6 +42,12 @@ importers:
       '@radix-ui/react-tabs':
         specifier: ^1.1.9
         version: 1.1.9(@types/react-dom@19.1.2(@types/react@19.1.2))(@types/react@19.1.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@rehype-pretty/transformers':
+        specifier: ^0.13.2
+        version: 0.13.2
+      '@shikijs/transformers':
+        specifier: ^3.3.0
+        version: 3.3.0
       '@vercel/analytics':
         specifier: ^1.0.1
         version: 1.2.2(next@15.3.1(@opentelemetry/api@1.9.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
@@ -1045,6 +1051,10 @@ packages:
       '@types/react':
         optional: true
 
+  '@rehype-pretty/transformers@0.13.2':
+    resolution: {integrity: sha512-p2ciQSwqy5Ip8aNUa9q6rdS/hJZXrxHYYfDVOHvKOsBu3t9HDmQ65YX6r9Qbl19vi160OAxmGF7MIoCRDJrRhg==}
+    engines: {node: '>=18'}
+
   '@rushstack/eslint-patch@1.10.1':
     resolution: {integrity: sha512-S3Kq8e7LqxkA9s7HKLqXGTGck1uwis5vAXan3FnU5yw1Ec5hsSGnq4s/UCaSqABPOnOTg7zASLyst7+ohgWexg==}
 
@@ -1062,6 +1072,9 @@ packages:
 
   '@shikijs/themes@3.3.0':
     resolution: {integrity: sha512-tXeCvLXBnqq34B0YZUEaAD1lD4lmN6TOHAhnHacj4Owh7Ptb/rf5XCDeROZt2rEOk5yuka3OOW2zLqClV7/SOg==}
+
+  '@shikijs/transformers@3.3.0':
+    resolution: {integrity: sha512-PIknEyxfkT7i7at/78ynVmuZEv4+7IcS37f6abxMjQ0pVIPEya8n+KNl7XtfbhNL+U9ElR3UzfSzuD5l5Iu+nw==}
 
   '@shikijs/types@3.3.0':
     resolution: {integrity: sha512-KPCGnHG6k06QG/2pnYGbFtFvpVJmC3uIpXrAiPrawETifujPBv0Se2oUxm5qYgjCvGJS9InKvjytOdN+bGuX+Q==}
@@ -4277,6 +4290,8 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.1.2
 
+  '@rehype-pretty/transformers@0.13.2': {}
+
   '@rushstack/eslint-patch@1.10.1': {}
 
   '@shikijs/core@3.3.0':
@@ -4303,6 +4318,11 @@ snapshots:
 
   '@shikijs/themes@3.3.0':
     dependencies:
+      '@shikijs/types': 3.3.0
+
+  '@shikijs/transformers@3.3.0':
+    dependencies:
+      '@shikijs/core': 3.3.0
       '@shikijs/types': 3.3.0
 
   '@shikijs/types@3.3.0':

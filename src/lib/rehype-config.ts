@@ -1,12 +1,6 @@
-import { createHighlighter } from "shiki";
-import rehypePrettyCode from "rehype-pretty-code";
-import rehypeSlug from "rehype-slug";
 import { visit } from "unist-util-visit";
 
-// import { rehypeComponent } from "./rehype-component";
-// import { rehypeNpmCommand } from "./rehype-npm-command";
-
-const addRawStringToPreElements = () => (tree: any) => {
+export const addRawStringToPreElements = () => (tree: any) => {
   visit(tree, (node) => {
     if (node?.type === "element" && node?.tagName === "pre") {
       const [codeEl] = node.children;
@@ -16,7 +10,7 @@ const addRawStringToPreElements = () => (tree: any) => {
   });
 };
 
-const transferRawStringToPreElement = () => (tree: any) => {
+export const transferRawStringToPreElement = () => (tree: any) => {
   visit(tree, (node) => {
     if (node?.type === "element" && node?.tagName === "figure") {
       if (!("data-rehype-pretty-code-figure" in node.properties)) return;
@@ -29,27 +23,3 @@ const transferRawStringToPreElement = () => (tree: any) => {
     }
   });
 };
-
-export const rehypePlugins: any = [
-  rehypeSlug,
-  // rehypeComponent,
-  addRawStringToPreElements,
-  // rehypeNpmCommand,
-  transferRawStringToPreElement,
-  [
-    rehypePrettyCode,
-    {
-      createHighlighter,
-      theme: "catppuccin-frappe",
-      defaultLang: "ts",
-      onVisitLine(node: any) {
-        if (node.children.length === 0) {
-          node.children = [{ type: "text", value: " " }];
-        }
-      },
-      onVisitHighlightedLine(node: any) {
-        node.properties.className?.push("line--highlighted");
-      },
-    },
-  ],
-];

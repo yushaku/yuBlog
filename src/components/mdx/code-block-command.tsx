@@ -77,6 +77,7 @@ export function CodeBlockCommand({
             })}
           </TabsList>
         </div>
+
         {Object.entries(tabs).map(([key, value]) => {
           return (
             <TabsContent key={key} value={key} className='mt-0'>

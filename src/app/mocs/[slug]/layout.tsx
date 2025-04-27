@@ -15,8 +15,8 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <TopicTitle title='Map of Contents' className='mb-12' />
 
       <div className='grid grid-cols-2 md:grid-cols-4 gap-5'>
-        {topics.map(({ title, logo: Logo }) => (
-          <Link href={`/mocs/${title.toLocaleLowerCase()}`}>
+        {topics.map(({ title, slug, logo: Logo }) => (
+          <Link href={`/mocs/${slug.toLocaleLowerCase()}`}>
             <GradientCard
               key={title}
               title={title}
