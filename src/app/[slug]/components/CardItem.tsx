@@ -13,7 +13,7 @@ export const CardItem = ({
   title: string;
   tags?: string[];
   postSlug: string;
-  createdAt: string;
+  createdAt?: string;
   tlir?: string;
 }) => {
   const formatCreatedAt = moment(createdAt).format("LL");

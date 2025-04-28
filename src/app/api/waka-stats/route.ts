@@ -6,7 +6,7 @@ const STATS_ENDPOINT = "https://wakatime.com/api/v1/users/current/stats";
 const ALL_TIME_SINCE_TODAY =
   "https://wakatime.com/api/v1/users/current/all_time_since_today";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
   try {
     const readStatsResponse = await getReadStats();
     const allTimeSinceTodayResponse = await getALLTimeSinceToday();

@@ -26,7 +26,7 @@ const GITHUB_USER_QUERY = `query($username: String!) {
   }
 }`;
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function GET(req: NextRequest) {
   const username = "saif-arshad";
   const token = process.env.GITHUB_READ_USER_TOKEN_PERSONAL;
   try {

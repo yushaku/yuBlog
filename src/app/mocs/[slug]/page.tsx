@@ -2,8 +2,13 @@ import { RoadMap } from "@/components/RoadMap";
 import { mapOfContentData } from "@/utils/mocs";
 import { notFound } from "next/navigation";
 
-export default function MOCPage({ params }: { params: { slug: string } }) {
-  const moc = mapOfContentData[params.slug as keyof typeof mapOfContentData];
+export default async function MOCPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const moc = mapOfContentData[slug as keyof typeof mapOfContentData];
 
   if (!moc) {
     notFound();
