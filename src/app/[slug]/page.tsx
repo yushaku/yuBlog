@@ -7,7 +7,7 @@ import { absoluteUrl } from "@/utils";
 import { siteConfig } from "@/utils/siteConfig";
 import { Mdx } from "@/components/mdx/mdx-components";
 import moment from "moment";
-import { DashboardTableOfContents } from "@/components/toc";
+import { DashboardTableOfContents } from "./components/toc";
 import { getTableOfContents } from "@/utils/toc";
 import { ReadMore, Comments } from "./components";
 import "../../styles/mdx.css";

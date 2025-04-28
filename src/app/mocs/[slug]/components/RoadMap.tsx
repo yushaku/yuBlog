@@ -1,20 +1,19 @@
 "use client";
 
+import { cn } from "@/utils";
 import {
-  ReactFlow,
   Background,
   Edge,
   Node,
-  useNodesState,
-  useEdgesState,
   OnConnect,
+  ReactFlow,
   addEdge,
-  Panel,
+  useEdgesState,
+  useNodesState,
 } from "@xyflow/react";
-import { useCallback, useMemo } from "react";
 import "@xyflow/react/dist/style.css";
+import { useCallback, useMemo } from "react";
 import { RoadMapNode } from "./RoadMapNode";
-import { cn } from "@/utils";
 
 interface RoadMapProps {
   initialNodes: Node[];
@@ -31,7 +30,7 @@ export const RoadMap = ({
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const onConnect: OnConnect = useCallback(
     (connection) => setEdges((edges) => addEdge(connection, edges)),
-    [setEdges]
+    [setEdges],
   );
 
   const nodeTypes = useMemo(() => ({ roadmap: RoadMapNode }), []);

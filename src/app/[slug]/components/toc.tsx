@@ -4,6 +4,7 @@ import * as React from "react";
 
 import { cn } from "@/utils";
 import { TableOfContents } from "@/utils/toc";
+import { TopicTitle } from "@/components/TopicTitle";
 
 interface TocProps {
   toc: TableOfContents;
@@ -19,11 +20,11 @@ export function DashboardTableOfContents({ toc }: TocProps) {
             .filter(Boolean)
             .map((id) => id?.split("#")[1])
         : [],
-    [toc]
+    [toc],
   );
 
   const activeHeading = useActiveItem(
-    itemIds.filter((id): id is string => id !== undefined)
+    itemIds.filter((id): id is string => id !== undefined),
   );
 
   if (!toc?.items?.length) {
@@ -32,7 +33,7 @@ export function DashboardTableOfContents({ toc }: TocProps) {
 
   return (
     <div className='space-y-2'>
-      <p className='font-medium text-xl'>On This Page</p>
+      <TopicTitle title='On this page' />
       <Tree tree={toc} activeItem={activeHeading || undefined} />
     </div>
   );
@@ -50,7 +51,7 @@ function useActiveItem(itemIds: string[]) {
           }
         });
       },
-      { rootMargin: `0% 0% -80% 0%` }
+      { rootMargin: `0% 0% -80% 0%` },
     );
 
     itemIds?.forEach((id) => {
@@ -91,7 +92,7 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
                 "inline-block no-underline transition-colors hover:text-primary",
                 item.url === `#${activeItem}`
                   ? "font-medium text-primary"
-                  : "text-muted-foreground"
+                  : "text-muted-foreground",
               )}
             >
               {item.title}

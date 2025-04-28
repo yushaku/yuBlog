@@ -7,6 +7,10 @@ import {
 
 export const topItems = [
   {
+    title: "Articles",
+    href: "/",
+  },
+  {
     title: "Contact",
     href: "/contact",
   },

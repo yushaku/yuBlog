@@ -1,6 +1,6 @@
-import { RoadMap } from "@/components/RoadMap";
 import { mapOfContentData } from "@/utils/mocs";
 import { notFound } from "next/navigation";
+import { RoadMap } from "./components/RoadMap";
 
 export default async function MOCPage({
   params,
