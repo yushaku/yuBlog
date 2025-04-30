@@ -16,7 +16,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
       <div className='grid grid-cols-2 md:grid-cols-4 gap-5'>
         {topics.map(({ title, slug, logo: Logo }) => (
-          <Link href={`/mocs/${slug.toLocaleLowerCase()}`}>
+          <Link key={slug} href={`/mocs/${slug.toLocaleLowerCase()}`}>
             <GradientCard
               key={title}
               title={title}

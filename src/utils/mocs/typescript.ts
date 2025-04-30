@@ -1,11 +1,13 @@
-export const reactjs = {
-  title: "reactjs",
+import { MOC } from ".";
+
+export const typescript: MOC = {
+  title: "typescript",
   nodes: [
     {
-      id: "frontend",
+      id: "typescript",
       type: "roadmap",
       position: { x: 0, y: 0 },
-      data: { label: "Front-end", type: "main" },
+      data: { label: "typescript", type: "main" },
     },
     {
       id: "intro",
@@ -23,12 +25,12 @@ export const reactjs = {
   edges: [
     {
       id: "e1-2",
-      source: "frontend",
+      source: "typescript",
       target: "intro",
     },
     {
       id: "e1-3",
-      source: "frontend",
+      source: "typescript",
       target: "confession",
     },
   ],

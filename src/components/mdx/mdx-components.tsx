@@ -164,7 +164,7 @@ const components = {
     return (
       <pre
         className={cn(
-          "mt-6 max-h-[650px] overflow-x-auto rounded-md p-4",
+          "mt-6 max-h-[650px] overflow-x-auto rounded-md p-4 border hover:border-primary/50",
           className
         )}
         {...props}

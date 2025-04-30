@@ -35,13 +35,13 @@ export const topics = [
       "A JavaScript library for building user interfaces with reusable components and efficient DOM updates.",
     logo: IconReact,
   },
-  // {
-  //   title: "Nodejs",
-  //   slug: "nodejs",
-  //   description:
-  //     "A JavaScript runtime built on Chrome's V8 JavaScript engine for building scalable network applications.",
-  //   logo: IconNodejs,
-  // },
+  {
+    title: "Nodejs",
+    slug: "nodejs",
+    description:
+      "A JavaScript runtime built on Chrome's V8 JavaScript engine for building scalable network applications.",
+    logo: IconNodejs,
+  },
   {
     title: "Ethereum",
     slug: "ethereum",
@@ -49,11 +49,11 @@ export const topics = [
       "A decentralized blockchain platform that enables decentralized applications.",
     logo: IconEth,
   },
-  {
-    title: "System Design",
-    slug: "system-design",
-    description:
-      "System design is the process of defining the architecture, components, modules, interfaces, and data for a system to satisfy specified requirements.",
-    logo: IconNodejs,
-  },
+  // {
+  //   title: "System Design",
+  //   slug: "system-design",
+  //   description:
+  //     "System design is the process of defining the architecture, components, modules, interfaces, and data for a system to satisfy specified requirements.",
+  //   logo: IconNodejs,
+  // },
 ];

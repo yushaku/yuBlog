@@ -3,7 +3,7 @@ import React from "react";
 import { allPosts } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { absoluteUrl } from "@/utils";
+import { absoluteUrl, cn } from "@/utils";
 import { siteConfig } from "@/utils/siteConfig";
 import { Mdx } from "@/components/mdx/mdx-components";
 import moment from "moment";
@@ -84,6 +84,13 @@ export default async function PostPage(props: {
     notFound();
   }
   const toc = await getTableOfContents(post.body.raw);
+  const hasToc = Object.keys(toc).length > 0;
+
+  const otherPosts = allPosts.filter(
+    (p) =>
+      p.slug !== post.slug &&
+      (p.status === "public" || process.env.NEXT_PUBLIC_EVM === "dev")
+  );
 
   return (
     <article className='mx-auto max-w-7xl relative px-6 py-5'>
@@ -106,16 +113,28 @@ export default async function PostPage(props: {
         </div>
       </header>
 
-      <div className='flex flex-col lg:flex-row gap-6 lg:gap-10 pb-12 pt-8'>
-        <div className='w-full lg:w-[calc(100%-20rem)]'>
+      <div
+        className={cn(
+          "flex flex-col lg:flex-row gap-6 lg:gap-10 pb-12 pt-8",
+          !hasToc && "lg:justify-center"
+        )}
+      >
+        <div
+          className={cn(
+            "w-full animate-fade-up",
+            hasToc && "lg:w-[calc(100%-20rem)]"
+          )}
+        >
           <Mdx code={post.body.code} />
         </div>
 
-        <div className='lg:sticky lg:top-20 lg:h-[calc(100vh-3.5rem)] lg:pt-4'>
-          <div className='no-scrollbar lg:h-full space-y-4 overflow-auto pb-6 lg:pb-10'>
-            <DashboardTableOfContents toc={toc} />
+        {hasToc && (
+          <div className='lg:sticky lg:top-20 lg:h-[calc(100vh-3.5rem)] lg:pt-4 animate-fade-left'>
+            <div className='no-scrollbar lg:h-full space-y-4 overflow-auto pb-6 lg:pb-10'>
+              <DashboardTableOfContents toc={toc} />
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div className='comment mt-10 border-t border-gray-700 pt-10'>
@@ -123,14 +142,7 @@ export default async function PostPage(props: {
       </div>
 
       <div className='mt-10 border-t border-gray-700 pt-10'>
-        <ReadMore
-          blogPost={allPosts.filter(
-            (post) =>
-              (process.env.NEXT_PUBLIC_EVM === "dev" ||
-                post.status === "public") &&
-              post.slug !== post.slug,
-          )}
-        />
+        <ReadMore blogPost={otherPosts} />
       </div>
     </article>
   );

@@ -1,0 +1,69 @@
+import { MOC } from ".";
+
+const aa = {
+  nodes: [
+    {
+      id: "aa",
+      type: "roadmap",
+      position: { x: 200, y: 0 },
+      data: {
+        label: "Account abtraction",
+        type: "main",
+      },
+    },
+    {
+      id: "erc-4337",
+      type: "roadmap",
+      position: { x: 400, y: 0 },
+      data: {
+        label: "Erc-4337",
+        type: "sub",
+        link: "/ERC-4337 breakdown",
+      },
+    },
+  ],
+  edges: [
+    { id: "a1", source: "ethereum", target: "aa", animated: false },
+    { id: "a2", source: "aa", target: "erc-4337", animated: false },
+  ],
+};
+
+const indexer = {
+  nodes: [
+    {
+      id: "indexer",
+      type: "roadmap",
+      position: { x: 200, y: 100 },
+      data: {
+        label: "Indexer",
+        type: "main",
+      },
+    },
+  ],
+  edges: [
+    {
+      id: "i1",
+      source: "ethereum",
+      target: "indexer",
+      animated: false,
+    },
+  ],
+};
+
+export const ethereum: MOC = {
+  title: "ethereum",
+  nodes: [
+    {
+      id: "ethereum",
+      type: "roadmap",
+      position: { x: 0, y: 0 },
+      data: {
+        label: "Ethereum",
+        type: "main",
+      },
+    },
+    ...aa.nodes,
+    ...indexer.nodes,
+  ],
+  edges: [...aa.edges, ...indexer.edges],
+};

@@ -38,7 +38,7 @@ export default makeSource({
         rehypePrettyCode,
         {
           createHighlighter,
-          theme: "catppuccin-frappe",
+          theme: "catppuccin-macchiato",
           defaultLang: "ts",
           transformers: [
             transformerCopyButton({

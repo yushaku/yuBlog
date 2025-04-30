@@ -15,7 +15,7 @@ export default async function MOCPage({
   }
 
   return (
-    <div className='container mx-auto'>
+    <div className='container mx-auto hover:border rounded-xl'>
       <RoadMap initialNodes={moc.nodes} initialEdges={moc.edges} />
     </div>
   );

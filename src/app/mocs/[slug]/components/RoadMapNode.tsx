@@ -1,15 +1,8 @@
+import { MapNodeProps } from "@/utils/mocs";
 import { Handle, Position } from "@xyflow/react";
 import Link from "next/link";
 
-interface RoadMapNodeProps {
-  data: {
-    label: string;
-    type: "main" | "sub";
-    link?: string;
-  };
-}
-
-export const RoadMapNode = ({ data }: RoadMapNodeProps) => {
+export const RoadMapNode = ({ data }: MapNodeProps) => {
   const { link, label } = data;
   const isMain = data.type === "main";
 

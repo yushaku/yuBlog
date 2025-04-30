@@ -1,11 +1,13 @@
-export const reactjs = {
-  title: "reactjs",
+import { MOC } from ".";
+
+export const nodejs: MOC = {
+  title: "Nodejs",
   nodes: [
     {
-      id: "frontend",
+      id: "nodejs",
       type: "roadmap",
       position: { x: 0, y: 0 },
-      data: { label: "Front-end", type: "main" },
+      data: { label: "nodejs", type: "main" },
     },
     {
       id: "intro",
@@ -23,12 +25,12 @@ export const reactjs = {
   edges: [
     {
       id: "e1-2",
-      source: "frontend",
+      source: "nodejs",
       target: "intro",
     },
     {
       id: "e1-3",
-      source: "frontend",
+      source: "nodejs",
       target: "confession",
     },
   ],
