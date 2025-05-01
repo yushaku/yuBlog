@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMDXComponent } from "next-contentlayer2/hooks";
-
+import { PhotoProvider, PhotoView } from "react-photo-view";
 import { cn } from "@/utils";
 import {
   Accordion,
@@ -126,10 +126,17 @@ const components = {
   img: ({
     className,
     alt,
+    src,
     ...props
   }: React.ImgHTMLAttributes<HTMLImageElement>) => (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img className={cn("rounded-md", className)} alt={alt} {...props} />
+    <PhotoView src={src as string}>
+      <img
+        className={cn("rounded-md cursor-zoom-in", className)}
+        alt={alt}
+        src={src}
+        {...props}
+      />
+    </PhotoView>
   ),
   hr: ({ ...props }: React.HTMLAttributes<HTMLHRElement>) => (
     <hr className='my-4 md:my-8' {...props} />
@@ -269,8 +276,10 @@ export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code);
 
   return (
-    <div className='mdx'>
-      <Component components={components} />
-    </div>
+    <PhotoProvider>
+      <div className='mdx'>
+        <Component components={components} />
+      </div>
+    </PhotoProvider>
   );
 }

@@ -11,6 +11,7 @@ import { DashboardTableOfContents } from "./components/toc";
 import { getTableOfContents } from "@/utils/toc";
 import { ReadMore, Comments } from "./components";
 import "../../styles/mdx.css";
+import "react-photo-view/dist/react-photo-view.css";
 
 interface PostPageProps {
   params: {
