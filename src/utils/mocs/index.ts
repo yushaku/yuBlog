@@ -16,9 +16,15 @@ export const mapOfContentData = {
 
 export type MapNodeProps = {
   data: {
+    id: string;
     label: string;
-    type: "main" | "sub";
+    className: string;
     link?: string;
+    image?: {
+      src: string;
+      width: number;
+      height: number;
+    };
   };
 };
 

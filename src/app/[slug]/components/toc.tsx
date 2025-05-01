@@ -1,17 +1,16 @@
 "use client";
 
-import * as React from "react";
-
 import { cn } from "@/utils";
 import { TableOfContents } from "@/utils/toc";
 import { TopicTitle } from "@/components/TopicTitle";
+import { useEffect, useMemo, useState } from "react";
 
 interface TocProps {
   toc: TableOfContents;
 }
 
 export function DashboardTableOfContents({ toc }: TocProps) {
-  const itemIds = React.useMemo(
+  const itemIds = useMemo(
     () =>
       toc.items
         ? toc.items
@@ -20,11 +19,11 @@ export function DashboardTableOfContents({ toc }: TocProps) {
             .filter(Boolean)
             .map((id) => id?.split("#")[1])
         : [],
-    [toc],
+    [toc]
   );
 
   const activeHeading = useActiveItem(
-    itemIds.filter((id): id is string => id !== undefined),
+    itemIds.filter((id): id is string => id !== undefined)
   );
 
   if (!toc?.items?.length) {
@@ -40,9 +39,9 @@ export function DashboardTableOfContents({ toc }: TocProps) {
 }
 
 function useActiveItem(itemIds: string[]) {
-  const [activeId, setActiveId] = React.useState<string | null>(null);
+  const [activeId, setActiveId] = useState<string | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -51,7 +50,7 @@ function useActiveItem(itemIds: string[]) {
           }
         });
       },
-      { rootMargin: `0% 0% -80% 0%` },
+      { rootMargin: `0% 0% -80% 0%` }
     );
 
     itemIds?.forEach((id) => {
@@ -81,7 +80,7 @@ interface TreeProps {
 }
 
 function Tree({ tree, level = 1, activeItem }: TreeProps) {
-  return tree?.items?.length && level < 3 ? (
+  return tree?.items?.length ? (
     <ul className={cn("m-0 list-none", { "pl-4": level !== 1 })}>
       {tree.items.map((item, index) => {
         return (
@@ -89,10 +88,10 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
             <a
               href={item.url}
               className={cn(
-                "inline-block no-underline transition-colors hover:text-primary",
+                "inline-block no-underline transition-colors text-sm hover:text-primary",
                 item.url === `#${activeItem}`
                   ? "font-medium text-primary"
-                  : "text-muted-foreground",
+                  : "text-muted-foreground"
               )}
             >
               {item.title}

@@ -7,18 +7,17 @@ const aa = {
       type: "roadmap",
       position: { x: 200, y: 0 },
       data: {
-        label: "Account abtraction",
-        type: "main",
+        label: "Account Abstraction",
+        link: "/AA_breakdown",
       },
     },
     {
       id: "erc-4337",
       type: "roadmap",
-      position: { x: 400, y: 0 },
+      position: { x: 450, y: 0 },
       data: {
         label: "Erc-4337",
-        type: "sub",
-        link: "/ERC-4337 breakdown",
+        link: "/ERC-4337",
       },
     },
   ],
@@ -60,6 +59,11 @@ export const ethereum: MOC = {
       data: {
         label: "Ethereum",
         type: "main",
+        image: {
+          src: "https://www.cdnlogo.com/logos/e/81/ethereum-eth.svg",
+          width: 20,
+          height: 20,
+        },
       },
     },
     ...aa.nodes,

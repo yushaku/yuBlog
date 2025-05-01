@@ -46,7 +46,7 @@ const components = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        "font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0",
+        "font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0 text-primary/90",
         className
       )}
       {...props}
@@ -55,7 +55,7 @@ const components = {
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        "font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight",
+        "font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight text-primary/80",
         className
       )}
       {...props}
@@ -99,6 +99,15 @@ const components = {
       <p className={cn("leading-7 not-first:mt-6", className)} {...props} />
     );
   },
+  strong: ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => (
+    <strong
+      className={cn("font-semibold text-[#a6e3a1]", className)}
+      {...props}
+    />
+  ),
+  em: ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => (
+    <em className={cn("italic", className)} {...props} />
+  ),
   ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
     <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />
   ),
