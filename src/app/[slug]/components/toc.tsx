@@ -32,7 +32,7 @@ export function DashboardTableOfContents({ toc }: TocProps) {
 
   return (
     <div className='space-y-2'>
-      <TopicTitle title='On this page' />
+      <TopicTitle className='text-lg lg:text-xl' title='On this page' />
       <Tree tree={toc} activeItem={activeHeading || undefined} />
     </div>
   );

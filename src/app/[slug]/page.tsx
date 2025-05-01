@@ -12,6 +12,7 @@ import { getTableOfContents } from "@/utils/toc";
 import { ReadMore, Comments } from "./components";
 import "../../styles/mdx.css";
 import "react-photo-view/dist/react-photo-view.css";
+import { ResponsiveToc } from "./components/TableOfContent";
 
 interface PostPageProps {
   params: {
@@ -129,13 +130,7 @@ export default async function PostPage(props: {
           <Mdx code={post.body.code} />
         </div>
 
-        {hasToc && (
-          <div className='lg:sticky lg:top-20 lg:h-[calc(100vh-3.5rem)] lg:pt-4 animate-fade-left'>
-            <div className='no-scrollbar lg:h-full space-y-4 overflow-auto pb-6 lg:pb-10'>
-              <DashboardTableOfContents toc={toc} />
-            </div>
-          </div>
-        )}
+        {hasToc && <ResponsiveToc toc={toc} />}
       </div>
 
       <div className='comment mt-10 border-t border-gray-700 pt-10'>
