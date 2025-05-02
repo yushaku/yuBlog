@@ -25,7 +25,7 @@ export const CardItem = ({
       bg-sidebar hover:bg-card hover:-translate-y-4 hover:-rotate-3 not-first:ml-[-130px] duration-200 shadow-card
       hover:peer-hover:translate-x-[130px] peer'
     >
-      <Link href={`/${postSlug}`}>
+      <Link href={`/article/${postSlug}`}>
         <>
           <div className='relative flex items-center gap-4'>
             <span id='author-avatar'>

@@ -49,7 +49,7 @@ export default async function Home() {
             .map((post) => (
               <li key={post.slug} className='group'>
                 <Link
-                  href={post.slug}
+                  href={`/article/${post.slug}`}
                   className='block w-full bg-sidebar/30 group-hover:bg-card/50 rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1'
                 >
                   <p className='text-muted-foreground text-sm mb-3 flex items-center gap-2'>

@@ -1,22 +1,21 @@
 import React from "react";
 
-import { allPosts } from "contentlayer/generated";
-import { notFound } from "next/navigation";
-import { Metadata } from "next";
+import { Mdx } from "@/components/mdx/mdx-components";
 import { absoluteUrl, cn } from "@/utils";
 import { siteConfig } from "@/utils/siteConfig";
-import { Mdx } from "@/components/mdx/mdx-components";
-import moment from "moment";
-import { DashboardTableOfContents } from "./components/toc";
 import { getTableOfContents } from "@/utils/toc";
-import { ReadMore, Comments } from "./components";
-import "../../styles/mdx.css";
+import { allPosts } from "contentlayer/generated";
+import moment from "moment";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import "react-photo-view/dist/react-photo-view.css";
+import "../../../styles/mdx.css";
+import { Comments, ReadMore } from "./components";
 import { ResponsiveToc } from "./components/TableOfContent";
 
 interface PostPageProps {
   params: {
-    slug: string;
+    slug: string[];
   };
 }
 
@@ -24,12 +23,12 @@ export async function generateStaticParams(): Promise<
   PostPageProps["params"][]
 > {
   return allPosts.map((post) => ({
-    slug: post.slug,
+    slug: post.slug.split("/"),
   }));
 }
 
 async function getPostFromParams({ params }: PostPageProps) {
-  const slug = params.slug;
+  const slug = params.slug.join("/");
   const post = allPosts.find((post) => post.slug === slug);
 
   if (!post) {
@@ -83,7 +82,7 @@ export default async function PostPage(props: {
   const post = await getPostFromParams({ params });
 
   if (!post) {
-    notFound();
+    return notFound();
   }
   const toc = await getTableOfContents(post.body.raw);
   const hasToc = Object.keys(toc).length > 0;
