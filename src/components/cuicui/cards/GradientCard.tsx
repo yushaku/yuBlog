@@ -72,7 +72,9 @@ export const GradientCard = ({
           <h3 className='font-semibold text-lg text-foreground'>{title}</h3>
         )}
         {description && (
-          <p className='mt-2 text-muted-foreground'>{description}</p>
+          <p className='mt-2 text-muted-foreground line-clamp-3'>
+            {description}
+          </p>
         )}
       </div>
     </div>
