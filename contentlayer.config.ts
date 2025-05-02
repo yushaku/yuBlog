@@ -41,10 +41,10 @@ export default makeSource({
           theme: "catppuccin-macchiato",
           defaultLang: "ts",
           transformers: [
-            transformerCopyButton({
-              visibility: "hover",
-              feedbackDuration: 2000,
-            }),
+            // transformerCopyButton({
+            //   visibility: "hover",
+            //   feedbackDuration: 2000,
+            // }),
           ],
         },
       ],

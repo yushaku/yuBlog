@@ -113,6 +113,13 @@ export default async function PostPage(props: {
             ))}
           </div>
         </div>
+        {/* {post.thumbnail && (
+          <img
+            src={post.thumbnail}
+            alt={post.title}
+            className='mt-4 max-h-96'
+          />
+        )} */}
       </header>
 
       <div

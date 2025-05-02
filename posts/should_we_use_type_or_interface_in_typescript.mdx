@@ -1,0 +1,139 @@
+---
+title: "Should we use type or interface in typescript"
+date: "2025-01-05"
+tags: ["typescript"]
+status: "public"
+description: ""
+---
+
+## Similarities
+
+1. Both Type Aliases and interface can be used to **describe** _object_ or _function_ types
+
+```ts
+type Point = {
+  x: number;
+  y: number;
+};
+type SetPoint = (x: number, y: number) => void;
+
+// -----------------------------------
+
+interface Point {
+  x: number;
+  y: number;
+}
+interface SetPoint {
+  (x: number, y: number): void;
+}
+```
+
+2. Both type aliases and interface **can be extended**
+   - Type aliases are extended by `&`,
+   - while interfaces are extended by `extends`.
+     → An _interface_ extend the type defined by the _type alias_ through extends => Vice versa
+
+```ts
+type PointX = {
+  x: number;
+};
+
+interface PointY {
+  y: number;
+}
+
+type line = PointX &
+  PointY & {
+    length: number;
+  };
+
+interface triangle extends PointX, PointY {
+  z: number;
+  perimeter: number;
+  stretch: number;
+}
+```
+
+## Differences
+
+1. **Type aliases can** define aliases for _primitive types_, _union types_, or _tuple types_, while **interfaces cannot**
+
+```ts
+type MyNumber = number; // primitive type
+type StringOrNumber = string | number; // union type
+type Point = [number, number]; // tuple type
+```
+
+2. **Interfaces** with the same **name are automatically merged**(Declaration Merging)
+   while type aliases are not:
+
+```ts
+interface User {
+	name: string
+}
+
+interface User {
+	age: number
+}
+
+//👌: it can work currectly
+const user:User {
+	name: "yushaku",
+	age: 23
+}
+```
+
+```ts
+type User = {
+  name: string;
+};
+
+//🐞 get error heae when have duplicate type
+type User = {
+  age: number;
+};
+```
+
+Using the feature of declaration merging, we can provide users with better security when developing third-party libraries. For example, the [webext-bridge](https://github.com/zikaari/webext-bridge) library uses interface to define the **ProtocolMap** interface, so that users can freely extend the **ProtocolMap** interface. After that, when using the onMessage function provided inside the library to monitor custom messages, we can infer the message body types corresponding to different messages.
+
+**extends ProtocolMap interface**
+
+```ts
+import { ProtocolWithReturn } from "webext-bridge";
+declare module "webext-bridge" {
+  export interface ProtocolMap {
+    foo: { title: string };
+    bar: ProtocolWithReturn<CustomDataType, CustomReturnType>;
+  }
+}
+```
+
+**listen for custom messages**
+
+```ts
+import { onMessage } from 'webext-bridge'
+​
+onMessage('foo', ({ data }) => {
+  // type of `data` will be `{ title: string }`
+  console.log(data.title)
+}
+```
+
+## Use Case
+
+**When to use** `type`
+
+1. When defining aliases for primitive types, use `type`
+2. When defining a tuple type, use `type`
+3. When defining a function type, use `type`
+4. When defining union types, use `type`
+5. When defining the mapped types, use `type`
+
+**When to use** `interface`
+
+my recommendation is to **consistently use `type` in most cases** and only use `interface` when either of the following is true:
+
+1. You want to take advantage of the "[merging](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#merging-interfaces)" feature of `interface`.
+2. You have a style code involving class/interface hierarchies.
+
+In typescript, `type` and `interface` are very similar constructs when used for typing objects. Though maybe controversial,

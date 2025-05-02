@@ -46,7 +46,7 @@ const components = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        "font-heading mt-12 scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0 text-primary/90",
+        "font-heading mt-12 scroll-m-20 border-t pt-2 text-2xl font-semibold tracking-tight first:mt-0 text-primary/90",
         className
       )}
       {...props}
@@ -180,7 +180,7 @@ const components = {
     return (
       <pre
         className={cn(
-          "mt-6 max-h-[650px] overflow-x-auto rounded-md p-4 border hover:border-primary/50",
+          "mt-6 max-h-[650px] overflow-x-auto rounded-md p-4 border",
           className
         )}
         {...props}
