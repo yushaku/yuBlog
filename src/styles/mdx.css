@@ -60,7 +60,7 @@ figure {
 }
 
 pre {
-  @apply !px-0 rounded-lg;
+  @apply px-2 rounded-lg;
 }
 
 code {
