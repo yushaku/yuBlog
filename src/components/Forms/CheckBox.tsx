@@ -8,13 +8,13 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export const CheckBox = ({ title, ...props }: Props) => {
   return (
-    <label className="flexCenter gap-2">
+    <label className='flex items-center justify-center gap-2'>
       <input
-        type="checkbox"
-        className="accent-primaryColor h-5 w-5"
+        type='checkbox'
+        className='primary-foreground h-5 w-5'
         {...props}
       />
-      <p className="text-grayColor">{title}</p>
+      <p className='text-grayColor'>{title}</p>
     </label>
   );
 };
@@ -33,16 +33,16 @@ export const InputCheckbox = ({
   onClick?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }) => {
   return (
-    <label className="flex justify-start items-start">
+    <label className='flex justify-start items-start'>
       <input
         name={name}
-        type="checkbox"
+        type='checkbox'
         onChange={onClick}
         checked={isChecked}
         value={value ? value : title}
-        className="w-6 h-6 accent-primaryColor rounded"
+        className='w-6 h-6 primary-foreground rounded-sm'
       />
-      <span className="select-none ml-4 text-textColor baseText">{title}</span>
+      <span className='select-none ml-4 text-foreground baseText'>{title}</span>
     </label>
   );
 };

@@ -1,37 +1,59 @@
+import {
+  IconEth,
+  IconNodejs,
+  IconReact,
+  IconTypescript,
+} from "@/components/Icons";
+
 export const topItems = [
   {
-    title: "Article",
-    href: "/category/Typescript",
+    title: "Articles",
+    href: "/",
   },
   {
     title: "Contact",
-    href: "/contract",
+    href: "/contact",
   },
   {
     title: "About me",
-    href: "https://yu-portfolio.vercel.app/",
+    href: "about",
   },
 ];
 
 export const topics = [
   {
     title: "Typescript",
-    href: "Typescript",
+    slug: "typescript",
+    description:
+      "Typescript is a superset of JavaScript that adds optional static typing to the language.",
+    logo: IconTypescript,
   },
   {
-    title: "React JS",
-    href: "React",
+    title: "ReactJS",
+    slug: "reactjs",
+    description:
+      "A JavaScript library for building user interfaces with reusable components and efficient DOM updates.",
+    logo: IconReact,
   },
   {
     title: "Nodejs",
-    href: "Nodejs",
+    slug: "nodejs",
+    description:
+      "A JavaScript runtime built on Chrome's V8 JavaScript engine for building scalable network applications.",
+    logo: IconNodejs,
   },
   {
-    title: "Nvim",
-    href: "Nvim",
+    title: "Ethereum",
+    slug: "ethereum",
+    description:
+      "A decentralized blockchain platform that enables decentralized applications.",
+    logo: IconEth,
   },
-  {
-    title: "Solidity",
-    href: "Solidity",
-  },
+  // {
+  //   title: "System Design",
+  //   slug: "system-design",
+  //   description:
+  //     "System design is the process of defining the architecture, components, modules, interfaces, and data for a system to satisfy specified requirements.",
+  //   logo: IconNodejs,
+  // },
 ];

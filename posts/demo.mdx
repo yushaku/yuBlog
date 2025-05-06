@@ -1,0 +1,114 @@
+---
+title: "demo"
+date: "2024-01-10"
+tags: ["dev"]
+status: "draft"
+---
+
+## using tabs
+
+- that the `const fuck = 69`
+
+<ScriptCopyBtn
+  commandMap={{
+    npm: "npm run shadcn add button",
+    yarn: "yarn shadcn add button",
+    pnpm: "pnpm dlx shadcn@latest add button",
+    bun: "bun x shadcn@latest add button",
+  }}
+/>
+
+## code comparison
+
+<CodeComparison
+  beforeCode={`
+    team = await getTeamBySlug(slug); // [!code highlight]
+  `}
+  afterCode={`
+    import { createMiddleware, type MiddlewareFunctionProps } from '@app/(auth)/auth/_middleware';
+    import { team } from '@/app/(team)/team/_middleware';
+
+    const middlewares = {
+    '/auth{/:path?}': auth,
+    '/team{/:slug?}': [ auth, team ],
+    };
+
+    export const middleware = createMiddleware(middlewares); // [!code focus]
+
+    export const config = {
+      matcher: ['/((?!_next/|_static|_vercel|[\\w-]+\\.\\w+).*)'],
+    };
+
+`}
+language='typescript'
+filename='middleware.ts'
+/>
+
+## code highline
+
+```tsx
+import {
+  createMiddleware, // [!code highlight]
+  type MiddlewareFunctionProps,
+} from "@app/(auth)/auth/_middleware";
+import { auth } from "@/app/(auth)/auth/_middleware"; // [!code --]
+import { auth } from "@/app/(auth)/auth/_middleware"; // [!code ++]
+import { team } from "@/app/(team)/team/_middleware";
+
+const middlewares = {
+  "/auth{/:path?}": auth,
+  "/team{/:slug?}": [auth, team],
+};
+
+export const middleware = createMiddleware(middlewares); // [!code focus]
+
+export const config = {
+  matcher: ["/((?!_next/|_static|_vercel|[\\w-]+\\.\\w+).*)"],
+};
+```
+
+or
+
+```tsx title="config.ts" {1,2}#v {9,10}#s
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { Button } from "@/components/ui/button";
+
+export function Component() {
+  const [copy, isCopied] = useCopyToClipboard();
+
+  return (
+    <Button
+      onClick={() =>
+        copy("hello world").then(() => console.info("Text copied!"))
+      }
+    >
+      {isCopied ? "Text Copied" : "Click to copy"}
+    </Button>
+  );
+}
+```
+
+```js /age/#v /name/#v /setAge/#s /setName/#s /50/#i /"Taylor"/#i
+const [age, setAge] = useState(50);
+const [name, setName] = useState("Taylor");
+```
+
+## Mermaid diagram:
+
+```mermaid
+graph TD;
+  A[Client] --> B[API Server]
+  B --> C[Database]
+  B --> D[Cache]
+```
+
+## twoslash
+
+```js twoslash
+const name = "Jupiter";
+console.log("Hello, " + name + "!");
+```
+
+## images
+
+![image](https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fe6626ab7-ffda-4bec-b2ed-1ae626df5e7e_644x848.gif)
