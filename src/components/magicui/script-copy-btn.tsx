@@ -60,7 +60,7 @@ export function ScriptCopyBtn({
   };
 
   return (
-    <div className={cn("max-w-md", className)}>
+    <div className={cn(className)}>
       <div className='w-full space-y-2'>
         <div className='mb-2 flex items-center justify-between'>
           {showMultiplePackageOptions && (

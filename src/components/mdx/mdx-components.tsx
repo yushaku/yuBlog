@@ -16,6 +16,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Callout } from "@/components/callout";
 import { CodeBlockWrapper } from "@/components/mdx/code-block-wrapper";
 import { ComponentSource } from "@/components/mdx/component-source";
+import { CodeComparison } from "../magicui/code-comparison";
+import { ScriptCopyBtn } from "../magicui/script-copy-btn";
 
 interface MdxProps {
   code: string;
@@ -34,6 +36,8 @@ const components = {
   CodeBlockWrapper: ({ ...props }) => (
     <CodeBlockWrapper className='rounded-md border' {...props} />
   ),
+  CodeComparison: ({ ...props }: any) => <CodeComparison {...props} />,
+  ScriptCopyBtn: ({ ...props }: any) => <ScriptCopyBtn {...props} />,
   h1: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1
       className={cn(
