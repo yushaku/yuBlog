@@ -1,9 +1,11 @@
 import { AboutHero } from "./components/AboutHero";
 import { AboutUs } from "./components/AboutUs";
 import { GithubContributions } from "./components/GithubContributions";
+import { ProjectList } from "./components/ProjectList";
 import { Skills } from "./components/Skills";
 import { WhatWeDo } from "./components/what-we-do";
 import { WhyUs } from "./components/WhyUs";
+import { CareerPath } from "./components/CareerPath";
 
 async function page() {
   return (
@@ -15,7 +17,8 @@ async function page() {
       <AboutUs />
       <GithubContributions />
       {/* <Tools /> */}
-      {/* <CareerPath /> */}
+      <CareerPath />
+      <ProjectList />
       <WhyUs />
       <WhatWeDo />
     </section>

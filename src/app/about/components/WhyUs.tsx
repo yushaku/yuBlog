@@ -54,6 +54,17 @@ export function WhyUs() {
     <section className='py-14 px-4 sm:px-5 lg:px-10 relative xl:mr-0 lg:mr-5  text-foreground'>
       <div className='w-full mx-auto'>
         <div className='grid lg:grid-cols-2 grid-cols-1 gap-10'>
+          {/* Image Section */}
+          <div className='flex justify-center items-start'>
+            <div className='w-full h- relative'>
+              <img
+                className='w-full h-full object-cover'
+                src='/dev.png'
+                alt='About Us'
+              />
+            </div>
+          </div>
+
           <div className='flex flex-col gap-10'>
             <div className='flex flex-col gap-8'>
               <h6 className='text-gray-400 text-base font-normal'>
@@ -104,17 +115,6 @@ export function WhyUs() {
                   ))}
                 </TransitionPanel>
               </div>
-            </div>
-          </div>
-
-          {/* Image Section */}
-          <div className='flex justify-center items-start'>
-            <div className='w-full h- relative'>
-              <img
-                className='w-full h-full object-cover'
-                src='/dev.png'
-                alt='About Us'
-              />
             </div>
           </div>
         </div>
