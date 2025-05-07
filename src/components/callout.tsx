@@ -26,7 +26,7 @@ export function Callout({
             {title}
           </AlertTitle>
         )}
-        <AlertDescription className='text-[#226633] dark:text-[#a7ef83] text-base leading-relaxed'>
+        <AlertDescription className='text-base text-foreground leading-relaxed'>
           {children}
         </AlertDescription>
       </div>

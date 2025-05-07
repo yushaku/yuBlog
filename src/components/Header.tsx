@@ -87,7 +87,7 @@ export const Header = ({
         <Link href='/'>
           <div className='flex items-center gap-2'>
             <Image
-              alt='yushaku'
+              alt='yushaku logo'
               src='/logo.png'
               width={45}
               height={45}
@@ -100,42 +100,41 @@ export const Header = ({
           </div>
         </Link>
 
-        <div className='max-w-[600px] flex-1'>
-          <ul className='relative hidden items-center justify-between md:flex'>
-            {topItems.map(({ href, title }, index: number) => {
-              return (
-                <li key={index} className='group'>
-                  <Link
-                    href={href}
-                    className={`${delays[index]} animationShow hover:text-primary animate_fade_down text-grayColor relative cursor-pointer text-lg font-medium`}
-                  >
-                    {title}
-                  </Link>
-                </li>
-              );
-            })}
+        <div className='w-full max-w-[600px] flex-1'>
+          <nav aria-label='Main navigation'>
+            <ul className='relative flex items-center justify-between'>
+              {topItems.map(({ href, title }, index: number) => {
+                return (
+                  <li key={index} className='hidden lg:block'>
+                    <Link
+                      href={href}
+                      className={cn(
+                        `${delays[index]} animationShow hover:text-primary animate_fade_down`,
+                        "text-grayColor relative cursor-pointer text-lg font-medium",
+                        "transition-colors duration-200"
+                      )}
+                    >
+                      {title}
+                    </Link>
+                  </li>
+                );
+              })}
 
-            {isAuth ?? (
-              <li>
-                <Link href={"/auth/login"}>
-                  <Button
-                    title='Login'
-                    className='bg-foreground text-white lg:w-20'
-                  />
-                </Link>
+              <li className='hidden lg:block'>
+                <ThemeSwitcherButton />
               </li>
-            )}
 
-            <li>
-              <ThemeSwitcherButton />
-            </li>
-            <li
-              className='float-right cursor-pointer px-6'
-              onClick={ontoggleSideBar}
-            >
-              <AlignRight className='hover:stroke-primary stroke-foreground size-7' />
-            </li>
-          </ul>
+              <li className='ml-auto lg:ml-0'>
+                <button
+                  onClick={ontoggleSideBar}
+                  className='p-2 transition-colors duration-200 hover:bg-accent/50 rounded-lg'
+                  aria-label='Toggle navigation menu'
+                >
+                  <AlignRight className='hover:stroke-primary stroke-foreground size-7' />
+                </button>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </header>

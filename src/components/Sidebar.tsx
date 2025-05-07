@@ -56,6 +56,7 @@ export const Sidebar = ({ topItems, ontoggleSideBar, showSidebar }: Props) => {
             <SunIcon className='size-5 stroke-foreground stroke-2' />
             <Switch
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              aria-label='Toggle theme mode'
             />
             <MoonIcon className='size-5 stroke-foreground stroke-2' />
           </span>

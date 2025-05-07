@@ -5,6 +5,7 @@ import { siteConfig } from "@/utils/siteConfig";
 import { Analytics } from "@vercel/analytics/react";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -73,12 +74,13 @@ export default function RootLayout({
       <body
         className={cn(
           "min-h-svh overflow-x-hidden bg-background font-sans antialiased",
-          inter.variable
+          inter.variable,
         )}
         suppressHydrationWarning
       >
         <Provider>{children}</Provider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
