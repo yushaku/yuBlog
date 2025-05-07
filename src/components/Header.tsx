@@ -39,8 +39,8 @@ export const Header = ({
       const direction = scrollY > lastScrollY ? "down" : "up";
       if (
         direction !== scrollDirection &&
-        (scrollY - lastScrollY > 5 || scrollY - lastScrollY < -5) &&
-        scrollY > 50
+        (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10) &&
+        scrollY > 100
       ) {
         setScrollDirection(direction);
       }
@@ -54,7 +54,7 @@ export const Header = ({
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 140) {
+      if (window.scrollY > 100) {
         setTransparent(true);
       } else {
         setTransparent(false);
@@ -66,14 +66,20 @@ export const Header = ({
     };
   }, []);
 
-  const dynamicHeaderStyle = scrollDirection === "up" ? "top-0" : "-top-[11vh]";
+  const dynamicHeaderStyle = scrollDirection === "up" ? "top-0" : "-top-[100%]";
   const transparentStyle = !transparent
-    ? "bg-transparent shadow-md mt-0"
-    : `shadow-lg bg-background`;
+    ? "bg-transparent"
+    : `bg-background/95 backdrop-blur-sm`;
 
   return (
     <header
-      className={`${dynamicHeaderStyle} ${transparentStyle} max-w-7xl animationShow fixed left-0 right-0 z-50 mx-auto`}
+      className={cn(
+        dynamicHeaderStyle,
+        transparentStyle,
+        "max-w-7xl fixed left-0 right-0 z-50 mx-auto",
+        "transition-all duration-300 ease-in-out",
+        "shadow-lg"
+      )}
     >
       <div
         className={`mx-auto flex container items-center justify-between gap-4 py-4`}
@@ -141,54 +147,71 @@ export const ThemeSwitcherButton = () => {
 
   return (
     <button
-      className='group relative inline-flex items-center gap-2 overflow-hidden rounded-md border border-card px-2 py-1 
-      font-medium tracking-tight  bg-sidebar text-foreground hover:bg-card'
+      className={cn(
+        "group relative inline-flex items-center gap-2 rounded-full px-3 py-1.5",
+        "transition-colors duration-300 ease-in-out",
+        "hover:bg-accent/50",
+        "border border-border/50"
+      )}
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
       type='button'
+      aria-label='Toggle theme'
     >
+      <div className='relative size-5'>
+        {/* Sun */}
+        <span
+          className={cn(
+            "absolute inset-0 rotate-0 transform-gpu transition-all duration-300",
+            "text-amber-500",
+            theme === "dark" ? "scale-0 opacity-0" : "scale-100 opacity-100"
+          )}
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            strokeWidth={2}
+            stroke='currentColor'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z'
+            />
+          </svg>
+        </span>
+
+        {/* Moon */}
+        <span
+          className={cn(
+            "absolute inset-0 rotate-90 transform-gpu transition-all duration-300",
+            "text-blue-500",
+            theme === "dark" ? "scale-100 opacity-100" : "scale-0 opacity-0"
+          )}
+        >
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            strokeWidth={2}
+            stroke='currentColor'
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              d='M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z'
+            />
+          </svg>
+        </span>
+      </div>
+
       <span
-        className={cn("relative size-6 scale-75 rounded-full bg-linear-to-tr")}
+        className={cn(
+          "relative text-sm font-medium",
+          "transition-colors duration-300"
+        )}
       >
-        <span
-          className={cn(
-            "absolute top-0 left-0 z-10 h-full w-full transform-gpu rounded-full bg-linear-to-tr from-indigo-400 to-sky-200 transition-color duration-300",
-            theme === "dark" ? "scale-100" : "scale-90"
-          )}
-        />
-        <span
-          className={cn(
-            "absolute top-0 left-0 z-10 h-full w-full transform-gpu rounded-full bg-linear-to-tr from-rose-400 to-amber-300 transition-color duration-300 dark:from-rose-600 dark:to-amber-600",
-            theme === "light" ? "opacity-100" : "opacity-0"
-          )}
-        />
-        <span
-          className={cn(
-            "absolute top-0 right-0 z-20 size-4 origin-top-right transform-gpu rounded-full bg-white transition-transform duration-300 group-hover:bg-neutral-100 dark:bg-neutral-800 dark:group-hover:bg-neutral-700",
-            theme === "dark" ? "scale-100" : "scale-0"
-          )}
-        />
-      </span>
-      <span className='relative h-6 w-12'>
-        <span
-          className={cn(
-            "absolute top-0 left-0 transition-all duration-500",
-            theme === "light"
-              ? "-translate-y-4 opacity-0 blur-lg"
-              : "translate-y-0 opacity-100 blur-0"
-          )}
-        >
-          Dark
-        </span>
-        <span
-          className={cn(
-            "absolute top-0 left-0 transition-all duration-500",
-            theme === "dark"
-              ? "translate-y-4 opacity-0 blur-lg"
-              : "translate-y-0 opacity-100 blur-0"
-          )}
-        >
-          Light
-        </span>
+        {theme === "dark" ? "Dark" : "Light"}
       </span>
     </button>
   );

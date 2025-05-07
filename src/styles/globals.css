@@ -36,6 +36,7 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-success: var(--success);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -101,6 +102,7 @@
   --border: hsl(221 30% 50%);
   --input: hsl(221 30% 22%);
   --ring: hsl(221 98% 60%);
+  --success: #159234;
   --chart-1: hsl(221 98% 60%);
   --chart-2: hsl(221 30% 70%);
   --chart-3: hsl(183 30% 85%);
@@ -136,6 +138,7 @@
   --border: hsl(221 30% 22%);
   --input: hsl(221 30% 22%);
   --ring: hsl(221 98% 60%);
+  --success: #a7ef83;
   --chart-1: hsl(221 98% 60%);
   --chart-2: hsl(221 30% 20%);
   --chart-3: hsl(183 30% 22%);

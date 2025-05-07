@@ -1,0 +1,76 @@
+---
+title: "Prettier merged type"
+date: "2025-05-07"
+tags: ["typescript"]
+status: "public"
+description: "Prettier merged type"
+---
+
+When working with intersection types in TypeScript, you might have noticed that hovering over the type doesn't show the complete expanded version. Here's a common example:
+
+```ts
+type Person = {
+  name: string;
+  age: string;
+};
+
+type Developer = Person & {
+  tech: string;
+};
+```
+
+Hovering over `Developer` in your IDE will typically show something like `Person & { tech: string }` rather than the complete flattened type.
+This can be frustrating when you want to see all properties at once.
+
+Here's a handy utility type that forces TypeScript to show the expanded version:
+
+```ts
+type Prettify<T> = {
+  [K in keyof T]: T[K];
+} & {};
+```
+
+Now let's apply it to our Developer type:
+
+```ts {8-12}#s /Developer/#s
+type Developer = Prettify<
+  Person & {
+    tech: string;
+  }
+>;
+
+// Hovering now shows the complete type:
+type Developer = {
+  name: string;
+  age: string;
+  tech: string;
+};
+```
+
+This approach works seamlessly with all **TypeScript utility** types like `Pick`, `Omit`, etc.:
+
+```ts {8-11}#s /OmitPerson/#s
+type OmitPerson = Prettify<
+  Omit<Developer, "tech" | "age"> & {
+    email: string;
+  }
+>;
+
+// Hovering now shows the complete type:
+type OmitPerson = {
+  name: string;
+  email: string;
+};
+```
+
+<Callout title='NOTE' icon='💡'>
+  The Prettify type doesn't change the actual type behavior - it just makes the
+  hover information more readable by forcing TypeScript to expand the type
+  definition.
+</Callout>
+
+This is particularly useful when:
+
+- Debugging complex types
+- Working with large intersection types
+- Sharing code with team members who need to understand your types quickly

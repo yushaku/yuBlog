@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { cn } from "@/utils";
 
 export function Callout({
@@ -7,12 +7,29 @@ export function Callout({
   icon,
   className,
   ...props
-}: React.ComponentProps<typeof Alert> & { icon?: string }) {
+}: React.HTMLAttributes<HTMLDivElement> & { icon?: string; title?: string }) {
   return (
-    <Alert className={cn("bg-muted/50", className)} {...props}>
-      {icon && <span className='mr-4 text-2xl'>{icon}</span>}
-      {title && <AlertTitle>{title}</AlertTitle>}
-      <AlertDescription>{children}</AlertDescription>
-    </Alert>
+    <div
+      className={cn(
+        "relative flex bg-sidebar rounded-lg p-6 border-l-4 border-primary text-foreground",
+        "hover:bg-card transition-all duration-300",
+        className
+      )}
+      {...props}
+    >
+      <span className='absolute -left-4 -top-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary bg-sidebar text-foreground'>
+        <span className='text-xl'>{icon || "i"}</span>
+      </span>
+      <div className='ml-6'>
+        {title && (
+          <AlertTitle className='font-semibold text-xl mb-2 text-primary/70'>
+            {title}
+          </AlertTitle>
+        )}
+        <AlertDescription className='text-[#226633] dark:text-[#a7ef83] text-base leading-relaxed'>
+          {children}
+        </AlertDescription>
+      </div>
+    </div>
   );
 }

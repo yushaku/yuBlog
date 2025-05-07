@@ -105,7 +105,7 @@ const components = {
   },
   strong: ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => (
     <strong
-      className={cn("font-semibold text-[#a6e3a1]", className)}
+      className={cn("font-semibold text-success", className)}
       {...props}
     />
   ),
@@ -148,10 +148,7 @@ const components = {
   table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
     <div className='my-6 w-full overflow-auto'>
       <table
-        className={cn(
-          "relative w-max min-w-full border text-sm md:text-base",
-          className
-        )}
+        className={cn("relative w-max min-w-full border text-base", className)}
         {...props}
       />
     </div>
