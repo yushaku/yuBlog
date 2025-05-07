@@ -3,8 +3,11 @@ import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { createHighlighter } from "shiki";
-import { transformerNotationDiff } from "@shikijs/transformers";
-import { transformerCopyButton } from "@rehype-pretty/transformers";
+import {
+  transformerNotationDiff,
+  transformerNotationFocus,
+  transformerNotationHighlight,
+} from "@shikijs/transformers";
 
 export const Doc = defineDocumentType(() => ({
   name: "Post",
@@ -41,6 +44,15 @@ export default makeSource({
           theme: "catppuccin-macchiato",
           defaultLang: "ts",
           transformers: [
+            transformerNotationDiff({
+              classLineAdd: "diff-add",
+              classLineRemove: "diff-remove",
+            }),
+            transformerNotationFocus({
+              classActiveLine: "line-focus",
+              classActivePre: "has-focused",
+            }),
+            transformerNotationHighlight(),
             // transformerCopyButton({
             //   visibility: "hover",
             //   feedbackDuration: 2000,

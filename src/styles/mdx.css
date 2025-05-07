@@ -95,6 +95,7 @@ pre [data-line] {
   @apply px-4 border-l-2 border-l-transparent;
 }
 
+.highlighted,
 [data-highlighted-line] {
   background: rgba(200, 200, 255, 0.1);
   @apply border-l-blue-400;
@@ -109,4 +110,27 @@ pre [data-line] {
 }
 [data-chars-id] span {
   @apply !text-inherit;
+}
+
+/* Blur all .line except .line.focused when pre.has-focused */
+pre.has-focused [data-line] {
+  @apply blur-xs transition-all duration-300;
+}
+
+/* Remove blur from the focused line */
+pre.has-focused [data-line].line-focus {
+  @apply blur-none;
+}
+
+/* On hover, remove blur from all lines */
+pre.has-focused:hover [data-line] {
+  @apply blur-none;
+}
+
+.diff-add {
+  @apply bg-[rgba(16,185,129,.16)];
+}
+
+.diff-remove {
+  @apply bg-[rgba(244,63,94,.16)];
 }
