@@ -9,7 +9,7 @@ import { FooterSection } from "./Footer";
 import { Header } from "./Header";
 import { Sidebar } from "./Sidebar";
 
-const StarrySky = dynamic(() => import("./StarrySky"));
+const StarrySky = dynamic(() => import("./StarrySky"), { ssr: false });
 
 export const Provider = ({ children }: { children: React.ReactNode }) => {
   const [showSidebar, setShowSidebar] = useState(false);

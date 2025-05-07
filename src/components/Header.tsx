@@ -144,6 +144,29 @@ export const Header = ({
 
 export const ThemeSwitcherButton = () => {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <button
+        className={cn(
+          "group relative inline-flex items-center gap-2 rounded-full px-3 py-1.5",
+          "transition-colors duration-300 ease-in-out",
+          "hover:bg-accent/50",
+          "border border-border/50"
+        )}
+        type='button'
+        aria-label='Toggle theme'
+      >
+        <div className='relative size-5' />
+        <span className='relative text-sm font-medium'>Theme</span>
+      </button>
+    );
+  }
 
   return (
     <button
