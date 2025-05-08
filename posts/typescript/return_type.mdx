@@ -1,0 +1,28 @@
+---
+title: "ReturnType Utility Type"
+date: "2025-05-08"
+tags: ["typescript"]
+status: "draft"
+description: "Learn how to use TypeScript's ReturnType utility type to extract and work with function return types"
+---
+
+Here's a simple example of how to use `ReturnType`:
+
+```ts
+function getMessage() {
+  return "Hello, TypeScript!";
+}
+
+type MessageType = ReturnType<typeof getMessage>;
+// MessageType is 'string'
+```
+
+easy! right?
+
+so let imagine that you have a function which return a ton of different types
+
+```ts
+function get() {
+  return "Hello, TypeScript!";
+}
+```

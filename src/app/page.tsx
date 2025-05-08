@@ -23,9 +23,14 @@ export default async function Home({
   const aaa = await searchParams;
   const page = parseInt(aaa?.page ?? 1);
   const postsPerPage = 10;
-  const filteredPosts = allPosts.filter((post) =>
-    process.env.NEXT_PUBLIC_EVM === "dev" ? true : post.status === "public"
-  );
+  const filteredPosts = allPosts
+    .sort(
+      (a, b) =>
+        new Date(b?.date ?? "").getTime() - new Date(a?.date ?? "").getTime()
+    )
+    .filter((post) =>
+      process.env.NEXT_PUBLIC_EVM === "dev" ? true : post.status === "public"
+    );
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
   const paginatedPosts = filteredPosts.slice(
     (page - 1) * postsPerPage,

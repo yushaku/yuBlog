@@ -104,7 +104,7 @@ export const AboutHero = () => {
             </span>
             .
           </p>
-          <Link href={`/resume`}>
+          <Link href={`/levanson-blockchain-developer.pdf`} target='_blank'>
             <button className='bg-emerald-700 hover:bg-emerald-800 mt-7 items-center flex text-foreground p-2 rounded-full px-5 group'>
               <FileUser className='h-5 w-5 me-2 group-hover:animate-shake' />
               My Resume
