@@ -258,7 +258,11 @@ const components = {
   ),
   Link: ({ className, ...props }: React.ComponentProps<typeof Link>) => (
     <Link
-      className={cn("font-medium underline underline-offset-4", className)}
+      target='_blank'
+      className={cn(
+        "font-medium underline text-primary/50 underline-offset-4",
+        className
+      )}
       {...props}
     />
   ),

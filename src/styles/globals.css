@@ -162,8 +162,7 @@
     @apply scroll-smooth;
   }
   body {
-    @apply bg-background text-foreground overscroll-none;
-    /* font-feature-settings: "rlig" 1, "calt" 1; */
+    @apply bg-background text-foreground overscroll-none text-lg;
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
   }

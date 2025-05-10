@@ -94,8 +94,12 @@ export default async function PostPage(props: {
   );
 
   return (
-    <article className='mx-auto max-w-7xl relative px-6 py-5'>
-      <header className='mb-8 animate-fadeIn'>
+    <article className='mx-auto max-w-screen-xl relative py-5'>
+      <header
+        className={cn(
+          "mb-8 animate-fadeIn flex justify-center items-center flex-col"
+        )}
+      >
         <h1 className='mb-4 text-4xl font-bold text-foreground animate-fade-down'>
           {post.title}
         </h1>
@@ -129,7 +133,7 @@ export default async function PostPage(props: {
       >
         <div
           className={cn(
-            "w-full animate-fade-up",
+            "w-full animate-fade-up max-w-screen-md mx-auto",
             hasToc && "lg:w-[calc(100%-20rem)]"
           )}
         >
@@ -139,7 +143,12 @@ export default async function PostPage(props: {
         {hasToc && <ResponsiveToc toc={toc} />}
       </div>
 
-      <div className='comment mt-10 border-t border-gray-700 pt-10'>
+      <div
+        className={cn(
+          "mt-10 border-t border-gray-700 pt-10",
+          !hasToc && "max-w-screen-md mx-auto"
+        )}
+      >
         <Comments />
       </div>
 

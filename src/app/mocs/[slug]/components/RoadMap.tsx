@@ -27,10 +27,11 @@ export const RoadMap = ({
   className = "",
 }: RoadMapProps) => {
   const [nodes, , onNodesChange] = useNodesState(initialNodes);
+
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const onConnect: OnConnect = useCallback(
     (connection) => setEdges((edges) => addEdge(connection, edges)),
-    [setEdges],
+    [setEdges]
   );
 
   const nodeTypes = useMemo(() => ({ roadmap: RoadMapNode }), []);

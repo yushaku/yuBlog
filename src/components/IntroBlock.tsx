@@ -3,11 +3,12 @@ import { topics } from "@/utils/constants";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { IconArrowRight, IconGithub, IconLinkedin } from "./Icons";
+import { IconGithub, IconLinkedin } from "./Icons";
 import { siteConfig } from "@/utils/siteConfig";
 import { BorderTrail } from "./cuicui/cards";
 import { cn } from "@/utils";
 import { ShinyText } from "./cuicui/texts";
+import { ArrowRight } from "lucide-react";
 
 export const Warper = ({
   children,
@@ -45,8 +46,8 @@ export const IntroBlock = () => {
         <ShinyText className='text-xl font-medium'>{siteConfig.name}</ShinyText>
       </h3>
       <p className='text-grayColor text-sm'>
-        Become better Full-stack developer. Following our tips, tricks and real
-        life experiences.
+        My goal is for this blog to be a place to share what I have learned
+        along the way
       </p>
       <span className='flex gap-4'>
         <Link href={siteConfig.links.linkedin}>
@@ -78,7 +79,7 @@ export const CategoryList = () => {
                 href={`/category/${el.title.toLowerCase()}`}
                 className='flex items-center py-3 '
               >
-                <IconArrowRight className='animationShow mr-2 rotate-180 w-4 h-4 stroke-foreground group-hover:mr-4' />
+                <ArrowRight className='animationShow mr-2 rotate-180 w-4 h-4 stroke-foreground group-hover:mr-4' />
                 <span className='group-hover:text-primary animationShow group-hover:font-bold'>
                   {el.title}
                 </span>
