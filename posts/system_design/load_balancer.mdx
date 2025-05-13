@@ -1,0 +1,57 @@
+---
+title: "Load Balancer"
+date: "2025-05-09"
+tags: ["system_design"]
+status: "public"
+description: "A load balancer is a device that distributes network traffic between multiple servers"
+---
+
+![](https://www.appviewx.com/wp-content/uploads/2021/01/what-is-a-load-balancer.png)
+
+Load balancing is a technique used to **distribute network traffic across a
+pool of servers**. It optimizes network performance, reliability and capacity,
+reducing latency as the demand is equally distributed among multiple servers
+and compute resources.
+
+## How Load Balancing Works
+
+- Load balancing sit between the servers and the internet.
+- handle incoming requests from users for information.
+- Once a request is received, the load balancer first determines which server in a pool is available and online and then routes the request to that server.
+- during times of heavy loads, a load balancer acts promptly and can _dynamically add servers in response to spikes in traffic_. conversely, load balancers _can drop servers if demand is low_.
+
+## Benefits
+
+1. **_Improved scalability_.**
+
+   - Load balancers can scale the server infrastructure on demand, depending on the network requirements, without affecting services.
+   - **For example**, if a website starts attracting a large number of visitors, it can _cause a sudden spike in traffic_. If the web server isn't able to manage this sudden influx of traffic, the _website might crash_. Load balancing can _spread the extra traffic across multiple servers_, preventing this from happening.
+
+2. **_Improved efficiency._**
+
+   - Due to the reduced burden of traffic on each server, the network traffic flows better and improves response times => This ultimately provides a better experience for site visitors.
+
+3. **_Reduced downtime_.**
+
+   - Companies with a global presence and multiple locations in different time zones can benefit from load balancing, especially when it comes to server maintenance.
+   - For example, a company can shut down the server that needs maintenance and route traffic to the other available load balancers without causing service interruptions or [downtime](https://www.techtarget.com/searchnetworking/definition/network-downtime).
+
+4. **_Predictive analysis_**
+
+   - Load balancing can _provide early detection of failures_ and help manage them without affecting other resources.
+   - **For example**, software-based load balancers can predict traffic [bottlenecks](https://www.techtarget.com/searchnetworking/definition/bottleneck) before they happen.
+
+5. **_Efficient failure management_**
+
+   - In the event of a failure, load balancers can automatically redirect traffic to functional resources and backup options.
+   - **For example**, if a failure is detected on a network resource, such as a mail server, load balancers can redistribute resources to other unaffected areas to prevent service disruption.
+
+6. **_Improved security_**
+   - Load balancers add an _extra layer of security_ without requiring additional changes or resources.
+
+## Algorithms
+
+I found this blog explain the algorithms in a very detailed way:
+[samwho/](https://samwho.dev/load-balancing/). i can't recommend it enough.
+
+![](https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F12dffcce-f231-48cc-915f-d53c0f8bce0c_3735x3573.jpeg)

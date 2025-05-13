@@ -1,0 +1,62 @@
+---
+title: "Redis"
+date: "2025-05-13"
+tags: ["system_design", "cache"]
+status: "public"
+description: "Redis is an open-source, in-memory data structure store used as a database, cache, and message broker."
+---
+
+## What is Redis?
+
+Redis is an open-source, in-memory key-value data store known for its _speed_ and _flexibility_.
+
+**Key Features**:
+
+- **In-Memory Data Store**: Redis stores data in RAM, ensuring fast read and write speeds.
+- **Data Persistence**: Unlike other in-memory caches, Redis can persist data to disk.
+- **Rich Data Structures**: Redis is not limited to simple key-value pairs but offers robust structures such as lists, sets, sorted sets, and hashes.
+- **Pub/Sub Messaging**: Redis allows message brokering using Pub/Sub, making it useful for real-time messaging systems.
+- **Distributed System**: Redis supports clustering, enabling horizontal scalability.
+
+## Why Redis?
+
+Redis is a popular choice for many reasons:
+
+- **High performance**: Redis is known for its high performance, which is due to its in-memory data storage and processing capabilities.
+- **Scalability**: Redis is designed to be scalable, which means it can handle a large number of requests and data.
+- **Flexibility**: Redis supports a variety of data structures, which makes it a versatile tool for many different use cases.
+
+## Redis Internals: How Does It Work?
+
+Redis is an in-memory data structure server. Let's break down the key components and internals of Redis:
+
+### 1 Memory Management:
+
+- Redis operates entirely in memory and uses a single-threaded event loop. Data is stored as key-value pairs in **RAM**, which ensures fast read/write performance.
+- Redis leverages a **memory-efficient** representation called **SDS (Simple Dynamic String)** to store data.
+
+### 2 Data Persistence:
+
+Redis can persist data on disk using two primary mechanisms:
+
+- **RDB (Redis Database)**: A point-in-time snapshot mechanism that saves data to disk at specific intervals.
+- **AOF (Append Only File)**: Logs every write operation, making it more durable, though at the cost of speed compared to RDB.
+
+### 3 Eviction Policies:
+
+Since Redis operates in memory, it uses eviction policies to handle data when memory is full:
+
+- **LRU (Least Recently Used)**: Removes the least recently accessed items.
+- **LFU (Least Frequently Used)**: Removes items based on access frequency.
+- **TTL (Time-to-Live)**: Allows setting expiration times for keys, making it easy to manage short-lived data.
+
+## Redis Data Types
+
+Redis supports five data types:
+
+- Strings
+- Hashes (Objects)
+- Lists
+- Sets
+- Sorted Sets (Priority Queues)
+- Geospatial Indexes

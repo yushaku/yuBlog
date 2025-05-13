@@ -21,7 +21,7 @@ export const Warper = ({
     <article
       className={cn(
         "mx-auto h-fit mb-10 bg-sidebar/50 py-6 flex flex-col items-center justify-center gap-y-4 rounded-lg px-6 text-center shadow-lg",
-        className,
+        className
       )}
     >
       {children}
@@ -45,7 +45,7 @@ export const IntroBlock = () => {
       <h3 className='text-foreground text-xl font-semibold'>
         <ShinyText className='text-xl font-medium'>{siteConfig.name}</ShinyText>
       </h3>
-      <p className='text-grayColor text-sm'>
+      <p className='text-grayColor'>
         The best way to learn something is to teach others. Second best way to
         learn something is to do it yourself. I decided to combine the two ways
         and teach myself and you how to program. My goal is for this blog to be

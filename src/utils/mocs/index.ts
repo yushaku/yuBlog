@@ -20,10 +20,12 @@ export type MapNodeProps = {
     label: string;
     className: string;
     link?: string;
-    image?: {
+    description?: string;
+    logo?: {
       src: string;
       width: number;
       height: number;
+      className?: string;
     };
   };
 };

@@ -1,0 +1,135 @@
+---
+title: "Cache Strategies"
+date: "2025-05-13"
+tags: ["system_design"]
+status: "daft"
+description: "Cache strategies are a way to improve the performance of a system."
+---
+
+## What is a cache?
+
+Read data from the system:
+
+- Cache aside
+- Read through
+
+Write data to the system:
+
+- Write around
+- Write back
+- Write through
+
+The diagram below illustrates how those 5 strategies work. Some of the caching strategies can be used together.
+
+![Cache Strategies](https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F3d4f861a-82b2-4b8f-b9c7-d926f079a108_2163x3153.jpeg)
+
+## READ
+
+### Read Cache Aside
+
+The cache sits on the side, and the application directly talks to both the cache and the database.
+
+There is no connection between the cache and the primary database. All operations to cache and the database are handled by the application.
+
+![Read Cache Aside](https://cdn.hashnode.com/res/hashnode/image/upload/v1747154818352/147a807e-e651-4a38-b5d7-b833dac6ac4e.png?auto=compress,format&format=webp)
+
+**Advantages**
+
+- Cache-aside caches are usually general purpose and work best for read-heavy workloads
+- The read aside cache method can lead to faster performance and reduced response times as data is retrieved from the cache instead of the database or storage.
+- It can result in reduced resource usage on the database or storage system.
+
+**Disadvantages**
+
+- Systems using cache-aside are resilient to cache failures. If the cache cluster goes down, the system can still operate by going directly to the database. (Although, it doesn’t help much if cache goes down during peak load. Response times can become terrible and in worst case, the database can stop working.)
+
+When cache-aside is used, the most common write strategy is to write data to the database directly.
+
+When this happens, cache may become inconsistent with the database
+
+To deal with this, developers generally use time to live (TTL) and continue serving stale data until TTL expires.
+
+If data freshness must be guaranteed, developers either invalidate the cache entry or use an appropriate write strategy
+
+### Read Through
+
+Read-through caches work best for write-heavy workloads workloads
+
+Read-through cache sits in-line with the database.
+
+When there is a cache miss, it loads missing data from database, populates the cache and returns it to the application.
+
+![Read Through](https://cdn.hashnode.com/res/hashnode/image/upload/v1747154818352/147a807e-e651-4a38-b5d7-b833dac6ac4e.png?auto=compress,format&format=webp)
+
+**Advantage**
+
+- logic for read-throw is usually supported by the library or stand-alone cache provider.
+- The read-throw method ensures that the data being used is always up-to-date and accurate
+
+**Disadvantages**
+
+- when the data is requested the first time, it always miss cache and incurs the extra penalty of loading data to the cache.
+- It can result in increased resource usage on the database or storage system.
+
+## WRITE
+
+### Write Through
+
+write-through caches work best for write-heavy workloads workloads
+
+Data will write to the cache first and the cache immediately writes to the database
+
+when recipt a data The data will be cached
+
+Cache will send a request to save data to the database immediately.
+
+![Write Through](https://cdn.hashnode.com/res/hashnode/image/upload/v1747154841798/5b996adb-20b3-4633-b840-707704e987d2.png?auto=compress,format&format=webp)
+
+**Advantages**
+
+- There is never a cache miss, because data is always cached before being saved to the database.
+- There is no case where the data does not match the database
+- The data is always identical if we combine [[#Write through]] cache and [[#Read through]] cache.
+
+**Disadvantages**
+
+- The process of saving data will often take a extra time because it has to wait for the cache and database to be saved
+- Most of the data on the cache is read-once data, so writing to the cache will result in a lot of unnecessary data remaining on the cache => unnecessary resource consumption
+
+### Write Back
+
+Cache will synchronize data to the database periodically over time, or according to the amount of data inserted / updated.
+
+compare with [[#Write-through]]
+
+[[#Write through]]: save data from cache to database synchronously
+
+[[#Write back]]: save data from cache to database asynchronously
+
+![Write Back](https://cdn.hashnode.com/res/hashnode/image/upload/v1747154863607/e1ebac77-83a8-42a5-866f-e94831855fe5.png?auto=compress,format&format=webp)
+
+**Advantages**
+
+- Reduce the writing pressure on the database, thereby reducing costs and problems related to the database
+
+If we combine [[#Write back]] and [[#Read through]] cache, we have a good system for both read heavy workloads and write heavy workloads.
+
+**Disadvantages**
+
+- Data may not be consistent between the cache and the database if the cache has not synchronized the data to the database.
+
+If the cache is dead, the system will be dead, we may lose forever data that the cache has not synchronized to the database.
+
+### Write Around
+
+chiến thuật này chỉ phù hợp với những data ít thay đổi và hệ thống chấp nhận độ trễ của dữ liệu, vì dữ liệu có thể không consistency trong lúc Cache chưa hết hạn (expired) mà có dữ liệu mới đã được update.
+
+![Write Around](https://cdn.hashnode.com/res/hashnode/image/upload/v1747154895027/ccf92303-211f-4458-b022-ba3ff783b1e3.png?auto=compress,format&format=webp)
+
+**Advantages**
+Chiến thuật này khi có dữ liệu cần thay đổi, sẽ chỉ ghi vào DB mà bỏ qua Cache.
+
+Điều này sẽ có thể giảm việc Cache bị tràn ngập các thao tác ghi mà rất có thể các dữ liệu này sẽ không bao giờ được sử dụng.
+
+**Disadvantages**
+rất dễ gây ra trường hợp “cache miss” nếu client gửi một request được từ một bản ghi mới được ghi vào, nó sẽ gây độ trễ khi đọc vì lúc này dữ liệu phải đọc từ DB sau đó mới được ghi ngược lại vào Cache và trả về cho Client.

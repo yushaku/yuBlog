@@ -4,7 +4,7 @@ import { Handle, Position } from "@xyflow/react";
 import Link from "next/link";
 
 export const RoadMapNode = ({ data }: MapNodeProps) => {
-  const { link, label } = data;
+  const { link, label, description } = data;
 
   // check link is https:// or /blog/post
   const isExternalLink = data.link?.startsWith("https://");
@@ -20,15 +20,16 @@ export const RoadMapNode = ({ data }: MapNodeProps) => {
       <Handle type='source' position={Position.Right} />
 
       <div className='text-center flex gap-2 items-center font-medium'>
-        {data.image && (
+        {data.logo && (
           <div className='mt-1 self-center'>
             <img
-              src={data.image.src}
+              src={data.logo.src}
               alt={data.label}
               style={{
-                width: data.image.width,
-                height: data.image.height,
+                width: data.logo.width,
+                height: data.logo.height,
               }}
+              className={cn(data.logo.className)}
             />
           </div>
         )}
@@ -46,6 +47,10 @@ export const RoadMapNode = ({ data }: MapNodeProps) => {
           <span>{label}</span>
         )}
       </div>
+
+      {description && (
+        <p className='text-xs text-muted-foreground'>{description}</p>
+      )}
     </div>
   );
 };

@@ -2,8 +2,67 @@
 title: "Rate Limiting"
 date: "2025-05-09"
 tags: ["system_design"]
-status: "draft"
+status: "public"
+description: "Rate limiting is a technique used to control the rate of requests to a service."
 ---
+
+## rate limiting?
+
+So imagine your server is getting absolutely wrecked by a Distributed Denial of Service (DDoS) attack—basically,
+some attacker is spamming your API with more requests than it can handle. Boom. It crashes. What now?
+
+You might think, “Easy fix: auto-scaling!” But hold up, because that's gonna cost you big time. Plus, these aren't even real customer requests—they're just digital spam. If you scale up, those new instances will just get DDoS'd too. Not ideal.
+
+Instead, we hit 'em with rate limiting — AKA the easiest way to stop your server from straight-up imploding. Rate limiting puts a cap on how many requests can be made in a set time frame, keeping things chill and manageable. And it's not just about stopping cyber attacks — it's also clutch for making sure actual users have a smooth experience and your API doesn't get abused.
+
+**Now, here's why rate limiting is major:**
+
+- It keeps your API from being overloaded by bots and bad actors.
+- It ensures users don't drain your system's resources or accidentally cause a meltdown.
+
+And real talk, rate limiting isn't just for stopping cyber chaos—it can also help with things like:
+
+- Blocking a single IP from creating more than 20 accounts per day (bye, spam accounts).
+- Limiting devices to 5 failed credit card transactions per day (no infinite retries for fraudsters).
+- Restricting messages with risky keywords to 1 per day (cutting down on shady stuff).
+
+So yeah, rate limiting? 100% essential for keeping your API from getting clowned by attackers.
+
+## Why Rate Limiting is a Must-Have
+
+Imagine your API is vibing, handling requests like a boss. Then—BAM—some hacker rolls in with a brute force attack, spamming your API nonstop, hoping to crack it open like a piñata. Not cute. 🚫
+
+Or worse, you get hit with a Denial of Service (DoS) attack, where someone floods your system with so many requests that your API just disappears from existence. If multiple attackers gang up on you? Boom—DDoS attack. Pure chaos.
+
+So how do we stop this nonsense? Rate limiting. It's like putting your API on a strict diet so it doesn't overeat and collapse.
+
+### How Rate Limiting Saves the Day
+
+🔹 **Blocking Brute Force Attacks**: Hackers try to guess passwords or access keys by bombarding your API with endless requests.
+Rate limiting puts a stop to that real quick—forcing a timeout so the system can breathe and take action.
+
+🔹 **Preventing DoS & DDoS Attacks**: Attackers spam your API to either slow it down or kill it completely.
+Rate limiting keeps things sane by rejecting the flood of nonsense.
+
+🔹 **Avoiding Resource Starvation**: Sometimes the chaos isn't even caused by hackers—it's just bad configuration or buggy code spamming the system.
+Rate limiting prevents your API from unintentionally self-destructing.
+
+🔹 **Stopping Cascading Failures**: When one part of your system crashes, it can trigger failures everywhere like a row of falling dominos.
+Rate limiting prevents that spiral by keeping requests in check.
+
+### Pro-Level Strategy
+
+Services usually set rate limits before things get crazy—like putting your API in protective bubble wrap before it crashes into reality. For example:
+
+- A RESTful API might rate-limit requests before they flood a database.
+- A distributed system applies limits to stop resource hogging.
+- Even big companies use rate limiting to protect their servers from sudden traffic spikes (think Black Friday sales madness).
+
+> Rate Limiting = Your API's Personal Bodyguard
+> It keeps your system stable, prevents meltdowns, and saves you from unnecessary server-side drama.
+> So yeah—don't skip it. 😎
+
+## What Are the Algorithms Used for Rate Limiting?
 
 This article is so awesome, you should watch the video below or this blog [ratelimit-algorithms](https://smudge.ai/blog/ratelimit-algorithms) of smudge.ai
 
