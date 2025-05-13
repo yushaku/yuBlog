@@ -1,10 +1,10 @@
-
 export const siteConfig = {
   logo: "/logo.png",
   name: "Yushaku blog",
-  url: "https://hookcn.ouassim.tech",
+  url: "https://yushaku.vercel.app",
   ogImage: "https://hookcn.ouassim.tech/og.png",
-  description: "A personal blog where I share my thoughts and experiences about software development, technology trends, and programming best practices",
+  description:
+    "A personal blog where I share my thoughts and experiences about software development, technology trends, and programming best practices",
   links: {
     linkedin: "https://www.linkedin.com/in/levanson180200",
     twitter: "",

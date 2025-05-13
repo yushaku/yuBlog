@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "yushaku",
-      url: "https://ouassim.tech",
+      url: "https://yushaku.vercel.app",
     },
   ],
   creator: "yushaku",
