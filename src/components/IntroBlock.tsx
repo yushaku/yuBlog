@@ -9,6 +9,11 @@ import { BorderTrail } from "./cuicui/cards";
 import { cn } from "@/utils";
 import { ShinyText } from "./cuicui/texts";
 import { ArrowRight } from "lucide-react";
+import {
+  TextRevealCard,
+  TextRevealCardDescription,
+  TextRevealCardTitle,
+} from "./ui/text-reveal-card";
 
 export const Warper = ({
   children,
@@ -45,7 +50,7 @@ export const IntroBlock = () => {
       <h3 className='text-foreground text-xl font-semibold'>
         <ShinyText className='text-xl font-medium'>{siteConfig.name}</ShinyText>
       </h3>
-      <p className='text-grayColor'>
+      <p className='text-grayColor text-base'>
         The best way to learn something is to teach others. Second best way to
         learn something is to do it yourself. I decided to combine the two ways
         and teach myself and you how to program. My goal is for this blog to be
@@ -63,6 +68,23 @@ export const IntroBlock = () => {
     </Warper>
   );
 };
+
+export function IntroBlock2() {
+  return (
+    <TextRevealCard
+      text='You know the business'
+      revealText='I know the way to build applications'
+    >
+      <TextRevealCardTitle>
+        Sometimes, you just need to see it.
+      </TextRevealCardTitle>
+      <TextRevealCardDescription>
+        This is a text reveal card. Hover over the card to reveal the hidden
+        text.
+      </TextRevealCardDescription>
+    </TextRevealCard>
+  );
+}
 
 export const CategoryList = () => {
   return (
