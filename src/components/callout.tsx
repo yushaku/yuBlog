@@ -17,8 +17,8 @@ export function Callout({
       )}
       {...props}
     >
-      <span className='absolute -left-4 -top-2 flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary bg-sidebar text-foreground'>
-        <span className='text-xl'>{icon || "i"}</span>
+      <span className='absolute -left-4 -top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-primary/10 bg-sidebar text-foreground'>
+        <span className='text-base'>{icon || "✨"}</span>
       </span>
       <div className='ml-6'>
         {title && (

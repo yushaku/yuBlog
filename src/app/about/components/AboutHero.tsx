@@ -55,7 +55,7 @@ export const AboutHero = () => {
                   "Web App Developer",
                   "Next Js Developer",
                   "Blockchain developer",
-                  "🕶️🕶️🕶️",
+                  "LÀO GÌ CŨNG TÔN",
                 ]}
                 mainClassName='text-foreground px-2 sm:px-2 md:px-3 overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg'
                 staggerFrom={"last"}

@@ -16,7 +16,7 @@ export const topItems = [
   },
   {
     title: "About me",
-    href: "about",
+    href: "/about",
   },
 ];
 

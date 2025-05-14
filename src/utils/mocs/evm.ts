@@ -20,20 +20,10 @@ const aa = {
         link: "/article/blockchain/ERC-4337",
       },
     },
-    {
-      id: "eip-7702",
-      type: "roadmap",
-      position: { x: 450, y: 100 },
-      data: {
-        label: "EIP-7702",
-        link: "/article/blockchain/eip-7702",
-      },
-    },
   ],
   edges: [
     { id: "a1", source: "ethereum", target: "aa", animated: false },
     { id: "a2", source: "aa", target: "erc-4337", animated: false },
-    { id: "a3", source: "aa", target: "eip-7702", animated: false },
   ],
 };
 
@@ -55,6 +45,11 @@ const indexer = {
       data: {
         label: "The Graph",
         type: "main",
+        logo: {
+          src: "https://s2.coinmarketcap.com/static/img/coins/200x200/6719.png",
+          width: 20,
+          height: 20,
+        },
       },
     },
   ],
@@ -74,6 +69,48 @@ const indexer = {
   ],
 };
 
+const solidity = {
+  nodes: [
+    {
+      id: "solidity",
+      type: "roadmap",
+      position: { x: 200, y: 400 },
+      data: {
+        label: "Solidity",
+        type: "main",
+        logo: {
+          src: "https://svgmix.com/uploads/skillicons/f41159-solidity.svg",
+          width: 20,
+          height: 20,
+        },
+      },
+    },
+    {
+      id: "storage-slots-primary-types",
+      type: "roadmap",
+      position: { x: 400, y: 400 },
+      data: {
+        label: "Storage Slots of Primary Types",
+        link: "/article/solidity/storage_slots_primary_types",
+      },
+    },
+  ],
+  edges: [
+    {
+      id: "s1",
+      source: "ethereum",
+      target: "solidity",
+      animated: true,
+    },
+    {
+      id: "s2",
+      source: "solidity",
+      target: "storage-slots-primary-types",
+      animated: true,
+    },
+  ],
+};
+
 export const ethereum: MOC = {
   title: "ethereum",
   nodes: [
@@ -84,7 +121,7 @@ export const ethereum: MOC = {
       data: {
         label: "Ethereum",
         type: "main",
-        image: {
+        logo: {
           src: "https://www.cdnlogo.com/logos/e/81/ethereum-eth.svg",
           width: 20,
           height: 20,
@@ -93,6 +130,7 @@ export const ethereum: MOC = {
     },
     ...aa.nodes,
     ...indexer.nodes,
+    ...solidity.nodes,
   ],
-  edges: [...aa.edges, ...indexer.edges],
+  edges: [...aa.edges, ...indexer.edges, ...solidity.edges],
 };

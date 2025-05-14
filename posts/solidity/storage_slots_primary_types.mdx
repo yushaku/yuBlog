@@ -1,0 +1,396 @@
+---
+title: "Storage Slots of Primary Types"
+date: "2025-05-15"
+tags: ["solidity"]
+status: "public"
+description: "This article explains how Solidity stores smart contract data using storage slots, packing for efficiency, and Yul assembly for direct storage access"
+---
+
+## Overview
+
+Variables in a smart contract store their value in two primary locations:
+
+- **bytecode**: Immutable variables
+- **storage**: Mutable variables
+
+## Bytecode
+
+Bytecode is the part of a smart contract that never changes once the contract is deployed. It stores all the unchangeable information, including:
+
+- **Fixed Values**: Any _constant_ or _immutable_ variables you set become part of the bytecode.
+- **Program Code**: The actual instructions for your contract, including hardcoded numbers (like `uint256 x = 20` in a function), are stored here.
+
+In essence, bytecode is like the permanent blueprint of your contract that lives on the blockchain and shows everything that cannot be altered.
+
+```solidity
+contract ImmutableVariables {
+    uint256 constant myConstant = 100;
+    uint256 immutable myImmutable;
+
+    constructor(uint256 _myImmutable) {
+        myImmutable = _myImmutable;
+    }
+
+    function doubleX() public pure returns (uint256) {
+        uint256 x = 20;
+        return x * 2;
+    }
+}
+```
+
+![Storage slots visualized diagrammatically](https://cdn.hashnode.com/res/hashnode/image/upload/v1747327515322/0c29024d-c704-490e-85d6-764f7f74a76c.png)
+
+## Storage
+
+Storage is where a smart contract permanently keeps its _changeable data_, like _balances_ or _counters_.
+
+- These storage variables live on the blockchain and keep their values until a transaction updates them.
+- They are stored in fixed-size spaces called **storage slots** (each 32 bytes in size), assigned by Solidity based on the order of declaration.
+- Storage variables are variables that are declared within the global scope of a contract (except for immutable and constant variables).
+
+```solidity
+contract StorageVariables{
+    uint256 x;
+    address owner;
+    mapping(address => uint256) balance;
+    // and more...
+}
+```
+
+## Storage Slots
+
+A smart contract's **storage** is organized into **storage slots**.
+
+- Each slot has a fixed storage capacity of `256 bits` or `32 bytes`.
+- **Storage slots** are indexed from `0` to `2^256 - 1`.
+- The Solidity compiler gives each storage variable its own slot in the order you declare them. This means the first variable gets the first slot, the second gets the next, and so on, making the storage predictable and fixed.
+
+```solidity
+contract StorageVariables {
+    uint256 public x; // first declared storage variable
+    uint256 public y; // second declared storage variable
+}
+```
+
+![storage variables storing their value in their allocated storage slots](https://cdn.hashnode.com/res/hashnode/image/upload/v1747322226889/2ec66000-c64a-4f20-b90b-7807428ede4c.png)
+
+- When queried, `x` and `y` will consistently read from the values stored in their respective storage slots.
+- A variable cannot change its storage slot once the contract is deployed to the blockchain.
+- If the value of `x` and `y` is **not** initialized, it defaults to zero. **All storage variables default to zero until they are explicitly set.**
+
+```solidity
+contract StorageVariables {
+    uint256 public x; // Uninitialized storage variable
+
+    function return_uninitialized_X() public view returns (uint256) {
+        return x; // returns 0
+    }
+}
+```
+
+To set the value of `x` to `20`, we can call the function `set_x(20)`.
+
+```solidity
+function set_x(uint256 value) external {
+    x = value;
+}
+```
+
+This transaction triggers a state change in slot 0, updating its state from 0 to 20.
+
+![State change animation of the variable x triggered by a function](https://www.rareskills.io/wp-content/uploads/2024/09/706568_4c88284b4d7a49c5b787eef1bfd29a43~mv2.gif)
+
+**Inside Storage Slots: 256-bit Data**
+
+Individual storage slots store data in `256-bit` format
+
+The default value of `slot 0` is `0`. After calling `set_x(20)`, slot 0's state was changed to the bit representation of **uint256 20**.
+
+![Text and raw bit representation of Storage slot 0 keeping the value of 20](https://www.rareskills.io/wp-content/uploads/2024/09/706568_c4e5c17749894730a6618499a981a8d3~mv2.gif)
+
+## Storage Packing
+
+So far, we've conveniently dealt with `uint256` variables, which span the entire 32 bytes of a storage slot. Other primitive data types, such as `uint8`, `uint32`, `uint128`, `address`, and `bool`, are smaller in size and uses less storage space. They can be packed together within the same storage slot.
+
+The table below illustrates the storage size of some primitive data types.
+
+| Type      | Size     |
+| --------- | -------- |
+| `bool`    | 1 byte   |
+| `uint8`   | 1 byte   |
+| `uint32`  | 4 bytes  |
+| `uint128` | 16 bytes |
+| `address` | 20 bytes |
+| `uint256` | 32 bytes |
+
+**For example**, a storage variable of type `address` will require 20 bytes of storage space to store its value, as illustrated in the table above.
+
+```solidity
+contract AddressVariable{
+    address owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+}
+```
+
+In the contract above, `owner` will use up 20 bytes of the 32 bytes available to store its value.
+
+![Mapping of address owner to it byte sequence](https://www.rareskills.io/wp-content/uploads/2024/09/706568_cd9feb6ee44c4cc58c9aac57940b47cb~mv2.png)
+
+**When declared in sequence, smaller sized variables live in the same storage slot if their total size is less than 256 bits or 32 bytes.**
+
+Say we declared a second and a third storage variable of type `bool` (1 byte) and `uint32` (4 bytes), their values will be stored within the same storage slot as `owner`, slot 0, at the unused storage space.
+
+```solidity
+contract AddressVariable {
+    address owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+
+    bool Boolean = true;  // [!code ++]
+    uint32 thirdVar = 5_000_000;  // [!code ++]
+}
+```
+
+The Boolean variable is stored in the first available byte to the left of the owner's data, filling the least significant unused space. Remember, Solidity arranges packed variables from right to left.
+
+![Mapping of three variables(thirdvar, Boolean, owner) to their respective byte sequence.](https://www.rareskills.io/wp-content/uploads/2024/09/706568_2b0d75049ae1488c95ea19c73c2aaa52~mv2.png)
+
+If we were to introduce a fourth storage variable, `address admin`, its value will be stored in the next storage slot, slot 1.
+
+```solidity
+contract AddressVariable {
+    address owner = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
+    bool Boolean = true;
+    uint32 thirdVar = 5_000_000;
+
+    address admin = 0xAb8483F64d9C6d1EcF9b849Ae677dD3315835cb2;  // [!code ++]
+}
+```
+
+Admin's value needs 20 bytes, but slot 0 only has 7 bytes left. Since it can't be split across slots, Solidity stores it entirely in slot 1 instead.
+
+![Storage sot allocation diagram of 4 state variables.](https://www.rareskills.io/wp-content/uploads/2024/09/706568_09add3feb5c64e1db65cf69e40b4e55b~mv2.png)
+
+## Best Practice: Declare Smaller Variables Together
+
+```solidity
+uint16 public a;
+uint256 public x; // uint256 in the middle
+uint32 public b;
+```
+
+In this arrangement, `uint16 a` and `uint32 b` **will not** be packed together.
+
+![inefficient storage slot allocation for a uint256 variable declared in between two smaller storage variables](https://www.rareskills.io/wp-content/uploads/2024/09/706568_2796450a514943efa19e2eea4b986099~mv2.png)
+
+A better practice is to reorder the declarations to allow the smaller datatypes to be packed together.
+
+```solidity
+uint256 public x;
+// packed together
+uint16 public a;
+uint32 public b;
+```
+
+This configuration allows a and b to share a storage slot, thereby optimizing storage space.
+
+![Efficient storage slot allocation for three storage variables](https://www.rareskills.io/wp-content/uploads/2024/09/706568_3fc7736a7d974e738cd5b74810cba347~mv2.png)
+
+## Yul Assembly for Storage Operations
+
+Yul allows direct access to storage slots, giving more control over reading and writing data.
+
+- `sload(slot)` → Reads the value stored in a specific slot.
+- `sstore(slot, value)` → Updates a slot with a new value.
+- `.slot` → Returns the storage location of a variable.
+- `.offset` → Gives the byte offset within a slot.
+
+This flexibility helps optimize smart contract storage and gas usage.
+
+### The `.slot` Keyword
+
+The contract below contains three `uint256` storage variables.
+
+```solidity
+contract StorageManipulation {
+    uint256 x;
+    uint256 y;
+    uint256 z;
+}
+```
+
+You should be able to deduce that `x`, `y` and `z` store their values in slot 0, slot 1 and slot 2, respectively. We can prove this by accessing the storage variable’s property using the `.slot` keyword.
+
+**`.slot`** **tells us at which storage slot a variable keeps its value.**
+
+```solidity
+function getSlotX() external pure returns (uint256 slot) {
+    assembly {
+        slot := x.slot // returns slot location of x = 0 // [!code highlight]
+    }
+}
+```
+
+![x.slot returns the slot number of the storage variable x](https://www.rareskills.io/wp-content/uploads/2024/09/706568_6b7b58f6c2c74e52a9f744aa22412242~mv2.png)
+
+### `sload()`
+
+Yul allows us to **read the value stored by individual storage slots**. The `sload(slot)` opcode is used for this purpose.
+
+It requires one input, `slot`, the storage slot identifier and returns the entire 256 bit of data stored at the specified slot location.
+
+The slot identifier can be either the `.slot` keyword (`sload(x.slot)`), a local variable (`sload(localvar)`) or a hardcoded number (`sload(1)`).
+
+```solidity
+contract ReadStorage {
+    uint256 public x = 11;
+    uint256 public y = 22;
+    uint256 public z = 33;
+}
+```
+
+The function `readSlotX()` retrieves the 256 bit data stored in `x.slot` (slot 0) and returns it in `uint256` format, which equals 11.
+
+```solidity
+function readSlotX() external view returns (uint256 value) {
+    assembly {
+        value := sload(x.slot)
+    }
+}
+```
+
+- `sload(0)` reads from slot 0, which stores the value of 11.
+- `sload(1)` reads from slot 1, which stores the value of 22.
+- `sload(2)` reads from slot 2, which stores the value of 33.
+- `sload(3)` reads from slot 3, which stores nothing, it is still in its default state.
+
+The function `sloadOpcode(slotNumber)` allows us to read the value of any **arbitrary storage slot**. It then returns the value in uint256 format.
+
+```solidity
+function sloadOpcode(uint256 slotNumber)
+    external
+    view
+    returns (uint256 value)
+{
+    assembly {
+        value := sload(slotNumber)
+    }
+}
+```
+
+**`sload()` does not perform a type check.**
+
+In Solidity, we cannot return a uint256 variable in bool format as it will incur a type error.
+
+```solidity
+function returnX() public view returns (bool ret) {
+    ret = x; // type error [!code --]
+}
+```
+
+But if the same set of operation is performed in Yul, the code will still compile.
+
+```solidity
+function readSlotX_bool() external view returns(bool value) {
+    // return in bool
+    assembly{
+        value:= sload(x.slot) // will compile
+    }
+}
+```
+
+In assembly, all variables are treated as `bytes32`, meaning they take up 32 bytes of space. However, outside of assembly, they return to their original type and format.
+
+Because of this, we can inspect a storage slot's value in `bytes32` format, allowing us to see its raw data representation before Solidity applies type-specific formatting.
+
+```solidity
+contract ReadSlotsRaw {
+    uint256 public x = 20;
+
+    function readSlotX_bool() external view returns (bytes32 value) {
+        assembly {
+            value := sload(x.slot) // will compile
+        }
+    }
+}
+```
+
+![Visual explanation of returning the value of a storage slot in bytes32](https://www.rareskills.io/wp-content/uploads/2024/09/706568_e6ae45a9d9924157858372d1ce3f994f~mv2.png)
+
+### sstore()
+
+Yul gives us direct access to modify the value of a storage slot using the `sstore()` opcode.
+
+`sstore(slot, value)` stores a 32-byte long value directly to a storage slot.
+
+- `slot`: This is the targeted storage slot which we are writing to.
+- `value`: The 32-byte value to be stored at the specified storage slot. If the value is less than 32 bytes, it will be left padded with zeroes
+
+`sstore(slot, value)` overwrites the entire storage slot with a new value.
+
+```solidity
+contract WriteStorage {
+    uint256 public x = 11;
+    uint256 public y = 22;
+    address public owner;
+
+    constructor(address _owner) {
+        owner = _owner;
+    }
+
+    function sstore_x(uint256 _val) public {
+        assembly {
+            sstore(x.slot, _val)
+        }
+    }
+
+    function set_x(uint256 _val) public {
+        x = _val;
+    }
+}
+```
+
+`sstore_x(_val)` directly updates the value stored in the storage slot that `x` references, effectively changing the value of `x`.
+
+<video
+  src='https://video.wixstatic.com/video/706568_c3a727877521411a97f6233fdb0a531e/1080p/mp4/file.mp4'
+  type='video/mp4'
+  controls={true}
+></video>
+
+Both `sstore_x(_val)` and `set_x()` perform the same function: They update the value of `x` with a new value.
+
+**`sstore()` also does not type check.**
+
+Normally, when we try to assign an `address` type to a `uint256` type, it would return a type error and the contract would not compile:
+
+```solidity
+address public owner;
+
+function TypeError(uint256 value) external {
+    owner = value; // ERROR: Type uint256 is not implicitly convertible to expected type address.  [!code --]
+}
+```
+
+This error will not trigger with `sstore()` as it does not perform a type check.
+
+```solidity
+contract WriteStorage {
+    address public owner;
+
+    function sstoreOpcode(uint256 value) public {
+        assembly {
+            sstore(owner.slot, value)
+        }
+    }
+}
+```
+
+<Callout title="Manipulating Storage Packed Variables in Yul" className="my-5">
+
+sstore and sload work with 32-byte storage slots, making them ideal for uint256 variables since they fit perfectly.
+
+However, when multiple smaller variables share a slot, things get tricky. Their data takes up only part of the 32 bytes, and assembly lacks direct opcodes to modify or read just their portion. Instead, developers must use bitwise operations to extract or update packed values efficiently.
+
+</Callout>
+
+## Reference
+
+- [RareSkills](https://www.rareskills.io/post/evm-solidity-storage-layout) where I copied the diagrams from.

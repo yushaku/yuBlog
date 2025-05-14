@@ -50,7 +50,7 @@ const components = {
   h2: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h2
       className={cn(
-        "font-heading mt-12 scroll-m-20 border-t pt-2 text-2xl font-semibold tracking-tight first:mt-0 text-primary/90",
+        "font-heading mt-12 scroll-m-20 border-t pt-2 text-3xl font-semibold tracking-tight first:mt-0 text-primary/90",
         className
       )}
       {...props}
@@ -59,7 +59,7 @@ const components = {
   h3: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h3
       className={cn(
-        "font-heading mt-8 scroll-m-20 text-xl font-semibold tracking-tight text-primary/80",
+        "font-heading mt-8 scroll-m-20 text-2xl font-semibold tracking-tight text-primary/80",
         className
       )}
       {...props}
@@ -82,6 +82,9 @@ const components = {
       )}
       {...props}
     />
+  ),
+  video: ({ className, ...props }: React.HTMLAttributes<HTMLVideoElement>) => (
+    <video className={cn("rounded-md", className)} {...props} />
   ),
   h6: ({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h6
@@ -110,7 +113,7 @@ const components = {
     />
   ),
   em: ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => (
-    <em className={cn("italic", className)} {...props} />
+    <em className={cn("italic text-success", className)} {...props} />
   ),
   ul: ({ className, ...props }: React.HTMLAttributes<HTMLUListElement>) => (
     <ul className={cn("my-6 ml-6 list-disc", className)} {...props} />

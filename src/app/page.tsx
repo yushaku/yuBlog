@@ -72,9 +72,19 @@ export default async function Home({
                   <span className='w-2 h-2 rounded-full bg-primary'></span>
                   {moment(post.date).format("MMMM D, YYYY")}
                 </p>
-                <h3 className='text-foreground group-hover:text-primary text-xl font-bold mb-3 line-clamp-2'>
+                <h3 className='text-foreground group-hover:text-primary mb-2 text-xl font-bold line-clamp-2'>
                   {post.title}
                 </h3>
+                {/* <ul className='flex flex-wrap gap-2 my-2'>
+                  {post.tags?.map((tag) => (
+                    <li
+                      key={tag}
+                      className='text-grayColor bg-card px-2 py-1 rounded-md text-sm leading-relaxed line-clamp-3'
+                    >
+                      {tag}
+                    </li>
+                  ))}
+                </ul> */}
                 <p className='text-grayColor text-sm leading-relaxed line-clamp-3'>
                   {post.description}
                 </p>
