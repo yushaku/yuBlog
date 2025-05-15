@@ -94,6 +94,15 @@ const solidity = {
         link: "/article/solidity/storage_slots_primary_types",
       },
     },
+    {
+      id: "storage-slots-complex-types",
+      type: "roadmap",
+      position: { x: 400, y: 500 },
+      data: {
+        label: "Storage Slots of Complex Types",
+        link: "/article/solidity/storage_slots_complex_types",
+      },
+    },
   ],
   edges: [
     {
@@ -106,7 +115,13 @@ const solidity = {
       id: "s2",
       source: "solidity",
       target: "storage-slots-primary-types",
-      animated: true,
+      animated: false,
+    },
+    {
+      id: "s3",
+      source: "solidity",
+      target: "storage-slots-complex-types",
+      animated: false,
     },
   ],
 };
@@ -117,7 +132,7 @@ export const ethereum: MOC = {
     {
       id: "ethereum",
       type: "roadmap",
-      position: { x: 0, y: 0 },
+      position: { x: 0, y: 200 },
       data: {
         label: "Ethereum",
         type: "main",

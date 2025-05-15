@@ -88,6 +88,32 @@ export const systemDesign = {
         link: "/article/system_design/cache-strategies",
       },
     },
+    {
+      id: "architectural-patterns",
+      type: "roadmap",
+      position: { x: 200, y: 400 },
+      data: {
+        label: "architectural-patterns",
+      },
+    },
+    {
+      id: "monolithic-architecture",
+      type: "roadmap",
+      position: { x: 500, y: 400 },
+      data: {
+        label: "Monolithic Architecture",
+        link: "/article/system_design/monolithic-architecture",
+      },
+    },
+    {
+      id: "microservices-architecture",
+      type: "roadmap",
+      position: { x: 500, y: 500 },
+      data: {
+        label: "Microservices Architecture",
+        link: "/article/system_design/microservices-architecture",
+      },
+    },
   ],
   edges: [
     { id: "e1", source: "system-design", target: "basics", animated: false },
@@ -115,6 +141,24 @@ export const systemDesign = {
       id: "e7",
       source: "caching",
       target: "redis",
+      animated: false,
+    },
+    {
+      id: "e8",
+      source: "system-design",
+      target: "architectural-patterns",
+      animated: false,
+    },
+    {
+      id: "e9",
+      source: "architectural-patterns",
+      target: "microservices-architecture",
+      animated: false,
+    },
+    {
+      id: "e10",
+      source: "architectural-patterns",
+      target: "monolithic-architecture",
       animated: false,
     },
   ],

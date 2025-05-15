@@ -7,13 +7,33 @@ export const typescript: MOC = {
       id: "typescript",
       type: "roadmap",
       position: { x: 0, y: 0 },
-      data: { label: "typescript", type: "main" },
+      data: {
+        label: "typescript",
+        logo: {
+          src: "https://cdn.worldvectorlogo.com/logos/typescript.svg",
+          width: 20,
+          height: 20,
+        },
+      },
+    },
+    {
+      id: "javascript",
+      type: "roadmap",
+      position: { x: 0, y: 300 },
+      data: {
+        label: "javascript",
+        logo: {
+          src: "https://www.svgrepo.com/show/303206/javascript-logo.svg",
+          width: 20,
+          height: 20,
+        },
+      },
     },
     {
       id: "utility_types",
       type: "roadmap",
       position: { x: 200, y: 0 },
-      data: { label: "utility types", type: "main" },
+      data: { label: "utility types" },
     },
     {
       id: "type_vs_interface",
@@ -21,7 +41,6 @@ export const typescript: MOC = {
       position: { x: 400, y: 0 },
       data: {
         label: "type vs interface",
-        type: "main",
         link: "/article/typescript/type_vs_interface",
       },
     },
@@ -31,7 +50,6 @@ export const typescript: MOC = {
       position: { x: 400, y: 100 },
       data: {
         label: "prettier merged type",
-        type: "main",
         link: "/article/typescript/prettier_merged_type",
       },
     },
