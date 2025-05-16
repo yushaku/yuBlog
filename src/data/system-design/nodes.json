@@ -1,0 +1,211 @@
+[
+  {
+    "id": "system-design",
+    "type": "roadmap",
+    "position": {
+      "x": -136.24242334510146,
+      "y": 279.901571585849
+    },
+    "data": {
+      "label": "System Design",
+      "showDelete": false
+    },
+    "measured": {
+      "width": 155,
+      "height": 60
+    },
+    "selected": false,
+    "dragging": false
+  },
+  {
+    "id": "basics",
+    "type": "roadmap",
+    "position": {
+      "x": 184.6343131565675,
+      "y": 41.9995440387155
+    },
+    "data": {
+      "label": "Building Blocks",
+      "type": "sub",
+      "description": "Core components of large-scale systems",
+      "className": "max-w-[160px]",
+      "showDelete": false
+    },
+    "measured": {
+      "width": 160,
+      "height": 92
+    },
+    "selected": false,
+    "dragging": false
+  },
+  {
+    "id": "Rate limit",
+    "type": "roadmap",
+    "position": {
+      "x": 400,
+      "y": 0
+    },
+    "data": {
+      "label": "Rate limit",
+      "link": "/article/system_design/rate_limit",
+      "logo": {
+        "src": "https://cdn2.iconfinder.com/data/icons/microservices-soft-fill/60/Rate-Limiting-rate-limiting-server-filter-512.png",
+        "width": 30,
+        "height": 30
+      },
+      "showDelete": false
+    },
+    "measured": {
+      "width": 146,
+      "height": 66
+    }
+  },
+  {
+    "id": "Load balancer",
+    "type": "roadmap",
+    "position": {
+      "x": 400,
+      "y": 100
+    },
+    "data": {
+      "label": "Load balancer",
+      "link": "/article/system_design/load_balancer",
+      "logo": {
+        "src": "https://cdn-icons-png.flaticon.com/512/17215/17215942.png",
+        "width": 30,
+        "height": 30
+      },
+      "showDelete": false
+    },
+    "measured": {
+      "width": 186,
+      "height": 66
+    }
+  },
+  {
+    "id": "databases",
+    "type": "roadmap",
+    "position": {
+      "x": 200,
+      "y": 600
+    },
+    "data": {
+      "label": "Databases",
+      "showDelete": false
+    },
+    "measured": {
+      "width": 119,
+      "height": 60
+    }
+  },
+  {
+    "id": "caching",
+    "type": "roadmap",
+    "position": {
+      "x": 203.07313736868647,
+      "y": 253.267714390566
+    },
+    "data": {
+      "label": "Caching",
+      "link": "/article/system_design/caching",
+      "showDelete": false
+    },
+    "measured": {
+      "width": 100,
+      "height": 60
+    },
+    "selected": false,
+    "dragging": false
+  },
+  {
+    "id": "redis",
+    "type": "roadmap",
+    "position": {
+      "x": 400,
+      "y": 200
+    },
+    "data": {
+      "label": "redis",
+      "link": "/article/system_design/redis",
+      "logo": {
+        "src": "https://www.cdnlogo.com/logos/r/3/redis.svg",
+        "width": 30,
+        "height": 30
+      },
+      "showDelete": false
+    },
+    "measured": {
+      "width": 111,
+      "height": 66
+    }
+  },
+  {
+    "id": "cache-strategies",
+    "type": "roadmap",
+    "position": {
+      "x": 400,
+      "y": 300
+    },
+    "data": {
+      "label": "cache-strategies",
+      "link": "/article/system_design/cache-strategies",
+      "showDelete": false
+    },
+    "measured": {
+      "width": 172,
+      "height": 60
+    }
+  },
+  {
+    "id": "architectural-patterns",
+    "type": "roadmap",
+    "position": {
+      "x": 205.34685135428884,
+      "y": 452.39914327203104
+    },
+    "data": {
+      "label": "architectural-patterns",
+      "showDelete": false
+    },
+    "measured": {
+      "width": 213,
+      "height": 60
+    },
+    "selected": true,
+    "dragging": false
+  },
+  {
+    "id": "monolithic-architecture",
+    "type": "roadmap",
+    "position": {
+      "x": 500,
+      "y": 400
+    },
+    "data": {
+      "label": "Monolithic Architecture",
+      "link": "/article/system_design/monolithic-architecture",
+      "showDelete": false
+    },
+    "measured": {
+      "width": 224,
+      "height": 60
+    }
+  },
+  {
+    "id": "microservices-architecture",
+    "type": "roadmap",
+    "position": {
+      "x": 500,
+      "y": 500
+    },
+    "data": {
+      "label": "Microservices Architecture",
+      "link": "/article/system_design/microservices-architecture",
+      "showDelete": false
+    },
+    "measured": {
+      "width": 253,
+      "height": 60
+    }
+  }
+]

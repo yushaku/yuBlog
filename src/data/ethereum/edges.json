@@ -1,0 +1,44 @@
+[
+  {
+    "id": "a1",
+    "source": "ethereum",
+    "target": "aa",
+    "animated": false
+  },
+  {
+    "id": "a2",
+    "source": "aa",
+    "target": "erc-4337",
+    "animated": false
+  },
+  {
+    "id": "i1",
+    "source": "ethereum",
+    "target": "indexer",
+    "animated": false
+  },
+  {
+    "id": "i2",
+    "source": "indexer",
+    "target": "the-graph",
+    "animated": false
+  },
+  {
+    "id": "s1",
+    "source": "ethereum",
+    "target": "solidity",
+    "animated": true
+  },
+  {
+    "id": "s2",
+    "source": "solidity",
+    "target": "storage-slots-primary-types",
+    "animated": false
+  },
+  {
+    "id": "s3",
+    "source": "solidity",
+    "target": "storage-slots-complex-types",
+    "animated": false
+  }
+]

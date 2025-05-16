@@ -1,0 +1,145 @@
+[
+  {
+    "id": "ethereum",
+    "type": "roadmap",
+    "position": {
+      "x": 0,
+      "y": 200
+    },
+    "data": {
+      "label": "Ethereum",
+      "type": "main",
+      "logo": {
+        "src": "https://www.cdnlogo.com/logos/e/81/ethereum-eth.svg",
+        "width": 20,
+        "height": 20
+      }
+    },
+    "measured": {
+      "width": 139,
+      "height": 60
+    }
+  },
+  {
+    "id": "aa",
+    "type": "roadmap",
+    "position": {
+      "x": 200,
+      "y": 0
+    },
+    "data": {
+      "label": "Account Abstraction",
+      "link": "/article/blockchain/AA_breakdown"
+    },
+    "measured": {
+      "width": 200,
+      "height": 60
+    }
+  },
+  {
+    "id": "erc-4337",
+    "type": "roadmap",
+    "position": {
+      "x": 450,
+      "y": 0
+    },
+    "data": {
+      "label": "Erc-4337",
+      "link": "/article/blockchain/ERC-4337"
+    },
+    "measured": {
+      "width": 110,
+      "height": 60
+    }
+  },
+  {
+    "id": "indexer",
+    "type": "roadmap",
+    "position": {
+      "x": 200,
+      "y": 200
+    },
+    "data": {
+      "label": "Indexer",
+      "type": "main"
+    },
+    "measured": {
+      "width": 93,
+      "height": 60
+    }
+  },
+  {
+    "id": "the-graph",
+    "type": "roadmap",
+    "position": {
+      "x": 400,
+      "y": 200
+    },
+    "data": {
+      "label": "The Graph",
+      "type": "main",
+      "logo": {
+        "src": "https://s2.coinmarketcap.com/static/img/coins/200x200/6719.png",
+        "width": 20,
+        "height": 20
+      }
+    },
+    "measured": {
+      "width": 146,
+      "height": 60
+    }
+  },
+  {
+    "id": "solidity",
+    "type": "roadmap",
+    "position": {
+      "x": 200,
+      "y": 400
+    },
+    "data": {
+      "label": "Solidity",
+      "type": "main",
+      "logo": {
+        "src": "https://svgmix.com/uploads/skillicons/f41159-solidity.svg",
+        "width": 20,
+        "height": 20
+      }
+    },
+    "measured": {
+      "width": 121,
+      "height": 60
+    }
+  },
+  {
+    "id": "storage-slots-primary-types",
+    "type": "roadmap",
+    "position": {
+      "x": 400,
+      "y": 400
+    },
+    "data": {
+      "label": "Storage Slots of Primary Types",
+      "link": "/article/solidity/storage_slots_primary_types"
+    },
+    "measured": {
+      "width": 286,
+      "height": 60
+    }
+  },
+  {
+    "id": "storage-slots-complex-types",
+    "type": "roadmap",
+    "position": {
+      "x": 400,
+      "y": 500
+    },
+    "data": {
+      "label": "Storage Slots of Complex Types",
+      "link": "/article/solidity/storage_slots_complex_types"
+    },
+    "measured": {
+      "width": 294,
+      "height": 60
+    }
+  }
+]

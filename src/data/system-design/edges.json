@@ -1,0 +1,62 @@
+[
+  {
+    "id": "e1",
+    "source": "system-design",
+    "target": "basics",
+    "animated": false
+  },
+  {
+    "id": "e2",
+    "source": "basics",
+    "target": "Rate limit",
+    "animated": false
+  },
+  {
+    "id": "e3",
+    "source": "basics",
+    "target": "Load balancer",
+    "animated": false
+  },
+  {
+    "id": "e4",
+    "source": "system-design",
+    "target": "databases",
+    "animated": false
+  },
+  {
+    "id": "e5",
+    "source": "system-design",
+    "target": "caching",
+    "animated": false
+  },
+  {
+    "id": "e6",
+    "source": "caching",
+    "target": "cache-strategies",
+    "animated": false
+  },
+  {
+    "id": "e7",
+    "source": "caching",
+    "target": "redis",
+    "animated": false
+  },
+  {
+    "id": "e8",
+    "source": "system-design",
+    "target": "architectural-patterns",
+    "animated": false
+  },
+  {
+    "id": "e9",
+    "source": "architectural-patterns",
+    "target": "microservices-architecture",
+    "animated": false
+  },
+  {
+    "id": "e10",
+    "source": "architectural-patterns",
+    "target": "monolithic-architecture",
+    "animated": false
+  }
+]

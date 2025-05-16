@@ -1,0 +1,17 @@
+[
+  {
+    "id": "e1-2",
+    "source": "typescript",
+    "target": "utility_types"
+  },
+  {
+    "id": "e1-3",
+    "source": "utility_types",
+    "target": "type_vs_interface"
+  },
+  {
+    "id": "e1-4",
+    "source": "utility_types",
+    "target": "prettier_merged_type"
+  }
+]

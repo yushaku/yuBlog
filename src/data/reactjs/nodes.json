@@ -1,0 +1,52 @@
+[
+  {
+    "id": "frontend",
+    "type": "roadmap",
+    "position": {
+      "x": -27.11661445393665,
+      "y": 63.07167088431923
+    },
+    "data": {
+      "label": "Front-end",
+      "type": "main"
+    },
+    "measured": {
+      "width": 114,
+      "height": 60
+    },
+    "selected": true,
+    "dragging": false
+  },
+  {
+    "id": "intro",
+    "type": "roadmap",
+    "position": {
+      "x": 200,
+      "y": 0
+    },
+    "data": {
+      "label": "I placed it just for fun",
+      "type": "main"
+    },
+    "measured": {
+      "width": 204,
+      "height": 60
+    }
+  },
+  {
+    "id": "confession",
+    "type": "roadmap",
+    "position": {
+      "x": 200,
+      "y": 100
+    },
+    "data": {
+      "label": "I've not write anything on this topic",
+      "type": "main"
+    },
+    "measured": {
+      "width": 319,
+      "height": 60
+    }
+  }
+]

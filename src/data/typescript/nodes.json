@@ -1,0 +1,91 @@
+[
+  {
+    "id": "typescript",
+    "type": "roadmap",
+    "position": {
+      "x": -20.64705882352939,
+      "y": -2.4705882352941373
+    },
+    "data": {
+      "label": "typescript",
+      "logo": {
+        "src": "https://cdn.worldvectorlogo.com/logos/typescript.svg",
+        "width": 20,
+        "height": 20
+      }
+    },
+    "measured": {
+      "width": 144,
+      "height": 60
+    },
+    "selected": true,
+    "dragging": false
+  },
+  {
+    "id": "javascript",
+    "type": "roadmap",
+    "position": {
+      "x": 0,
+      "y": 300
+    },
+    "data": {
+      "label": "javascript",
+      "logo": {
+        "src": "https://www.svgrepo.com/show/303206/javascript-logo.svg",
+        "width": 20,
+        "height": 20
+      }
+    },
+    "measured": {
+      "width": 139,
+      "height": 60
+    }
+  },
+  {
+    "id": "utility_types",
+    "type": "roadmap",
+    "position": {
+      "x": 200,
+      "y": 0
+    },
+    "data": {
+      "label": "utility types"
+    },
+    "measured": {
+      "width": 128,
+      "height": 60
+    }
+  },
+  {
+    "id": "type_vs_interface",
+    "type": "roadmap",
+    "position": {
+      "x": 400,
+      "y": 0
+    },
+    "data": {
+      "label": "type vs interface",
+      "link": "/article/typescript/type_vs_interface"
+    },
+    "measured": {
+      "width": 169,
+      "height": 60
+    }
+  },
+  {
+    "id": "prettier_merged_type",
+    "type": "roadmap",
+    "position": {
+      "x": 400,
+      "y": 100
+    },
+    "data": {
+      "label": "prettier merged type",
+      "link": "/article/typescript/prettier_merged_type"
+    },
+    "measured": {
+      "width": 202,
+      "height": 60
+    }
+  }
+]
