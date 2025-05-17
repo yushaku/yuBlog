@@ -2,6 +2,8 @@ import { defineDocumentType, makeSource } from "contentlayer2/source-files";
 import rehypePrettyCode from "rehype-pretty-code";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
 import { createHighlighter } from "shiki";
 import {
   transformerNotationDiff,
@@ -34,9 +36,10 @@ export default makeSource({
   contentDirPath: "posts",
   documentTypes: [Doc],
   mdx: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkMath],
     rehypePlugins: [
       rehypeSlug,
+      rehypeKatex,
       [
         rehypePrettyCode,
         {
@@ -53,10 +56,6 @@ export default makeSource({
               classActivePre: "has-focused",
             }),
             transformerNotationHighlight(),
-            // transformerCopyButton({
-            //   visibility: "hover",
-            //   feedbackDuration: 2000,
-            // }),
           ],
         },
       ],

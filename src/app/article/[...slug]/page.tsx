@@ -9,6 +9,7 @@ import moment from "moment";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import "react-photo-view/dist/react-photo-view.css";
+import "katex/dist/katex.min.css";
 import "../../../styles/mdx.css";
 import { Comments, ReadMore } from "./components";
 import { ResponsiveToc } from "./components/TableOfContent";
