@@ -1,0 +1,82 @@
+---
+title: "Javascript: deep cloning object methods"
+date: "2025-05-19"
+tags: ["js", "tips&tricks"]
+status: "published"
+---
+
+Deep cloning in JavaScript has always been a headache. From `JSON.parse(JSON.stringify())` breaking on functions, to libraries like `lodash.cloneDeep()` We've had to rely on workarounds.
+
+But now, JavaScript has a **built-in deep cloning method** —meet `structuredClone()`!
+
+![Post cover image](https://media.daily.dev/image/upload/s--SeCpB2Vm--/f_auto/v1742134553/posts/uQqjuMq33)
+
+### What is structuredClone()?
+
+It's a **native deep-cloning function** that copies objects **without breaking data types**! Unlike `JSON.stringify()`, it:
+
+- **Supports functions, Maps, Sets, Dates, TypedArrays**
+- **Handles circular references** 🚀
+- **Works natively in modern browsers & Node.js (v17+)!**
+
+### Old vs New: Deep Cloning in Action
+
+#### Using JSON.stringify - Broken Cloning
+
+```javascript
+const obj = {
+  date: new Date(),
+  func: () => "Hello",
+};
+
+const cloned = JSON.parse(JSON.stringify(obj));
+
+console.log(cloned.date instanceof Date); // ❌ false (Broken) [!code --]
+console.log(cloned.func); // ❌ undefined (Functions are lost!) [!code --]
+```
+
+#### Using structuredClone() - Works Perfectly!
+
+```javascript
+const obj = {
+  date: new Date(),
+  func: () => "Hello",
+};
+const cloned = structuredClone(obj);
+
+console.log(cloned.date instanceof Date); // ✅ true [!code ++]
+console.log(cloned.func); // ❌ Still not cloned (Functions aren't serializable) [!code --]
+```
+
+<Callout type='note'>
+  Functions & prototype chains aren't cloned, but everything else is!
+</Callout>
+
+### Why is structuredClone() a Game-Changer?
+
+- **No More Manual Workarounds** - Forget third-party libraries!
+- **Handles Circular References** - `JSON.stringify()` crashes, but `structuredClone()` doesn't!
+- **Built-In Performance Boost** - Uses optimized browser internals.
+
+### Bonus: Cloning Objects with Circular References
+
+```javascript
+const obj = {};
+obj.self = obj;
+
+JSON.parse(JSON.stringify(obj)); // ❌ ERROR: Circular structure! [!code --]
+```
+
+This makes deep cloning much safer & more reliable!
+
+```javascript
+const obj = {};
+obj.self = obj;
+
+const cloned = structuredClone(obj); // ✅ Works perfectly! [!code ++]
+console.log(cloned.self === cloned); // true [!code ++]
+```
+
+### Final Takeaway
+
+The only problem with the “structuredClone” function is that it doesn't clone an objects functions. Apart from that, it's very useful

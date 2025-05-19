@@ -13,5 +13,10 @@
     "id": "e1-4",
     "source": "utility_types",
     "target": "prettier_merged_type"
+  },
+  {
+    "source": "javascript",
+    "target": "deep-clone-object",
+    "id": "xy-edge__javascript-deep-clone-object"
   }
 ]

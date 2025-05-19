@@ -36,9 +36,13 @@
     "animated": false
   },
   {
-    "id": "s3",
     "source": "solidity",
+    "target": "common-mistakes",
+    "id": "xy-edge__solidity-common-mistakes"
+  },
+  {
+    "source": "storage-slots-primary-types",
     "target": "storage-slots-complex-types",
-    "animated": false
+    "id": "xy-edge__storage-slots-primary-types-storage-slots-complex-types"
   }
 ]

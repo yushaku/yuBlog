@@ -14,6 +14,7 @@ interface CodeComparisonProps {
   afterCode: string;
   language?: string;
   filename: string;
+  secondFilename?: string;
   lightTheme?: string;
   darkTheme?: string;
   highlightColor?: string;
@@ -24,6 +25,7 @@ export function CodeComparison({
   afterCode,
   language = "typescript",
   filename,
+  secondFilename,
   lightTheme = "catppuccin-mocha",
   darkTheme = "catppuccin-macchiato",
 }: CodeComparisonProps) {
@@ -140,7 +142,7 @@ export function CodeComparison({
           >
             <div className='flex items-center border-b  bg-sidebar p-2 text-sm text-foreground'>
               <FileIcon className='mr-2 h-4 w-4' />
-              {filename}
+              {secondFilename || filename}
               <span className='ml-auto hidden md:block'>after</span>
             </div>
             {renderCode(afterCode, highlightedAfter)}

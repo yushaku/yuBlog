@@ -13,7 +13,8 @@
         "src": "https://www.cdnlogo.com/logos/e/81/ethereum-eth.svg",
         "width": 20,
         "height": 20
-      }
+      },
+      "showDelete": false
     },
     "measured": {
       "width": 139,
@@ -29,7 +30,8 @@
     },
     "data": {
       "label": "Account Abstraction",
-      "link": "/article/blockchain/AA_breakdown"
+      "link": "/article/blockchain/AA_breakdown",
+      "showDelete": false
     },
     "measured": {
       "width": 200,
@@ -45,7 +47,8 @@
     },
     "data": {
       "label": "Erc-4337",
-      "link": "/article/blockchain/ERC-4337"
+      "link": "/article/blockchain/ERC-4337",
+      "showDelete": false
     },
     "measured": {
       "width": 110,
@@ -61,7 +64,8 @@
     },
     "data": {
       "label": "Indexer",
-      "type": "main"
+      "type": "main",
+      "showDelete": false
     },
     "measured": {
       "width": 93,
@@ -82,7 +86,8 @@
         "src": "https://s2.coinmarketcap.com/static/img/coins/200x200/6719.png",
         "width": 20,
         "height": 20
-      }
+      },
+      "showDelete": false
     },
     "measured": {
       "width": 146,
@@ -103,7 +108,8 @@
         "src": "https://svgmix.com/uploads/skillicons/f41159-solidity.svg",
         "width": 20,
         "height": 20
-      }
+      },
+      "showDelete": false
     },
     "measured": {
       "width": 121,
@@ -114,32 +120,57 @@
     "id": "storage-slots-primary-types",
     "type": "roadmap",
     "position": {
-      "x": 400,
-      "y": 400
+      "x": 405.29104463613214,
+      "y": 459.08333177014185
     },
     "data": {
       "label": "Storage Slots of Primary Types",
-      "link": "/article/solidity/storage_slots_primary_types"
+      "link": "/article/solidity/storage_slots_primary_types",
+      "showDelete": false
     },
     "measured": {
       "width": 286,
       "height": 60
-    }
+    },
+    "selected": false,
+    "dragging": false
   },
   {
     "id": "storage-slots-complex-types",
     "type": "roadmap",
     "position": {
-      "x": 400,
-      "y": 500
+      "x": 717.1352885980541,
+      "y": 458.8694926631737
     },
     "data": {
       "label": "Storage Slots of Complex Types",
-      "link": "/article/solidity/storage_slots_complex_types"
+      "link": "/article/solidity/storage_slots_complex_types",
+      "showDelete": false
     },
     "measured": {
       "width": 294,
       "height": 60
-    }
+    },
+    "selected": false,
+    "dragging": false
+  },
+  {
+    "id": "common-mistakes",
+    "type": "roadmap",
+    "position": {
+      "x": 418.3408008261311,
+      "y": 366.31219523749877
+    },
+    "data": {
+      "label": "Common mistakes",
+      "link": "article/solidity/commons_mistakes",
+      "showDelete": false
+    },
+    "measured": {
+      "width": 184,
+      "height": 60
+    },
+    "selected": false,
+    "dragging": false
   }
 ]

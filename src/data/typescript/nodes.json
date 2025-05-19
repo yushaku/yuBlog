@@ -12,13 +12,14 @@
         "src": "https://cdn.worldvectorlogo.com/logos/typescript.svg",
         "width": 20,
         "height": 20
-      }
+      },
+      "showDelete": false
     },
     "measured": {
       "width": 144,
       "height": 60
     },
-    "selected": true,
+    "selected": false,
     "dragging": false
   },
   {
@@ -34,7 +35,8 @@
         "src": "https://www.svgrepo.com/show/303206/javascript-logo.svg",
         "width": 20,
         "height": 20
-      }
+      },
+      "showDelete": false
     },
     "measured": {
       "width": 139,
@@ -49,7 +51,8 @@
       "y": 0
     },
     "data": {
-      "label": "utility types"
+      "label": "utility types",
+      "showDelete": false
     },
     "measured": {
       "width": 128,
@@ -65,7 +68,8 @@
     },
     "data": {
       "label": "type vs interface",
-      "link": "/article/typescript/type_vs_interface"
+      "link": "/article/typescript/type_vs_interface",
+      "showDelete": false
     },
     "measured": {
       "width": 169,
@@ -81,11 +85,31 @@
     },
     "data": {
       "label": "prettier merged type",
-      "link": "/article/typescript/prettier_merged_type"
+      "link": "/article/typescript/prettier_merged_type",
+      "showDelete": false
     },
     "measured": {
       "width": 202,
       "height": 60
     }
+  },
+  {
+    "id": "deep-clone-object",
+    "type": "roadmap",
+    "position": {
+      "x": 296.99999999999994,
+      "y": 350.5
+    },
+    "data": {
+      "label": "Deep clone object",
+      "link": "/article/typescript/deep_cloning_methods",
+      "showDelete": false
+    },
+    "measured": {
+      "width": 180,
+      "height": 60
+    },
+    "selected": true,
+    "dragging": false
   }
 ]
