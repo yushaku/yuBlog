@@ -17,7 +17,9 @@ export const Provider = ({ children }: { children: React.ReactNode }) => {
   return (
     <ThemeProvider attribute='class' defaultTheme='dark'>
       <section className='min-h-[100dvh]'>
-        <StarrySky />
+        <div className='hidden md:block'>
+          <StarrySky />
+        </div>
 
         <Header
           topItems={topItems}

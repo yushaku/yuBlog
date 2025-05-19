@@ -3,8 +3,8 @@
     "id": "system-design",
     "type": "roadmap",
     "position": {
-      "x": -136.24242334510146,
-      "y": 279.901571585849
+      "x": -127.74434340155744,
+      "y": 221.35924308587917
     },
     "data": {
       "label": "System Design",
@@ -21,8 +21,8 @@
     "id": "basics",
     "type": "roadmap",
     "position": {
-      "x": 184.6343131565675,
-      "y": 41.9995440387155
+      "x": 141.1085948227431,
+      "y": -96.38427999082187
     },
     "data": {
       "label": "Building Blocks",
@@ -43,7 +43,7 @@
     "type": "roadmap",
     "position": {
       "x": 400,
-      "y": 0
+      "y": -133.86954590545807
     },
     "data": {
       "label": "Rate limit",
@@ -58,14 +58,16 @@
     "measured": {
       "width": 146,
       "height": 66
-    }
+    },
+    "selected": false,
+    "dragging": false
   },
   {
     "id": "Load balancer",
     "type": "roadmap",
     "position": {
-      "x": 400,
-      "y": 100
+      "x": 410.1438267430041,
+      "y": 53.98258189051853
     },
     "data": {
       "label": "Load balancer",
@@ -80,14 +82,16 @@
     "measured": {
       "width": 186,
       "height": 66
-    }
+    },
+    "selected": false,
+    "dragging": false
   },
   {
     "id": "databases",
     "type": "roadmap",
     "position": {
-      "x": 200,
-      "y": 600
+      "x": 201.88846220967645,
+      "y": 608.498079943544
     },
     "data": {
       "label": "Databases",
@@ -96,7 +100,9 @@
     "measured": {
       "width": 119,
       "height": 60
-    }
+    },
+    "selected": true,
+    "dragging": false
   },
   {
     "id": "caching",
@@ -160,7 +166,7 @@
     "id": "architectural-patterns",
     "type": "roadmap",
     "position": {
-      "x": 205.34685135428884,
+      "x": 202.51415803977414,
       "y": 452.39914327203104
     },
     "data": {
@@ -171,7 +177,7 @@
       "width": 213,
       "height": 60
     },
-    "selected": true,
+    "selected": false,
     "dragging": false
   },
   {
@@ -207,5 +213,48 @@
       "width": 253,
       "height": 60
     }
+  },
+  {
+    "id": "-forward-proxy-&-reverse-proxy",
+    "type": "roadmap",
+    "position": {
+      "x": 405.11433223195166,
+      "y": -40.41371599267817
+    },
+    "data": {
+      "label": " Forward Proxy & Reverse Proxy",
+      "showDelete": false
+    },
+    "measured": {
+      "width": 288,
+      "height": 60
+    },
+    "selected": false,
+    "dragging": false
+  },
+  {
+    "id": "domain-name-system",
+    "type": "roadmap",
+    "position": {
+      "x": 407.2413902009212,
+      "y": -230.836723392239
+    },
+    "data": {
+      "label": "Domain Name System",
+      "type": "roadmap",
+      "logo": {
+        "src": "https://drive.inet.vn/uploads/donv@inet.vn/ticketattachments/file-1695281963522_1695281962905.jpg",
+        "width": 24,
+        "height": 24,
+        "className": ""
+      },
+      "showDelete": false
+    },
+    "measured": {
+      "width": 245,
+      "height": 60
+    },
+    "selected": false,
+    "dragging": false
   }
 ]

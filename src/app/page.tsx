@@ -40,7 +40,7 @@ export default async function Home({
   return (
     <section className='min-h-screen max-w-7xl mx-auto'>
       <TopicTitle title='Map of Contents' className='my-12' />
-      <div className='grid grid-cols-2 md:grid-cols-4 gap-5'>
+      <div className='grid grid-cols-2 lg:grid-cols-4 gap-5'>
         {topics.map(({ title, slug, description, logo: Logo }) => (
           <Link key={title} href={`/mocs/${slug.toLocaleLowerCase()}`}>
             <GradientCard

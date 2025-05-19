@@ -1,0 +1,36 @@
+---
+title: "Solidity: Uniswap V1"
+date: "2025-05-17"
+tags: ["solidity", "uniswap"]
+status: "draft"
+description: "This article explains how Uniswap V1 works"
+---
+
+I have failed to understand how Uniswap works, cause i jump directly to the v3 codebase.
+i think i need to understand the v1 codebase to understand the v3 codebase.
+
+This article is inspired by [this uniswap book](https://uniswapv3book.com). And the v1 series are:
+
+- [Programming DeFi: Uniswap. Part 1](https://jeiwan.net/posts/programming-defi-uniswap-1/)
+- [Programming DeFi: Uniswap. Part 2](https://jeiwan.net/posts/programming-defi-uniswap-2/)
+- [Programming DeFi: Uniswap. Part 3](https://jeiwan.net/posts/programming-defi-uniswap-3/)
+
+## Constant product market maker
+
+You probably have already heard this definition, let's see what it means.
+
+Automated market maker is a general term that embraces different decentralized market maker algorithms. The most popular ones (and those that gave birth to the term) are related to prediction markets - markets that allow to make profit on predictions. Uniswap and other on-chain exchanges are a continuation of those algorithms.
+
+At the core of Uniswap is the constant product function:
+
+$$
+x * y = k
+$$
+
+Where $x$ is ether reserve, $y$ is token reserve (or vice versa), and $k$ is a constant. Uniswap requires that $k$ remains the same no matter how much of reserves of $x$ or $y$ there are.
+
+When you trade ether for tokens you deposit your ethers into the contract and get some amount of tokens in return. Uniswap ensures that after each trade $k$ remains the same (this is not really true, we’ll see later why).
+
+This formula is also responsible for pricing calculations, and we’ll soon see how.
+
+## smart contract

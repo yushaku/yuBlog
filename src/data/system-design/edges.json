@@ -58,5 +58,15 @@
     "source": "architectural-patterns",
     "target": "monolithic-architecture",
     "animated": false
+  },
+  {
+    "source": "basics",
+    "target": "-forward-proxy-&-reverse-proxy",
+    "id": "xy-edge__basics--forward-proxy-&-reverse-proxy"
+  },
+  {
+    "source": "basics",
+    "target": "domain-name-system",
+    "id": "xy-edge__basics-domain-name-system"
   }
 ]
