@@ -14,23 +14,28 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { sharePost } from "@/data/share";
+import { cn } from "@/utils";
+import { ArrowUpRightIcon } from "lucide-react";
 
 export default async function Home({
   searchParams,
 }: {
   searchParams: Promise<{ page: string }>;
 }) {
-  const aaa = await searchParams;
-  const page = parseInt(aaa?.page ?? 1);
+  const params = await searchParams;
+  const page = parseInt(params?.page ?? 1);
   const postsPerPage = 10;
   const filteredPosts = allPosts
+    .filter((post) =>
+      process.env.NEXT_PUBLIC_EVM === "dev" ? true : post.status === "public"
+    )
+    .concat(sharePost as any)
     .sort(
       (a, b) =>
         new Date(b?.date ?? "").getTime() - new Date(a?.date ?? "").getTime()
-    )
-    .filter((post) =>
-      process.env.NEXT_PUBLIC_EVM === "dev" ? true : post.status === "public"
     );
+
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
   const paginatedPosts = filteredPosts.slice(
     (page - 1) * postsPerPage,
@@ -65,15 +70,27 @@ export default async function Home({
           {paginatedPosts.map((post) => (
             <li key={post.slug} className='group'>
               <Link
-                href={`/article/${post.slug}`}
+                href={
+                  post.slug.startsWith("http")
+                    ? post.slug
+                    : `/article/${post.slug}`
+                }
+                target={post.slug.startsWith("http") ? "_blank" : "_self"}
                 className='block w-full bg-sidebar/30 group-hover:bg-card/50 rounded-xl p-6 transition-all duration-300 hover:shadow-lg hover:-translate-y-1'
               >
                 <p className='text-muted-foreground text-sm mb-3 flex items-center gap-2'>
                   <span className='w-2 h-2 rounded-full bg-primary'></span>
                   {moment(post.date).format("MMMM D, YYYY")}
                 </p>
-                <h3 className='text-foreground group-hover:text-primary mb-2 text-xl font-bold line-clamp-2'>
+                <h3 className='text-foreground group-hover:text-primary mb-2 text-xl font-bold line-clamp-2 flex items-center gap-2'>
                   {post.title}
+
+                  <ArrowUpRightIcon
+                    className={cn(
+                      "w-5 h-5",
+                      post.slug.startsWith("http") ? "block" : "hidden"
+                    )}
+                  />
                 </h3>
                 {/* <ul className='flex flex-wrap gap-2 my-2'>
                   {post.tags?.map((tag) => (
@@ -88,6 +105,14 @@ export default async function Home({
                 <p className='text-grayColor text-sm leading-relaxed line-clamp-3'>
                   {post.description}
                 </p>
+                <img
+                  src={post.thumbnail}
+                  alt={post.title}
+                  className={cn(
+                    "mt-4 max-h-96 object-cover",
+                    post.thumbnail ? "" : "hidden"
+                  )}
+                />
               </Link>
             </li>
           ))}

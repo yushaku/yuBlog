@@ -1,6 +1,6 @@
 "use client";
 
-import { EyeSlashIcon, EyeIcon } from "@heroicons/react/24/outline";
+import { EyeClosedIcon, EyeIcon } from "lucide-react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -53,9 +53,9 @@ export function FormInput<TType>({
           onClick={() => setIsShowPassword(!isShowPassword)}
         >
           {isShowPassword ? (
-            <EyeSlashIcon color='#234f66' />
+            <EyeClosedIcon color='#234f66' className='w-5 h-5' />
           ) : (
-            <EyeIcon color='#234f66' />
+            <EyeIcon color='#234f66' className='w-5 h-5' />
           )}
         </span>
       )}
