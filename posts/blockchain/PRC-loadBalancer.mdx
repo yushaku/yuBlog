@@ -1,0 +1,141 @@
+---
+title: "Load balancer RPC endpoints"
+date: "2025-05-29"
+tags: ["dev", "Ethereum"]
+status: "public"
+description: "Did your Dapp cash because of RPC endpoint?"
+---
+
+## Một ngày “trời đẹp” và DApp bỗng dưng tắt thở
+
+Chào anh em dev!
+
+Nếu anh em từng xây dựng DApp thì chắc không lạ gì với việc sử dụng RPC endpoint để lấy dữ liệu từ blockchain. Và ai cũng biết, một DApp thì đâu có gọi ít RPC - gọi hoài, gọi mãi, từ việc fetch block number, đọc smart contract, đến kiểm tra balance, v.v…
+
+Lúc đầu, mình cũng giống nhiều người, nghĩ đơn giản là lấy đại một cái RPC public từ [chainlist](https://chainlist.org/), dán vào là xong.
+
+```tsx
+import { createPublicClient, http } from "viem";
+import { mainnet } from "viem/chains";
+
+const client = createPublicClient({
+  chain: mainnet,
+  transport: http("https://eth.llamarpc.com"),
+});
+
+const blockNumber = await client.getBlockNumber();
+```
+
+Nhưng rồi một ngày đẹp trời nọ, hệ thống mình nhận được hàng loạt phản ánh từ người dùng: “Sao app không load được nữa?”, "app bị sập rồi à?"...
+
+Kiểm tra thì mới tá hoả: toàn bộ request đến RPC đều trả về HTTP 500. Cái endpoint mình dùng - một cái RPC public quen thuộc - đã "ngỏm" mà mình không hề hay biết.
+
+## Vấn đề lớn nhất: public RPC không ổn định
+
+Public RPC rất tiện - không cần đăng ký, không cần token, dán vào là chạy. Nhưng cái giá phải trả là không ai đảm bảo uptime cho bạn.
+
+Khi số lượng người dùng quá tải, hoặc khi bị chặn bởi rate limit, thì app của bạn coi như nằm im.
+
+Frontend thì càng nguy hiểm hơn vì bạn không kiểm soát được môi trường mạng của người dùng.
+
+## Vậy giải pháp là gì?
+
+Rất may là thư viện Viem mà mình đang dùng có giải pháp cực kỳ gọn gàng: [fallback](https://viem.sh/docs/clients/transports/fallback).
+
+> Fallback transport cho phép bạn khai báo nhiều RPC endpoint. Nếu một cái fail, nó sẽ tự động chuyển sang cái tiếp theo.
+
+```tsx
+import { createPublicClient, fallback, http } from "viem";
+import { mainnet } from "viem/chains";
+
+const client = createPublicClient({
+  chain: mainnet,
+  transport: fallback([
+    http("https://eth.llamarpc.com"),
+    http("https://eth.meowrpc.com"),
+    http("https://1.rpc.thirdweb.com"),
+  ]),
+});
+```
+
+Với cách này, kể cả khi một RPC down, hệ thống vẫn tiếp tục hoạt động nhờ các endpoint dự phòng.
+
+## Tối ưu hơn nữa với rank
+
+Nếu bạn nghĩ việc fallback là đủ tốt rồi thì… Viem còn cho bạn nhiều hơn thế!
+
+Chỉ với một dòng cấu hình: `{ rank: true }`, Viem sẽ tự động đánh giá và xếp hạng các RPC endpoint để chọn ra cái tốt nhất tại thời điểm hiện tại.
+
+**Cách hoạt động của cơ chế `rank`**
+
+- Ping định kỳ: Mỗi 10 giây (mặc định), fallback transport sẽ gửi ping đến từng transport để kiểm tra phản hồi.
+- Thu thập mẫu: Trong 10 lần ping gần nhất, hệ thống ghi nhận liệu mỗi transport có phản hồi hay không (độ ổn định) và thời gian phản hồi (độ trễ).
+- Tính điểm: Sử dụng thuật toán điểm trung bình có trọng số, hệ thống tính điểm cho mỗi transport với trọng số mặc định là 0.7 cho độ ổn định và 0.3 cho độ trễ.
+- Ưu tiên sử dụng: Transport có điểm số cao nhất sẽ được ưu tiên sử dụng.
+
+Nếu bạn không bật `rank`, Viem sẽ `fallback` theo đúng thứ tự bạn đã khai báo. Nhưng khi bật `rank`, Viem sẽ động não giúp bạn luôn chọn cái “ngon” nhất.
+
+```tsx
+const client = createPublicClient({
+  chain: mainnet,
+  transport: fallback(
+    [
+      http("https://eth.llamarpc.com"),
+      http("https://eth.meowrpc.com"),
+      http("https://1.rpc.thirdweb.com"),
+    ],
+    { rank: true }
+  ),
+});
+```
+
+![so good](https://www.memecreator.com/static/images/memes/322312.jpg)
+
+## xài free RPC, và cái giá phải trả…
+
+Mình nghèo, nên toàn dùng mấy RPC public free thôi - mấy cái này thường giới hạn chỉ khoảng 10 requests/giây. Và thế là vấn đề lại tiếp diễn…
+
+> Khi `429 Too Many Requests` trở thành cơn ác mộng
+
+Thay vì móc hầu bao ra trả cho các dịch vụ RPC chuyên nghiệp (dù rất xứng đáng),
+tôi chọn một con đường khác: dùng thật nhiều RPC public cùng lúc! Mỗi cái có giới hạn riêng, nên nếu chia đều tải ra thì… ta có thể sống sót được 😌.
+
+Ban đầu, tôi dùng `fallback` như ở trên - cũng ổn, nhưng chưa đủ. Vì `fallback` chỉ dùng 1 endpoint tại một thời điểm, chỉ khi nó lỗi thì mới chuyển sang cái tiếp theo.
+Tôi muốn chia đều tải ra ngay từ đầu, như một `load balancer` thực thụ.
+
+Và rồi tôi phát hiện ra: `@ponder/utils` - một framework cho blockchain indexer.
+Nó có một function tên là `loadBalance`, đúng cái tôi cần!
+
+```tsx
+import { loadBalance } from "@ponder/utils";
+import { http, createPublicClient, rateLimit } from "viem";
+import { mainnet } from "viem/chains";
+
+const client = createPublicClient({
+  chain: mainnet,
+  transport: loadBalance([
+    http("https://eth.llamarpc.com"),
+    http("https://eth.meowrpc.com"),
+    rateLimit(http("https://1.rpc.thirdweb.com"), { requestsPerSecond: 15 }),
+  ]),
+});
+```
+
+Vậy loadBalance làm gì?
+
+- ⚖️ Round-robin: Mỗi request sẽ được gửi đến một RPC khác nhau theo thứ tự.
+- 🔄 Phân tán tải: Không còn chuyện spam 1 RPC rồi ăn rate limit.
+- 💸 Miễn phí và không cần token: Chỉ cần dùng các RPC public như bình thường.
+- Nó không chỉ giúp tôi tránh được lỗi 429, mà còn tăng độ ổn định của app - vì không phụ thuộc vào một nhà cung cấp duy nhất.
+
+![ok](https://tft.edu.vn/public/upload/2024/09/meme-ok-42.webp)
+
+## kết
+
+Nếu bạn đang phát triển DApp và vẫn đang dùng một RPC duy nhất thì… hãy dừng lại.
+
+- Hãy dùng `fallback()` nếu muốn đơn giản và an toàn.
+- Hãy bật `{ rank: true }` nếu muốn smart auto switch.
+- Hãy thử `loadBalance()` nếu muốn chia tải và né rate limit như ninja.
+
+> Chúc anh em dev DApp ngon lành mà không phải thức khuya vì lỗi 500 hay 429 nữa.
